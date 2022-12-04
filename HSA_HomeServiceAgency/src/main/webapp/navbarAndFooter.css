@@ -1,0 +1,43 @@
+@charset "ISO-8859-1";
+/*Navbar section*/
+
+.logo{
+	width:250px;
+}
+.navbar-brand{
+	width:200px;
+}
+.nav-link{
+	font-weight: 400 !important;
+}
+nav{
+	border-bottom: 1px solid black;
+}
+.white{
+	background-color:#fff !important;
+}
+
+/*Footer section*/
+
+.footer-sec{
+	color:white;
+	background-color:#000;
+	overflow:hidden;
+}
+.footer-nav{
+	margin-top: 1rem;
+}
+.footer-nav li a:hover{
+	color:#F2CA3D;
+}
+.f-navbar{
+	list-style-type: none;
+	display:inline;
+}
+.f-navbar li{
+	float:left;
+	padding:0px 10px;
+}
+.f-image{
+	width:300px;
+}

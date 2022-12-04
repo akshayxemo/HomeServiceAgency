@@ -4,21 +4,6 @@
 	padding:0;
 	box-sizing: border-box;
 }
-.logo{
-	width:250px;
-}
-.navbar-brand{
-	width:200px;
-}
-.nav-link{
-	font-weight: 400 !important;
-}
-nav{
-	border-bottom: 1px solid black;
-}
-.white{
-	background-color:#fff !important;
-}
 .header-sec{
 	background-image: url("./images/banner1.png");
 	position:relative;
@@ -99,25 +84,5 @@ p{
 .carousel-control-prev {
     left: -80px !important;
 }
-.footer-sec{
-	color:white;
-	background-color:#000;
-	overflow:hidden;
-}
-.footer-nav{
-	margin-top: 1rem;
-}
-.footer-nav li a:hover{
-	color:#F2CA3D;
-}
-.f-navbar{
-	list-style-type: none;
-	display:inline;
-}
-.f-navbar li{
-	float:left;
-	padding:0px 10px;
-}
-.f-image{
-	width:300px;
-}
+
+/*.......END of Index page..... */
