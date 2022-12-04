@@ -1,6 +1,16 @@
 @charset "ISO-8859-1";
 /*Navbar section*/
+*{
+	font-family: poppins, sans-serif;
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
 
+p{
+	line-height: 2;
+	font-size: 18px;
+}
 .logo{
 	width:250px;
 }
@@ -15,6 +25,10 @@ nav{
 }
 .white{
 	background-color:#fff !important;
+}
+.btn{
+	padding:8px 25px !important;
+	border-radius: 50px !important;
 }
 
 /*Footer section*/
