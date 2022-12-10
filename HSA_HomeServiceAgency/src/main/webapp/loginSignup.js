@@ -1,9 +1,10 @@
 /**
  * 
  */
+document.getElementById("loginButton").onclick = function () {
+        window.location.href = "loginSignup.html";
+    };
 
-console.log("Login page opened!!")
-
-function myFunction() {
-  console.log("Login Clicked!!")
-}
+document.getElementById("signupButton").onclick = function () {
+        window.location.href = "userType.html";
+    };
