@@ -39,10 +39,12 @@ nav{
 /*Footer section*/
 
 .footer-sec{
+	
 	color:white;
 	background-color:#000;
 	overflow:hidden;
-	width:100%;
+	position: inherit;
+	
 }
 .footer-nav{
 	margin-top: 1rem;
@@ -61,3 +63,6 @@ nav{
 .f-image{
 	width:300px;
 }
+
+
+
