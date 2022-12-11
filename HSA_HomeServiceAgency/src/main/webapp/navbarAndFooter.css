@@ -1,5 +1,10 @@
 @charset "ISO-8859-1";
 /*Navbar section*/
+body{
+	min-height:100vh;
+	margin:0;
+	padding:0;
+}
 *{
 	font-family: poppins, sans-serif;
 	margin:0;
@@ -37,6 +42,7 @@ nav{
 	color:white;
 	background-color:#000;
 	overflow:hidden;
+	width:100%;
 }
 .footer-nav{
 	margin-top: 1rem;
