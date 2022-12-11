@@ -25,10 +25,10 @@
           			<a class="nav-link" href="#">Services</a>
        	 		</li>
         		<li class="nav-item">
-          			<a class="nav-link" href="#">About us</a>
+          			<a class="nav-link" href="about_us.html">About us</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link active" href="Contact_us.html">Contact us</a>
+          			<a class="nav-link" href="Contact_us.html">Contact us</a>
         		</li>
       		</ul>
       		<span class="navbar-text">
@@ -119,7 +119,7 @@
 					<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
 					Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
 					when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<button type="button" class="btn btn-dark">Read more...</button>
+					<button type="button" class="btn btn-dark" id="AboutButton">Read more...</button>
 				</div>
 				<div class="col-sm-2 col-md-1"></div>
 				<div class="col-sm-5 col-md-6">
@@ -230,16 +230,16 @@
 			<div class="footer-nav d-flex py-3">
 				<ul class="mx-auto mb-2 mb-lg-0 f-navbar">
         		<li class="nav-item">
-          			<a class="nav-link active" href="index.html">Home</a>
+          			<a class="nav-link" href="index.html">Home</a>
         		</li>
        			<li class="nav-item">
           			<a class="nav-link" href="#">Services</a>
        	 		</li>
         		<li class="nav-item">
-          			<a class="nav-link" href="#">About us</a>
+          			<a class="nav-link" href="about_us.html">About us</a>
         		</li>
         		<li class="nav-item">
-          			<a class="nav-link active" href="Contact_us.html">Contact us</a>
+          			<a class="nav-link" href="Contact_us.html">Contact us</a>
         		</li>
       		</ul>
 			</div>
@@ -254,6 +254,11 @@
 		</div>
 		
 	</section>
+	<script>
+		document.getElementById("AboutButton").onclick = function () {
+		    window.location.href = "about_us.html";
+		};
+	</script>
 	<script src="loginSignup.js"></script>
 	<script src="bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

@@ -1,38 +1,3 @@
-@charset "ISO-8859-1";
-*{
-	font-family: poppins, sans-serif;
-	margin:0;
-	padding:0;
-	box-sizing: border-box;
-}
-body{
-  overflow: scroll;
-  line-height: 1rem !important;
-  font-size: 1rem !important;
-}
-p{
-	line-height: 2;
-	font-size: 18px;
-}
-.logo{
-	width:250px;
-}
-.navbar-brand{
-	width:200px;
-}
-.nav-link{
-	font-weight: 400 ;
-}
-nav{
-	border-bottom: 1px solid black;
-}
-.white{
-	background-color:#fff ;
-}
-.btn{
-	padding:8px 25px !important;
-	border-radius: 50px !important;
-}
 /* form */
 .my_container{
     border: 1px solid black;
@@ -41,32 +6,11 @@ nav{
 	  width:50%;
     margin: 6rem 25% !important;
 }
-/* footer */
-.footer-sec{
-	color:white;
-	background-color:#000;
-	overflow:hidden;
-}
-.footer-nav{
-	margin-top: 0.5rem;
-}
-.footer-nav li a:hover{
-	color:#F2CA3D;
-}
-.f-navbar{
-	list-style-type: none;
-	display:inline;
-}
-.f-navbar li{
-	float:left;
-	padding:0px 10px;
-}
-.f-image{
-	width:300px;
-}
+
+/*
 @media only screen and (max-width: 800px) {
     .myrow{
-      /* display: flex; */
       flex-direction:column;
     }
 }
+*/
