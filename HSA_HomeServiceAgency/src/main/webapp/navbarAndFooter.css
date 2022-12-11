@@ -39,10 +39,16 @@ nav{
 /*Footer section*/
 
 .footer-sec{
+	
 	color:white;
 	background-color:#000;
 	overflow:hidden;
+<<<<<<< HEAD
+	position: inherit;
+	
+=======
 	width:100%;
+>>>>>>> branch 'master' of https://github.com/akshayxemo/HomeServiceAgency.git
 }
 .footer-nav{
 	margin-top: 1rem;
@@ -61,3 +67,6 @@ nav{
 .f-image{
 	width:300px;
 }
+
+
+
