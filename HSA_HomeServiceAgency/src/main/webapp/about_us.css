@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+.About-us-wrap{
+    padding: 142px 0 ;
+}
+.founder{
+    padding: 50px 0 100px;
+    background-color: #F3F3F3;
+}
+.headline{
+	font-weight: 600;
+}
+.p-text{
+    font-weight: bold;
+}
