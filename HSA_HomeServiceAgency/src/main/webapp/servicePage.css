@@ -19,3 +19,8 @@
 .result {
 	text-align: center;
 }
+
+.service-title {
+	border-radius: 10px 0px 13px 0px;
+	background-color: #ffc107;
+}
