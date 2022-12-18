@@ -1,0 +1,21 @@
+.middle-sec {
+	margin-top: 75px;
+}
+
+.input-box-design {
+	border-radius: 20px !important;
+	background-color: #e6e4e4 !important;
+}
+
+.rounded-circle {
+	height: 70px;
+}
+
+.list-container {
+	height: 26rem;
+	overflow-y: auto;
+}
+
+.result {
+	text-align: center;
+}
