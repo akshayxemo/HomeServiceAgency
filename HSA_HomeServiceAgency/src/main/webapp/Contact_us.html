@@ -12,6 +12,7 @@
 	
 </head>
 <body>
+  <!-------------------------------------------------Header---------------------------------> 
 	<section class="top">
 		<nav class="navbar navbar-expand-lg white px-4 fixed-top">
 			<div class="container-fluid">
@@ -42,76 +43,77 @@
 			</div>
 		</nav>
 	</section>
-	
-        <section class="vh-10 my-5">
-            <div class="container py-5 h-10">
-              <div class="row justify-content-center align-items-center h-100">
-                <div class="col col-lg-9 col-xl-7">
-                  <div class="card shadow-10-strong" style="border-radius: 15px; margin-top:40px;">
-                    <div class="p-4 p-md-5">
-                      <h1 class="offset-4 mb-2 pb-4 pb-md-0 mb-md-5"><b>Contact Us</b></h3>
-                      <form>
-                        <div class="row">
+   <!-------------------------------------------------Contact Us Container--------------------------------->                                                         
+  <section class="vh-10 my-5">
+    <div class="container py-5 h-10">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+           <div class="card shadow-10-strong" style="border-radius: 15px; margin-top:40px;">
+              <div class="p-4 p-md-5">
+                <h1 class="offset-4 mb-2 pb-4 pb-md-0 mb-md-5"><b>Contact Us</b></h1>
+                  <form>
+                      <div class="row">
                           <div class="col-md-6 mb-0">
-                            <div class="form-outline">
-                              <input type="text" id="firstName" class="form-control form-control-lg" placeholder="Enter Full Name" style="border-radius: 15px;" />
-                              <label class="form-label" for="firstName"></label>
-                            </div>
+                              <div class="form-outline">
+                                  <input type="text" id="firstName" class="form-control form-control-lg" placeholder="Enter Full Name" style="border-radius: 15px;" />
+                                  <label class="form-label" for="firstName"></label>
+                              </div>
                           </div>
                           <div class="col-md-6 mb-0">
-                            <div class="form-outline">
-                              <input type="email" id="emailAddress" class="form-control form-control-lg" placeholder="Enter Address" style="border-radius: 15px;"/>
-                              <label class="form-label" for="emailAddress"></label>
-                            </div>
+                              <div class="form-outline">
+                                  <input type="email" id="emailAddress" class="form-control form-control-lg" placeholder="Enter Address" style="border-radius: 15px;"/>
+                                  <label class="form-label" for="emailAddress"></label>
+                              </div>
                           </div>
-                        </div>
-                        <div class="row">
+                      </div>
+                      <div class="row">
                           <div class="col-md-8 mb-0">
-                            <div class="form-outline">
-                              <input type="text" id="text" class="form-control form-control-lg" placeholder="Enter Your Message" style="border-radius: 15px;" />
-                              <label class="form-label" for="text"></label>
-                            </div>
+                              <div class="form-outline">
+                                  <input type="text" id="text" class="form-control form-control-lg" placeholder="Enter Your Message" style="border-radius: 15px;" />
+                                  <label class="form-label" for="text"></label>
+                              </div>
                           </div>
                           <div class="col-md-4 mb-0">
-                            <span class="navbar-text">
-                              <button type="button" class="btn btn-warning"  id="getintouchButton">Get In Touch</button> 
-                            </span>
+                              <span class="navbar-text">
+                                  <button type="button" class="btn btn-warning"  id="getintouchButton">Get In Touch</button> 
+                              </span>
                           </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="container">
-              <div class="mb-3">
-                <h1><b>Your Feedback Is Valuable To Us!</b></h1>
-              </div>
-                <div class="row">
-                   
-                    <div class="col-md-4">
-                        <div class="form-outline">
-                          <span class="navbar-text">
-                            <textarea class="form-control form-control-lg" id="text" rows="7" placeholder="Write Your Feedback"  style="border-radius: 15px; width: 31rem; height: 25rem;" ></textarea>
-                            <label class="form-label" for="text"></label><br>
-                            <button type="button" class="btn btn-warning btn-lg" style="margin-bottom:1rem" id="submitButton">Submit</button>
-                          </span>                         
-                        </div>
-                    </div>
-                    <div class="col-md-1"></div>
-                    
-                    <div class="col-md-7">
-                      <div id="map-container-google-1" class="z-depth-1-half map-container" >
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.211985517326!2d88.41447610000002!3d22.571173499999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02750e49614001%3A0x6c73b229a36be669!2sHome%20Service%20Agency!5e0!3m2!1sen!2sin!4v1670760769623!5m2!1sen!2sin" frameborder="0"
-                            style="border:0" allowfullscreen></iframe>
                       </div>
-                    </div>
-                </div>
-            </div>
-              
-    </section>
-    <section class="footer-sec">
+                  </form>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-------------------------------------------------Feedback(heading)---------------------------------> 
+    <div class="container">
+        <div class="mb-3">
+          <h1><b>Your Feedback Is Valuable To Us!</b></h1>
+        </div>
+        <!-------------------------------------------------Feedback(Left Box)--------------------------------->
+        <div class="row">
+          <div class="col-md-4">
+              <div class="form-outline">
+                  <span class="navbar-text">
+                      <textarea class="form-control form-control-lg" id="text" rows="7" placeholder="Write Your Feedback"  style="border-radius: 15px; width: 31rem; height: 25rem;" ></textarea>
+                      <label class="form-label" for="text"></label><br>
+                      <button type="button" class="btn btn-warning btn-lg" style="margin-bottom:1rem" id="submitButton">Submit</button>
+                  </span>                         
+              </div>
+          </div>
+          <div class="col-md-1"></div>
+          <!-------------------------------------------------Feedback(Right Box-Map)--------------------------------->
+          <div class="col-md-7">
+              <div id="map-container-google-1" class="z-depth-1-half map-container" >
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.211985517326!2d88.41447610000002!3d22.571173499999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02750e49614001%3A0x6c73b229a36be669!2sHome%20Service%20Agency!5e0!3m2!1sen!2sin!4v1670760769623!5m2!1sen!2sin" frameborder="0"
+                    style="border:0" allowfullscreen></iframe>
+              </div>
+          </div>
+        </div>
+    </div>
+  </section>
+   <!-------------------------------------------------Footer--------------------------------->
+  <section class="footer-sec">
 		<div class="container pb-3">
 			<div class="footer-nav d-flex py-3">
 				<ul class="mx-auto mb-2 mb-lg-0 f-navbar">
