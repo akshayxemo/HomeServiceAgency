@@ -40,7 +40,6 @@ public class ProfessionalSignup extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-		pw.println("SERVLET ENTERED");
 		InputStream Image = null;
 		Part filePart = null;
 		String Name = null;
@@ -55,15 +54,10 @@ public class ProfessionalSignup extends HttpServlet {
 		
 		String sqlQuery = "insert into professionals(Name,Email,Address,Phone,AltPhone,Gender,Service_id,Image,Password,Rating) values (?,?,?,?,?,?,?,?,?,?)";
 		try {
-			//pw.println("SERVLET ENTERED1");
 			
-			// Obtains the upload file part in this multipart request
 			filePart = request.getPart("PImage"); 
 			
-			// Obtains input stream of the upload file
 			Image = filePart.getInputStream(); 
-			
-			//pw.println("SERVLET ENTERED1:"+filePart);
 			
 			Name = request.getParameter("PName");
 			Address = request.getParameter("PAddress");
@@ -73,15 +67,13 @@ public class ProfessionalSignup extends HttpServlet {
 			Gender = request.getParameter("inlineRadioOptions");
 			Password = request.getParameter("Password");
 			ServiceId = Integer.parseInt(request.getParameter("SelectService"));
-			pw.println("SERVLET ENTERED2");
+			
 			boolean existingUser = IsExisting.checkRedundentUser("professionals", Email);
-			pw.println(existingUser);
 			if(existingUser) {
-				pw.println("<h5 align='center' style='color:red; margin-top:10px;'>Email id Already Existed</h5>");
+				pw.println("<div style='background-color:red; color:white; text-align:center; padding:10px 0px'>Email id Already Existed</div>");
 				request.getRequestDispatcher("Signup(professional).html").include(request, response);
 			}
 			else {
-				//pw.println("SERVLET ENTERED3");
 				Connection con = DbConnection.getConnection();
 				PreparedStatement pstm = con.prepareStatement(sqlQuery);
 				pstm.setString(1, Name);
@@ -95,7 +87,9 @@ public class ProfessionalSignup extends HttpServlet {
 				pstm.setString(9, Encryption.toHexString(Encryption.getSHA(Password)));
 				pstm.setInt(10, Rating);
 				pstm.executeUpdate();
-				pw.println("Successfully registerd");
+				request.setAttribute("Name", Name);
+				request.getRequestDispatcher("SuccessPage.jsp").include(request, response);
+				//pw.println("Successfully registerd");
 				con.close();
 			}
 		}catch(Exception e) {
