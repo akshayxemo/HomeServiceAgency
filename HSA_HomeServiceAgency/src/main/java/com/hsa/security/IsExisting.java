@@ -15,7 +15,6 @@ public class IsExisting {
 		try {
 			con = DbConnection.getConnection();
 			String sqlQuery2 = "select Email from "+table+" where Email = '"+email+"'" ;
-			Connection con = DbConnection.getConnection();
 			PreparedStatement pstm = con.prepareStatement(sqlQuery2);
 			rs = pstm.executeQuery();
 			if(rs.next()) {
