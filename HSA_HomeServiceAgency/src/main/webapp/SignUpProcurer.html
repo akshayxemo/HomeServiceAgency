@@ -1,91 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="ISO-8859-1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="SignUpProcurer.css">
     <link rel="stylesheet" href="navbarAndFooter.css" type="text/css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 	<link rel="stylesheet" href="bootstrap.min.css" type="text/css">
 	<title>Sign up procurer</title>
+	<style type="text/css">
+	.top{
+		text-align:center;
+		margin:0 auto;
+		padding: 20px 0;
+	}
+	.top p{
+		margin:10px 0 0 0;
+	}
+	.logo{
+		height:50px;
+	}
+	</style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg white px-4 fixed-top">
-  	<div class="container-fluid">
-   			<a class="navbar-brand" href="index.html"><img src="images/Logo.svg" class="logo"></a>
-    		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      		<span class="navbar-toggler-icon"></span>
-    		</button>
-    	<div class="collapse navbar-collapse" id="navbarText">
-      		<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        		<li class="nav-item">
-          			<a class="nav-link" aria-current="page" href="index.html">Home</a>
-        		</li>
-       			<li class="nav-item">
-          			<a class="nav-link" href="servicePage.html">Services</a>
-       	 		</li>
-        		<li class="nav-item">
-          			<a class="nav-link" href="about_us.html">About us</a>
-        		</li>
-        		<li class="nav-item">
-          			<a class="nav-link" href="Contact_us.html">Contact us</a>
-        		</li>
-      		</ul>
-      		<span class="navbar-text">
-      			<button type="button" class="btn btn-dark" id="loginButton">Login</button>
-        		<button type="button" class="btn btn-warning" id="signupButton">Signup</button>
-      		</span>
-    	</div>
-  	</div>
-	</nav>
+    <section class="top">
+		<a class="navbar-brand" href="index.html"><img src="images/Logo.svg" class="logo"></a>
+		<p>Welcome HSA Professionals Sign up Page</p>
+	</section>
 	
  	<section class="vh-10">
-		<div class="container py-5 h-100">
+		<div class="container pb-5 h-100">
 		  <div class="row justify-content-center align-items-center h-100">
 			<div class="col col-lg-9 col-xl-7">
-			  <div class="card shadow-10-strong " style="border-radius: 15px; border-color: black; margin-top:35px;">
+			  <div class="card shadow-10-strong " style="border-radius: 15px; border-color: black;">
 				<div class="p-4 p-md-5">
 				  <h3 class="text-center mb-2 pb-4 pb-md-0 mb-md-5"><b>Sign Up (Procurer)</b></h3>
-				    <form>
+				  <!-- Form -->
+				    <form method="post" name="User_signup" id="Signupform" enctype="multipart/form-data">
 					  <div class="row">
 					  	<div class="col-md-6 mb-0">
 	  						<div class="form-outline">
-						  		<input type="text" id="firstName" class="form-control form-control-lg" placeholder="Enter Full Name" style="border-radius: 15px;"  />
-						  		<label class="form-label" for="firstName"></label>
+						  		<label class="form-label" for="fullName"><b>Name</b> <span style="color:red">*</span></label>
+						  		<input type="text" id="fullName" name="UName" class="form-control form-control-lg" placeholder="Enter Full Name" />
 							</div>
 						</div>
 					    <div class="col-md-6 mb-0">
 							<div class="form-outline">
-						  		<input type="text" id="address" class="form-control form-control-lg" placeholder="Enter Address" style="border-radius: 15px;" />
-						  		<label class="form-label" for="address"></label>
+						  		<label class="form-label" for="address"><b>Address</b> <span style="color:red">*</span></label>
+						  		<input type="text" id="address" name="UAddress" class="form-control form-control-lg" placeholder="Enter Address" />
 							</div>
 	  					</div>
 					  </div>
 	  
-					    <div class="row">
+					    <div class="row mt-3">
 					  		<div class="col-md-6 mb-0 d-flex align-items-start">
 								<div class="row">
 									<div class="form-outline w-10">
-										<input type="email" class="form-control form-control-lg" id="emailAddress" placeholder="Email Id" style="border-radius: 15px; "/>
-										<label for="emailAddress" class="form-label"></label>
+										<label for="emailAddress" class="form-label"><b>Email</b> <span style="color:red">*</span></label>
+										<input type="email" name="UEmail" class="form-control form-control-lg" id="emailAddress" placeholder="Email Id"/>
 									</div>
-									<div class="form-outline w-100">
-										<h6 class="mb-0 pb-1"><b>Gender:</b></h6>
+									<div class="form-outline w-100 mt-4">
+										<h6 class="mb-0 pb-1"><b>Gender:</b> <span style="color:red">*</span></h6>
 	  									<div class="form-check form-check-inline">
 						  					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-												value="option1" checked />
+												value="Female" />
 						  					<label class="form-check-label" for="femaleGender">Female</label>
 										</div>
 										<div class="form-check form-check-inline ">
 						 					<input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-												value="option2" />
+												value="Male" />
 						  					<label class="form-check-label" for="maleGender">Male</label>
 										</div>
 										<div class="form-check form-check-inline ">
 											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-												value="option3" />
+												value="Others" />
 											<label class="form-check-label" for="otherGender">Other</label>
 										</div>
 									</div>
@@ -94,45 +83,50 @@
 					  		<div class="col-md-6 mb-0 d-flex align-items-start">
 								<div class="row">
 									<div class="form-outline w-100">
-						  				<input type="tel" class="form-control form-control-lg" id="phoneNumber" placeholder="Phone No." style="border-radius: 15px; " />
-						  				<label for="phoneNumber" class="form-label"></label>
+						  				<label for="phoneNumber" class="form-label"><b>Phone</b> <span style="color:red">*</span></label>
+						  				<input type="tel" class="form-control form-control-lg" name="Phone" id="phoneNumber" placeholder="Phone No."/>
+						  				
 									</div>
-									<div class="form-outline w-100">
-										<input type="tel" class="form-control form-control-lg" id="phoneNumber" placeholder="Alternate Phone No." style="border-radius: 15px;"/>
-										<label for="phoneNumber" class="form-label"></label>
+									<div class="form-outline w-100 mt-4">
+										<label for="phoneNumber" class="form-label"><b>Alternate Phone</b></label>
+										<input type="tel" class="form-control form-control-lg" name="AltPhone" id="altphoneNumber" placeholder="Alternate Phone No."/>
+										
 									</div>
 								</div>
 							</div>
 						</div>
 	  
-						<div class="row">
+						<div class="row mt-3">
 					  		<div class="col-md-6 mb-4 pb-2">
 	  							<div class="form-outline">
-						  			<input type="password" id="password" class="form-control form-control-lg" placeholder="Password" style="border-radius: 15px;" />
-						  			<label class="form-label" for="password"></label>
+						  			<label class="form-label" for="password"><b>Password</b> <span style="color:red">*</span></label>
+						  			<input type="password" id="password" name="Password" class="form-control form-control-lg" placeholder="Password" />
+						  			
 								</div>
 							</div>
 					  		<div class="col-md-6 mb-4 pb-2">
 	  							<div class="form-outline">
-						  			<input type="password" id="password" class="form-control form-control-lg" placeholder="Confirm Password" style="border-radius: 15px; " />
-						  			<label class="form-label" for="password"></label>
+						  			<label class="form-label" for="password"><b>Confirm Password</b> <span style="color:red">*</span></label>
+						  			<input type="password" id="Cpassword" name="ConfirmPass" class="form-control form-control-lg" placeholder="Confirm Password" />
+						  			
 								</div>
 	  						</div>
 						</div>
 	  
 						<div class="row">
 					  		<div class="col-md-12 mb-4 pb-2">
-								<label for="formFileLg" class="form-label">Upload Your Photo (.jpg <=200kb size)</label>
-								<input class="form-control form-control-lg" id="formFileLg" type="file" />
+								<label for="formFileLg" class="form-label">Upload Your Photo (.jpg <=200kb size)<span style="color:red">*</span></label>
+								<input class="form-control form-control-lg" id="formFileLg" type="file" name="UImage" onchange="Filevalidation()"/>
+								<p id="sizeP"> </p>
 					  		</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-0 pb-2">
 								<p class="mt-2 pt-1 mb-0">Already have an account? <a href="loginSignup.html"
-									class="link-primary">Log In</a></p></a></p>
+									class="link-primary"> Log In</a></p>
 							</div>
 							<div class="col-md-6 mb-0 pb-2 pt-2 ">
-					  			<input class="btn btn-warning btn-lg float-end" type="submit" value="Signup"/>
+					  			<input class="btn btn-warning btn-lg float-end" type="submit" value="Signup" onClick="checkFields(event)"/>
 							</div>
 						</div>
 	  				</form>
@@ -142,6 +136,25 @@
 		  </div>
 		</div>
 	</section>
+	
+	<!-- Modal -->
+		<div class="modal" tabindex="-1" id="alertModal" data-mdb-backdrop="true" style="display:none;">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">ALERT</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p id="modalBody">Modal body text goes here.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="closeModal()">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="modal-backdrop" style="z-index:-1; background-color:black; width:100%; height:100%; opacity: 0.5;"></div>
+		</div>
 
 
         <!-- footer -->
@@ -175,7 +188,8 @@
 		
 	</section>
     
-    <script src="loginSignup.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="SignUpProcurer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>

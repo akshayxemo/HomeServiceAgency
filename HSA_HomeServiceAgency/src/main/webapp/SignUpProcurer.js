@@ -1,7 +1,10 @@
+/**
+ * 
+ */
 function containsOnlyNumbers(str){
     return /^\d+$/.test(str);
 }
-//MODAL popup for alert info
+ //MODAL popup for alert info
 function openModal(msg) {
     document.getElementById("alertModal").style.display = "block";
     document.getElementById("modalBody").innerHTML = msg;
@@ -46,7 +49,7 @@ function passwordValidation(password, confirmPassword){
 		}
 	}
 	else{
-		alert("Password should contain atleast 6 characters");
+		alert("Password should contain atleast 6 characters and atmost 8 characters");
 		return false;
 	}
 	
@@ -81,26 +84,20 @@ function bulkFocusUncheckedFields(){
 		focusUncheckedFields("phoneNumber");
 		focusUncheckedFields("password");
 		focusUncheckedFields("Cpassword");
-		if(document.getElementById("SelectService").value=="0"){
-			document.getElementById("SelectService").style.borderColor="red";
-		}
-		else{
-			document.getElementById("SelectService").style.borderColor="#ced4da";
-		}
 		focusUncheckedFields("formFileLg");
 }
+
 //Checking fields are empty or not
 function checkFields(event){
-	let name = document.forms["Prof_signup"]["PName"].value
-	let address = document.forms["Prof_signup"]["PAddress"].value
-	let email = document.forms["Prof_signup"]["PEmail"].value
-	let gender = document.forms["Prof_signup"]["inlineRadioOptions"].value
-	let phone  = document.forms["Prof_signup"]["Phone"].value
-	let password = document.forms["Prof_signup"]["Password"].value
-	let confirmPassword = document.forms["Prof_signup"]["ConfirmPass"].value
-	let service = document.forms["Prof_signup"]["SelectService"].value
-	let image = document.forms["Prof_signup"]["PImage"].value
-	let altPhone =  document.forms["Prof_signup"]["AltPhone"].value
+	let name = document.forms["User_signup"]["UName"].value
+	let address = document.forms["User_signup"]["UAddress"].value
+	let email = document.forms["User_signup"]["UEmail"].value
+	let gender = document.forms["User_signup"]["inlineRadioOptions"].value
+	let phone  = document.forms["User_signup"]["Phone"].value
+	let password = document.forms["User_signup"]["Password"].value
+	let confirmPassword = document.forms["User_signup"]["ConfirmPass"].value
+	let image = document.forms["User_signup"]["UImage"].value
+	let altPhone =  document.forms["User_signup"]["AltPhone"].value
 	    
 	if(phone != ""){
 		if(!containsOnlyNumbers(phone)){
@@ -133,11 +130,10 @@ function checkFields(event){
 	}
 	
 	
-	if(name != "" && address != "" && email != "" && gender != "" && phone != "" && password != "" && confirmPassword != "" 
-	&& service != "0" && image != ""){
+	if(name != "" && address != "" && email != "" && gender != "" && phone != "" && password != "" && confirmPassword != "" && image != ""){
 		if(passwordValidation(password,confirmPassword) && Filevalidation() && ValidateEmail(email))
 		{
-			document.getElementById("Signupform").action = "ProfessionalSignup";
+			document.getElementById("Signupform").action = "UserSignup";
 			return true;
 		}		
 		else{
