@@ -53,7 +53,7 @@
 			  <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
 			</div>
 	        <p>Thank you <b><span><%= Name %></span> !</b>Now you can Login to your Dashboard</p>
-	        <a href="loginSignup.html">Go back to Login</a>
+	        <a href="loginSignup.jsp">Go back to Login</a>
 	      </div>
 	    </div>
 	  </div>

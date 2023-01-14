@@ -1,7 +1,9 @@
 @charset "ISO-8859-1";
 /*Navbar section*/
 body{
-	min-height:100vh;
+  	display:grid;
+  	grid-template-rows: auto 1fr auto;
+	min-height: 100vh;
 	margin:0;
 	padding:0;
 }
@@ -11,7 +13,6 @@ body{
 	padding:0;
 	box-sizing: border-box;
 }
-
 p{
 	line-height: 2;
 	font-size: 18px;

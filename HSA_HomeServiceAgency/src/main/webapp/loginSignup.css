@@ -1,25 +1,22 @@
-.middle-sec{
-	margin-top: 75px;
-}
+
 .outer-border{
 	width: 30rem;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 8rem;
-    margin-bottom: 8rem;
-}
-.input-box-design{
-	margin-left: auto;
-    width: 80% !important;
-    margin-right: auto;
-    border-radius: 16px !important;
-    background-color: #e6e4e4 !important;
+    padding : 2rem;
+    border-radius: 15px; 
+    border-color: black;
+    background-color:#f9f9f9;
 }
 a{
 	text-decoration: none !important;
 }
 #forget-password{
+	font-weight:300;
 	color: black !important;
-	font-size: 18px;
+}
+#forget-password:hover{
+	font-weight:400;
+	color: #0d6efd !important;
 }

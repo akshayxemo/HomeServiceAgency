@@ -1,5 +1,5 @@
 document.getElementById("loginButton").onclick = function () {
-        window.location.href = "loginSignup.html";
+        window.location.href = "loginSignup.jsp";
     };
 
 document.getElementById("signupButton").onclick = function () {
