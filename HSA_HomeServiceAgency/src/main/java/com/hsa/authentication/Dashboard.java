@@ -33,12 +33,13 @@ public class Dashboard extends HttpServlet {
         
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-		pw.println("hoho");
 		String id = null;
 		String type = null;
 		String sqlQuery = null;
 		boolean cookie1 = false;
 		boolean cookie2 = false;
+		String Name = null;
+		String rating = null;
 		
 		Cookie ck[] = request.getCookies();
 		if(ck!=null) {
@@ -59,25 +60,36 @@ public class Dashboard extends HttpServlet {
 			try {
 				Connection conn = DbConnection.getConnection();
 				ResultSet result = null;
-				if(type == "professionals") {
-					sqlQuery = "select Name from "+ type +" where Pid = '"+id+"'";
+				PreparedStatement pstm = null;
+				if(type.equals("professionals")) {
+					sqlQuery = "select Name, Rating from "+ type +" where Pid = '"+id+"'";
+					pstm = conn.prepareStatement(sqlQuery);
+					result = pstm.executeQuery();
+					if(result.next()) {
+						Name = result.getString("Name");
+						rating = result.getString("Rating");
+					}
 				}
 				else {
 					sqlQuery = "select Name from "+ type +" where Uid = '"+id+"'";
+					pstm = conn.prepareStatement(sqlQuery);
+					result = pstm.executeQuery();
+					if(result.next()) {
+						Name = result.getString("Name");
+					}
 				}
-				PreparedStatement pstm = conn.prepareStatement(sqlQuery);
-				result = pstm.executeQuery();
-				if(result.next()) {
-					request.setAttribute("userName", result.getString(1));
-					request.getRequestDispatcher("userDashboard.jsp").forward(request, response);
-				}
+				conn.close();
+				result.close();
+				request.setAttribute("userName", Name);
+				request.setAttribute("rate", rating);
+				request.getRequestDispatcher("userDashboard.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
 		else {
 			request.setAttribute("userVarify", false);
-			request.setAttribute("errorMsg","Service time Out Login again");
+			request.setAttribute("errorMsg","You Logged Out!! Please Login again");
 			request.getRequestDispatcher("loginSignup.jsp").forward(request, response);
 		}
 	}

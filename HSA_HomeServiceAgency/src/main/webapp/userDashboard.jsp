@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,9 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="navbarAndFooter.css" type="text/css">
     <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="userDashboard.css">
 </head>
 <body>
+<jsp:include page="Navbar.jsp"></jsp:include>
 	<section id="top">
         <div class="container  text-center " style="margin-top: 10%; margin-bottom: 3%;">
             <img src="./ImagePutter" class=" user-img-top rounded-circle img-fluid" style="height: 10%; width: 10%;">
@@ -23,6 +24,12 @@
         <div class="container-fluid text-center" id="booking" style="background-color:#1899B6; ">
             <p style="line-height: 2;">Booking</p>
         </div>
+         <c:if test="${rate != null}">
+         	<p>Rating is : ${rate}</p>
+         	<% for(int i = 0; i<=Integer.parseInt((String)request.getAttribute("rate")) ; i++){ %>
+         		<img src="images/star.png" width="20px" height="20px">
+         	<%} %>
+         </c:if>
     </section>
     <script src="bootstrap.bundle.min.js"></script>
 </body>

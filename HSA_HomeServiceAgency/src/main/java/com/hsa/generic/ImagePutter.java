@@ -42,7 +42,7 @@ public class ImagePutter extends HttpServlet {
 			  }
 		    }
 		    
-		    if(type == "professionals") {
+		    if(type.equals("professionals")) {
 		    	sqlQuery = "select Image from "+ type +" where Pid = '"+id+"'";
 		    }
 		    else {

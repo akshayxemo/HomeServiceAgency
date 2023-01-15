@@ -32,7 +32,6 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-		pw.println("hehe");
 		
 		String Email = null;
 		String Table = null;
@@ -54,16 +53,10 @@ public class Login extends HttpServlet {
 				request.setAttribute("errorMsg","This Email id is not registered");
 				request.getRequestDispatcher("loginSignup.jsp").include(request, response);
 			}
-			/*else if(!validatePassword(Table,hashPass, Email)) {
-				request.setAttribute("userVarify", false);
-				request.setAttribute("errorMsg","Incorrect Password");
-				request.getRequestDispatcher("loginSignup.jsp").include(request, response);
-			}*/
 			else {
 				Connection conn = DbConnection.getConnection();
 				ResultSet result = null;
-				
-				if(Table == "professionals") {
+				if(Table.equals("professionals")) {
 					sqlQuery = "select Pid from "+Table+" where Email = '"+Email+"' And Password = '"+hashPass+"'" ;
 				}
 				else {
@@ -72,16 +65,14 @@ public class Login extends HttpServlet {
 				
 				PreparedStatement pstm = conn.prepareStatement(sqlQuery);
 				result = pstm.executeQuery();
-				
 				if(result.next()) {
 					id = result.getString(1);
 					Cookie cookie1 = new Cookie("id",id);
-					cookie1.setMaxAge(60);
+					//cookie1.setMaxAge(60);
 					response.addCookie(cookie1);
 					Cookie cookie2 = new Cookie("userType",Table);
-					cookie2.setMaxAge(60);
+					//cookie2.setMaxAge(60);
 					response.addCookie(cookie2);
-					pw.println("hmmm");
 					//doGet(request,response);
 					//request.getRequestDispatcher("Dashboard.jsp").include(request,response);
 					//response.sendRedirect("Dashboard.jsp");
@@ -98,28 +89,4 @@ public class Login extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	/*private static boolean validatePassword(String table, String password, String email )throws SQLException {
-		Connection con=null;
-		ResultSet rs = null;
-		String pass = null;
-		try {
-			con = DbConnection.getConnection();
-			String sqlQuery2 = "select Password from "+table+" where Email = '"+email+"'" ;
-			PreparedStatement pstm = con.prepareStatement(sqlQuery2);
-			rs = pstm.executeQuery();
-			if(rs.next()) {
-				pass = rs.getString("Password");
-				con.close();
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		if(password.equals(pass)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}*/
-
 }
