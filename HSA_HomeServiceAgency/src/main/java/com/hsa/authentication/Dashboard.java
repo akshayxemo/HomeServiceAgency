@@ -1,7 +1,6 @@
 package com.hsa.authentication;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,7 +31,7 @@ public class Dashboard extends HttpServlet {
         response.setIntHeader("Refresh", 60);
         
 		response.setContentType("text/html");
-		PrintWriter pw = response.getWriter();
+		//PrintWriter pw = response.getWriter();
 		String id = null;
 		String type = null;
 		String sqlQuery = null;
@@ -40,7 +39,6 @@ public class Dashboard extends HttpServlet {
 		boolean cookie2 = false;
 		String Name = null;
 		String rating = null;
-		
 		Cookie ck[] = request.getCookies();
 		if(ck!=null) {
 		    for (Cookie cookie : ck) {
@@ -56,7 +54,6 @@ public class Dashboard extends HttpServlet {
 		  }
 		
 		if(cookie1 && cookie2 ) {
-			pw.println("User Logged In "+id+" "+type);
 			try {
 				Connection conn = DbConnection.getConnection();
 				ResultSet result = null;
@@ -76,13 +73,16 @@ public class Dashboard extends HttpServlet {
 					result = pstm.executeQuery();
 					if(result.next()) {
 						Name = result.getString("Name");
+						rating = null;
 					}
 				}
 				conn.close();
 				result.close();
+				
+				request.setAttribute("usertype", type);
 				request.setAttribute("userName", Name);
 				request.setAttribute("rate", rating);
-				request.getRequestDispatcher("userDashboard.jsp").forward(request, response);
+				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
