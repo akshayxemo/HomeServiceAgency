@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
 	<meta charset="ISO-8859-1">
@@ -13,36 +15,7 @@
 </head>
 <body>
   <!-------------------------------------------------Header---------------------------------> 
-	<section class="top">
-		<nav class="navbar navbar-expand-lg white px-4 fixed-top">
-			<div class="container-fluid">
-					<a class="navbar-brand" href="#"><img src="images/Logo.svg" class="logo"></a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-					</button>
-				<div class="collapse navbar-collapse" id="navbarText">
-					<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="index.html">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="servicePage.html">Services</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="about_us.html">About us</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="Contact_us.html">Contact us</a>
-						</li>
-					</ul>
-					<span class="navbar-text">
-						<button type="button" class="btn btn-dark" id="loginButton">Login</button>
-						<button type="button" class="btn btn-warning" id="signupButton">Signup</button>
-					</span>
-				</div>
-			</div>
-		</nav>
-	</section>
+	<jsp:include page="Navbar.jsp"></jsp:include>
    <!-------------------------------------------------Contact Us Container--------------------------------->                                                         
   <section class="vh-10 my-5">
     <div class="container py-5 h-10">
@@ -94,11 +67,13 @@
         <div class="row">
           <div class="col-md-4">
               <div class="form-outline">
-                  <span class="navbar-text">
-                      <textarea class="form-control form-control-lg" id="text" rows="7" placeholder="Write Your Feedback"  style="border-radius: 15px; width: 31rem; height: 25rem;" ></textarea>
+                    <form action="Contact_us" method="POST">
+                  
+                      <textarea class="form-control form-control-lg" id="text" rows="7" name="fmessage" placeholder="Write Your Feedback"  style="border-radius: 15px; width: 31rem; height: 25rem;" ></textarea>
                       <label class="form-label" for="text"></label><br>
-                      <button type="button" class="btn btn-warning btn-lg" style="margin-bottom:1rem" id="submitButton">Submit</button>
-                  </span>                         
+                      <input type="submit" class="btn btn-warning btn-lg" style="margin-bottom:1rem" id="submitButton" value="submit">
+                    </form>
+                                           
               </div>
           </div>
           <div class="col-md-1"></div>
@@ -145,7 +120,6 @@
 
 <script src="bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<script src="servicePage.js"></script>
 <script src="Contact_us.js"></script>
 <script src="loginSignup.js"></script>
 </body>
