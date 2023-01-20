@@ -21,70 +21,73 @@
 		</div>
 	</section>
 	<section class="service-sec py-5">
+		<form action="SearchProfessionals" method="post">
 		<div class="container d-flex mb-3 align-items-center justify-content-center">
-			<div class="box">
+			<input type="hidden"  name="Service_id" id="ServiceId">
+			<button class="box" type="submit" id="5" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/carpenter.png"></div>
-					<span><a href="servicePage.html" id="carpenter">Carpenter</a></span>
+					<span>Carpenter</span>
 				</div>
-			</div>
-			<div class="box">
+			</button>
+			<button class="box" type="submit" id="6" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/plumber.png"></div>
-					<span><a href="servicePage.html" id="plumber">Plumber</a></span>
+					<span>Plumber</span>
 				</div>
-			</div>
-			<div class="box">
+			</button>
+			<button class="box" type="submit" id="7" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/electrician.png"></div>
-					<span><a href="servicePage.html" id="electrician">Electrician</a></span>
+					<span>Electrician</span>
 				</div>
-			</div>
-			<div class="box">
+			</button>
+			<button class="box" type="submit" id="8" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/repair.png"></div>
-					<span><a href="servicePage.html" id="applienceRepair">AC/Applience Repair</a></span>
+					<span>AC/Applience Repair</span>
 				</div>
-			</div>
-			<div class="box">
+			</button>
+			<button class="box" type="submit" id="9" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/vacuum.png"></div>
-					<span><a href="servicePage.html" id="houseCleaning">House Cleaning</a></span>
+					<span>House Cleaning</span>
 				</div>
-			</div>
+			</button>
 		</div>
 		<div class="container d-flex mt-5 mb-3 align-items-center justify-content-center">
-			<div class="box">
+			<button class="box" type="submit" id="10" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/renovation.png"></div>
-					<span><a href="servicePage.html" id="homePainting">Home Painting</a></span>
+					<span>Home Painting</span>
 				</div>
-			</div>
-			<div class="box">
+			</button>
+			<button class="box" type="submit" id="2" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/barber.png"></div>
-					<span><a href="servicePage.html" id="saloonForMen">Saloon for Men</a></span>
+					<span>Saloon for Men</span>
 				</div>
-			</div>
-			<div class="box">
+			</button>
+			<button class="box" type="submit" id="1" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/makeup.png"></div>
-					<span><a href="servicePage.html" id="saloonForWoman">Saloon for Woman</a></span>
+					<span>Saloon for Woman</span>
 				</div>
-			</div>
-			<div class="box">
+			</button>
+			<button class="box" type="submit" id="3" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/physiotherapy.png"></div>
-					<span><a href="servicePage.html" id="therapyForMen">Therapy for Men</a></span>
+					<span>Therapy for Men</span>
 				</div>
-			</div>
-			<div class="box">
+			</button>
+			<button class="box" type="submit" id="4" onclick="serviceSelector(this.id)">
 				<div class="icon-wrap">
 					<div class="icon mb-3"><img src="images/cupping.png"></div>
-					<span><a href="servicePage.html" id="therapyForWomen">Therapy for Woman</a></span>
+					<span>Therapy for Woman</span>
 				</div>
-			</div>
+			</button>
 		</div>
+		</form>
 	</section>
 	<section class="About-us-wrap">
 		<div class="container">
@@ -233,6 +236,10 @@
 		document.getElementById("AboutButton").onclick = function () {
 		    window.location.href = "about_us.html";
 		};
+		function serviceSelector(id){
+			document.getElementById("ServiceId").value = id;
+			return true;
+		}
 	</script>
 	<script src="loginSignup.js"></script>
 	<script src="bootstrap.bundle.min.js"></script>
