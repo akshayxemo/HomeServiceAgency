@@ -3,3 +3,17 @@
 	width:100%;
 	
 }
+#bg 
+{	
+	background: rgb(2,5,36);
+	background: linear-gradient(90deg, rgba(2,5,36,1) 0%, rgba(8,63,143,1) 50%, rgba(69,125,252,1) 100%);
+}
+.submitBtn{
+	width:100%; 
+	padding-top:0.5rem; 
+	padding-bottom:0.5rem; 
+	font-size:1.2rem; 
+}
+.form-select-lg{
+	padding-left:2rem;
+}

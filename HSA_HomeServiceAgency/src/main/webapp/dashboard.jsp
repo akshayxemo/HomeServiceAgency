@@ -273,6 +273,7 @@
         
     </section>
     
+    <jsp:include page="Footer.jsp"></jsp:include>
     <script src="bootstrap.bundle.min.js"></script>
     <script src="loginSignup.js"></script>
 </body>

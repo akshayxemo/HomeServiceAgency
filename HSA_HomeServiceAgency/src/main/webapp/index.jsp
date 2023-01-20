@@ -21,7 +21,7 @@
 		</div>
 	</section>
 	<section class="service-sec py-5">
-		<form action="SearchProfessionals" method="post">
+		<form action="SearchProfessionals" method="GET">
 		<div class="container d-flex mb-3 align-items-center justify-content-center">
 			<input type="hidden"  name="Service_id" id="ServiceId">
 			<button class="box" type="submit" id="5" onclick="serviceSelector(this.id)">
@@ -203,35 +203,7 @@
 		</div>
 	
 	</section>
-	<section class="footer-sec">
-		<div class="container pb-3">
-			<div class="footer-nav d-flex py-3">
-				<ul class="mx-auto mb-2 mb-lg-0 f-navbar">
-        		<li class="nav-item">
-          			<a class="nav-link" href="index.html">Home</a>
-        		</li>
-       			<li class="nav-item">
-          			<a class="nav-link" href="servicePage.html">Services</a>
-       	 		</li>
-        		<li class="nav-item">
-          			<a class="nav-link" href="about_us.html">About us</a>
-        		</li>
-        		<li class="nav-item">
-          			<a class="nav-link" href="Contact_us.html">Contact us</a>
-        		</li>
-      		</ul>
-			</div>
-			<hr class="h-rule-footer">
-			<div class="row py-2">
-			<div class="col-4">
-				<a href="index.html"><img src="images/Logo-white.svg" class="f-image"></a>
-			</div>
-			<div class="col-2"></div>
-			<div class="col-6 my-auto"><p class="m-0"> @ 2022-2023 HomeServiceAgency india Pvt. Ltd.</p></div>
-		</div>
-		</div>
-		
-	</section>
+	<jsp:include page="Footer.jsp"></jsp:include>
 	<script>
 		document.getElementById("AboutButton").onclick = function () {
 		    window.location.href = "about_us.html";
