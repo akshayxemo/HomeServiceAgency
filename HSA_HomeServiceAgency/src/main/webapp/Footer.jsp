@@ -26,8 +26,8 @@
    %>
 	<section class="footer-sec">
 		<div class="container pb-3">
-			<div class="footer-nav d-flex py-3">
-				<ul class="mx-auto mb-2 mb-lg-0 f-navbar<%=cls %>">
+			<div class="footer-nav d-flex py-3 <%=cls %>">
+				<ul class="mx-auto mb-2 mb-lg-0 f-navbar">
 	        		<li class="nav-item">
 	          			<a class="nav-link" href="index.jsp">Home</a>
 	        		</li>

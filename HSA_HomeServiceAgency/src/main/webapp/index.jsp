@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,59 +139,18 @@
 			</div>
 			<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
   				<div class="carousel-inner">
-    				<div class="carousel-item active" data-bs-interval="10000">
-      					<div class="row justify-content-evenly">
-      						<div class="col-5 cst-border text-center p-5">
-      							<h4 class="mb-3 fw-bold">Akshay Kumar Das</h4>
-      							<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-      							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-      							<p class="fst-italic">Dated: DD/YY/MM</p>
-      						</div>
-    
-      						<div class="col-5 cst-border text-center p-5">
-      							<h4 class="mb-3 fw-bold">Arijit sen</h4>
-      							<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-      							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-      							<p class="fst-italic">Dated: DD/YY/MM</p>
-      						</div>
-      					</div>
-    				</div>
-    				<div class="carousel-item" data-bs-interval="10000">
-      					<div class="row justify-content-evenly">
-      						<div class="col-5 cst-border text-center p-5">
-      							<h4 class="mb-3 fw-bold">Sourima saha</h4>
-      							<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-      							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-      							<p class="fst-italic">Dated: DD/YY/MM</p>
-      						</div>
-    
-      						<div class="col-5 cst-border text-center p-5">
-      							<h4 class="mb-3 fw-bold">Sarita Khatun Mollah</h4>
-      							<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-      							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-      							<p class="fst-italic">Dated: DD/YY/MM</p>
-      						</div>
-      					</div>
-    				</div>
-    				<div class="carousel-item" data-bs-interval="10000">
-      					<div class="row justify-content-evenly">
-      						<div class="col-5 cst-border text-center p-5">
-      							<h4 class="mb-3 fw-bold">Arunava Das</h4>
-      							<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-      							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-      							<p class="fst-italic">Dated: DD/YY/MM</p>
-      						</div>
-    
-      						<div class="col-5 cst-border text-center p-5">
-      							<h4 class="mb-3 fw-bold">Trinanjan Daw</h4>
-      							<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-      							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-      							<p class="fst-italic">Dated: DD/YY/MM</p>
-      						</div>
-      					</div>
-    				</div>
-   				 	
-  				</div>
+	  				<c:forEach var = "tempfeed" items = "${ListFeeds}">
+	    				<div class="carousel-item active" data-bs-interval="10000">
+	      					<div class="row justify-content-evenly">
+	      						<div class="col-5 cst-border text-center p-5">
+	      							<h4 class="mb-3 fw-bold">Akshay Kumar Das</h4>
+	      							<p class="mb-4">${tempfeed.message}</p>
+	      							<p class="fst-italic">Dated: ${tempfeed.date}</p>
+	      						</div>
+	 						</div>
+	    				</div>
+	    			</c:forEach>
+    			</div>
   				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
     				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
     				<span class="visually-hidden">Previous</span>

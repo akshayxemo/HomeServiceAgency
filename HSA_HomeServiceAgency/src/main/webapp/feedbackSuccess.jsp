@@ -48,7 +48,7 @@
 			  <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
 			  <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
 			</div>
-	        <a href="Contact_us.html">Go back to Feedback Page.</a>
+	        <a href="Contact_us.jsp">Go back to Feedback Page.</a>
 	      </div>
 	    </div>
 	  </div>

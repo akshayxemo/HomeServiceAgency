@@ -34,6 +34,9 @@ public class Contact_us extends HttpServlet {
     			boolean cookie1 = false;
     			boolean cookie2 = false;
     			String message = null;
+    			java.util.Date date = new java.util.Date();
+    			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+    			
     			//String name = null;
     			//String sqlQuery2 = null;
     			
@@ -59,22 +62,28 @@ public class Contact_us extends HttpServlet {
     					PreparedStatement pstm = null;
     					//PreparedStatement pstm1 = null;
     					if(type.equals("users")) {
-    						sqlQuery = "insert into feedback(Uid,Message)values(?,?)";
+    						sqlQuery = "insert into feedback(Uid,Message,F_date)values(?,?,?)";
     						//sqlQuery2 = "Select Name from " + type + "where Uid = " + id;
     						message = request.getParameter("fmessage");
     						//pstm1 = conn.prepareStatement(sqlQuery2); 
     						pstm = conn.prepareStatement(sqlQuery);
     						pstm.setInt(1, Integer.parseInt(id));
     						pstm.setString(2, message);
+    						pstm.setDate(3, sqlDate);
     						pstm.executeUpdate();
     						//result = pstm1.executeQuery();
     						//System.out.println("Executed.");
     						//if(result.next()) { name = result.getString("Name"); }
+    						conn.close();
+    						request.getRequestDispatcher("feedbackSuccess.jsp").forward(request, response);
     					}
-    					conn.close();
+    					else {
+    						request.setAttribute("userVarify", false);
+    	    				request.setAttribute("errorMsg","Professionals cannot give feedback !");
+    	    				request.getRequestDispatcher("Contact_us.jsp").forward(request, response);
+    					}
     					//result.close();
     					//request.setAttribute("UserName", name);
-    					request.getRequestDispatcher("feedbackSuccess.jsp").forward(request, response);
     				}catch(Exception e) {
     					e.printStackTrace();
     				}
