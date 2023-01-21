@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,8 +31,8 @@
 		            	<p class="mt-1">Welcome to the Dashboard &#160<span class="badge text-bg-success p-2 fs-6 fw-normal">Professional</span></p>
 		        <%} %>
 	            </c:if>
-	            <img src="./ImagePutter" class=" user-img-top rounded-circle img-fluid" style="height: 10%; width: 10%;">
-	            <h1>${userName} </h1>
+	            <img src="./ImagePutter" class=" border user-img-top rounded-circle img-fluid" style="height: 8.1rem; width: 8.25rem;">
+	            <h1 class="my-3 fw-bold">${fn:toUpperCase(userName)}</h1>
 	            <button type="button" class="btn btn-warning rounded-3">Edit Profile</button>
 	        </div>
 	        

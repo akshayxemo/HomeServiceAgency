@@ -3,5 +3,5 @@ document.getElementById("loginButton").onclick = function () {
     };
 
 document.getElementById("signupButton").onclick = function () {
-        window.location.href = "userType.html";
+        window.location.href = "userType.jsp";
     }; 

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.hsa.connection.util.DbConnection;
 import com.hsa.data.Feedback;
+import com.hsa.data.GetName;
 
 /**
  * Servlet implementation class Home
@@ -28,6 +29,7 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setIntHeader("Refresh", 60);
 		response.setContentType("text/html");
 		String query = null;
 		List<Feedback> feedbacks = new ArrayList<>();
@@ -35,13 +37,15 @@ public class Home extends HttpServlet {
 			Connection con = DbConnection.getConnection();
 			PreparedStatement pstm = null;
 			ResultSet rs = null;
-			query = "Select Message, F_date from feedback";
+			query = "Select Uid, Message, F_date from feedback";
 			pstm = con.prepareStatement(query);
 			rs = pstm.executeQuery();
 			while(rs.next()) {
+				int uid = rs.getInt("Uid");
+				String name = GetName.getUserName(uid, "users");
 				String msg = rs.getString("Message");
 				String date = rs.getString("F_date");
-				Feedback tempFeedback = new Feedback(msg,date);
+				Feedback tempFeedback = new Feedback(uid,msg,date,name);
 				feedbacks.add(tempFeedback);
 			}
 			request.setAttribute("ListFeeds", feedbacks);

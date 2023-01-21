@@ -32,7 +32,11 @@ public class ImageViewer extends HttpServlet {
 		
 		id = request.getParameter("id");
 		type = request.getParameter("type");
-		sqlQuery = "select Image from "+ type +" where Pid = '"+id+"'";
+		if(type.equals("users")) {
+			sqlQuery = "select Image from "+ type +" where Uid = "+id;
+		}else {
+			sqlQuery = "select Image from "+ type +" where Pid = "+id;
+		}
 		
 		try {
 			Connection con = DbConnection.getConnection();

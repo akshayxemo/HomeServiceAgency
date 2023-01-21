@@ -1,7 +1,6 @@
 package com.hsa.authentication;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +30,6 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
-		PrintWriter pw = response.getWriter();
 		
 		String Email = null;
 		String Table = null;
@@ -48,7 +46,6 @@ public class Login extends HttpServlet {
 			hashPass = Encryption.toHexString(Encryption.getSHA(Password));
 			existingUser = IsExisting.checkRedundentUser(Table, Email);
 			if(!existingUser) {
-				pw.println(existingUser);
 				request.setAttribute("userVarify", existingUser);
 				request.setAttribute("errorMsg","This Email id is not registered");
 				request.getRequestDispatcher("loginSignup.jsp").include(request, response);
@@ -73,9 +70,6 @@ public class Login extends HttpServlet {
 					Cookie cookie2 = new Cookie("userType",Table);
 					//cookie2.setMaxAge(60);
 					response.addCookie(cookie2);
-					//doGet(request,response);
-					//request.getRequestDispatcher("Dashboard.jsp").include(request,response);
-					//response.sendRedirect("Dashboard.jsp");
 					response.sendRedirect("./Dashboard");
 				}
 				else {

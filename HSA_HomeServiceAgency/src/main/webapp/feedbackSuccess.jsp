@@ -36,8 +36,8 @@
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-body">
-	      	<h1>Thank You ${UserName} !</h1>
-	       	<h3>We Have Acknowledged Your Valuable Feedback !</h3>
+	      	<h1 class="text-success">Thank You !</h1>
+	       	<h4 class="text-dark fw-light">We Have Acknowledged Your Valuable Feedback !</h4>
 	      </div>
 	      <div class="modal-body">
 	      	<div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
@@ -48,7 +48,7 @@
 			  <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
 			  <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
 			</div>
-	        <a href="Contact_us.jsp">Go back to Feedback Page.</a>
+	        <a href="./GotoContactUs"> < Go back.</a>
 	      </div>
 	    </div>
 	  </div>

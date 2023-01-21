@@ -1,7 +1,7 @@
 document.getElementById("professionalbutton").onclick = function () {
-    window.location.href = "Signup(professional).html";
+    window.location.href = "./RegistrationProcess?type=professionals";
 };
 
 document.getElementById("procurerbutton").onclick = function () {
-    window.location.href = "SignUpProcurer.html";
+    window.location.href = "./RegistrationProcess?type=users";
 };

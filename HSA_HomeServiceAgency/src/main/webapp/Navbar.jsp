@@ -4,7 +4,7 @@
    	boolean cookie1 = false;
 	boolean cookie2 = false;
 	String type = null;
-	String homeDirection = "index.jsp";
+	String homeDirection = "./Home";
 	   Cookie ck[] = request.getCookies();
 		if(ck!=null) {
 		    for (Cookie cookie : ck) {
@@ -35,16 +35,16 @@
 	      		
 	      		<ul class="navbar-nav mx-auto mb-2 mb-lg-0 <%= cls %>">
 	        		<li class="nav-item">
-	          			<a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
+	          			<a class="nav-link" aria-current="page" href="./Home">Home</a>
 	        		</li>
 	       			<li class="nav-item">
-	          			<a class="nav-link" href="service.html">Services</a>
+	          			<a class="nav-link" href="./SearchProfessionals">Services</a>
 	       	 		</li>
 	        		<li class="nav-item">
-	          			<a class="nav-link" href="about_us.html">About us</a>
+	          			<a class="nav-link" href="about_us.jsp">About us</a>
 	        		</li>
 	        		<li class="nav-item">
-	          			<a class="nav-link" href="Contact_us.jsp">Contact us</a>
+	          			<a class="nav-link" href="./GotoContactUs">Contact us</a>
 	        		</li>
 	      		</ul>
 	      		
@@ -67,16 +67,16 @@
 	    	<div class="collapse navbar-collapse" id="navbarText">
 	      		<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 	        		<li class="nav-item">
-	          			<a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
+	          			<a class="nav-link" aria-current="page" href="./Home">Home</a>
 	        		</li>
 	       			<li class="nav-item">
-	          			<a class="nav-link" href="service.jsp">Services</a>
+	          			<a class="nav-link" href="./SearchProfessionals">Services</a>
 	       	 		</li>
 	        		<li class="nav-item">
-	          			<a class="nav-link" href="about_us.html">About us</a>
+	          			<a class="nav-link" href="about_us.jsp">About us</a>
 	        		</li>
 	        		<li class="nav-item">
-	          			<a class="nav-link" href="Contact_us.jsp">Contact us</a>
+	          			<a class="nav-link" href="./GotoContactUs">Contact us</a>
 	        		</li>
 	      		</ul>
 	      		<span class="navbar-text">

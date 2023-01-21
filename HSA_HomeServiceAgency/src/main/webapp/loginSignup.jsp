@@ -30,7 +30,7 @@
 </head>
 <body>
     <section class="top">
-		<a class="navbar-brand" href="index.html"><img src="images/Logo.svg" class="logo"></a>
+		<a class="navbar-brand" href="./Home"><img src="images/Logo.svg" class="logo"></a>
 		<p>Welcome to Home Service Agency</p>
 	</section>
 	<c:if test="${userVarify == false}">
@@ -97,34 +97,7 @@
 		  <div class="modal-backdrop" style="z-index:-1; background-color:black; width:100%; height:100%; opacity: 0.5;"></div>
 		</div>
 		
-	<section class="footer-sec">
-		<div class="container pb-3">
-			<div class="footer-nav d-flex py-3">
-				<ul class="mx-auto mb-2 mb-lg-0 f-navbar">
-        		<li class="nav-item">
-          			<a class="nav-link" href="index.html">Home</a>
-        		</li>
-       			<li class="nav-item">
-          			<a class="nav-link" href="servicePage.html">Services</a>
-       	 		</li>
-        		<li class="nav-item">
-          			<a class="nav-link" href="about_us.html">About us</a>
-        		</li>
-        		<li class="nav-item">
-          			<a class="nav-link" href="Contact_us.html">Contact us</a>
-        		</li>
-      		</ul>
-			</div>
-			<hr class="h-rule-footer">
-			<div class="row py-2">
-			<div class="col-4">
-				<a href="index.html"><img src="images/Logo-white.svg" class="f-image"></a>
-			</div>
-			<div class="col-2"></div>
-			<div class="col-6 my-auto"><p class="m-0"> @ 2022-2023 HomeServiceAgency india Pvt. Ltd.</p></div>
-		</div>
-		</div>
-	</section>
+	<jsp:include page="Footer.jsp"></jsp:include>
 	
 	<script src="bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

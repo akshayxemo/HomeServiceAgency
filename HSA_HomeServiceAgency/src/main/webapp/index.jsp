@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Home Service Agency</title>
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="stylesheet" href="navbarAndFooter.css" type="text/css">
 <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<jsp:include page="Navbar.jsp"></jsp:include>
@@ -98,7 +101,7 @@
 					<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
 					Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
 					when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<button type="button" class="btn btn-dark" id="AboutButton">Read more...</button>
+					<a type="button" href="about_us.jsp" class="btn btn-dark" id="AboutButton">Read more...</a>
 				</div>
 				<div class="col-sm-2 col-md-1"></div>
 				<div class="col-sm-5 col-md-6">
@@ -139,17 +142,21 @@
 			</div>
 			<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
   				<div class="carousel-inner">
+  				
 	  				<c:forEach var = "tempfeed" items = "${ListFeeds}">
-	    				<div class="carousel-item active" data-bs-interval="10000">
+	    				<div class="carousel-item active" data-bs-interval="3000">
 	      					<div class="row justify-content-evenly">
-	      						<div class="col-5 cst-border text-center p-5">
-	      							<h4 class="mb-3 fw-bold">Akshay Kumar Das</h4>
-	      							<p class="mb-4">${tempfeed.message}</p>
-	      							<p class="fst-italic">Dated: ${tempfeed.date}</p>
+	      						<div class="col-5 border text-bg-light rounded align-items-center text-center p-5">
+		      						<img src="./ImageViewer?id=${tempfeed.uid}&type=users" class="border mb-4 border-5 border-primary border-opacity-50 rounded-circle img-fluid" style="width: 6.25rem; height:6.25rem;">
+	      							<h4 class="mb-1 fw-semibold text-dark">${fn:toUpperCase(tempfeed.name)}</h4>
+	      							---
+	      							<p class="mb-3 text-secondary fw-normal">" ${tempfeed.message} "</p>
+	      							<p class="fst-italic text-black-50 fw-light m-0">Dated:&#160 ${tempfeed.date}</p>
 	      						</div>
 	 						</div>
 	    				</div>
 	    			</c:forEach>
+	    			
     			</div>
   				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
     				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -174,7 +181,5 @@
 		}
 	</script>
 	<script src="loginSignup.js"></script>
-	<script src="bootstrap.bundle.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
