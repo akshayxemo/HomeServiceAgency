@@ -58,7 +58,7 @@
         </c:choose>
 		<div class="container" style="overflow-y: auto; max-height:500px">
 			<c:forEach var="tempProf" items="${listProfs}">
-				<c:url var="tempLink" value="">
+				<c:url var="tempLink" value="Booking">
 					<c:param name="Service_id" value="${tempProf.id}"/>
 				</c:url>
 				<div class="row rounded-2 border my-4 p-0 text-bg-light">
@@ -72,7 +72,7 @@
 					</div>
 					<div class="col-md-3 p-4 d-flex align-items-center justify-content-center border-start text-bg-light">
 						<p class="m-0 text-danger">To book an appointment</p>
-						<a href="tempLink" class="btn btn-dark">Contact</a>
+						<a href="${tempLink}" class="btn btn-dark">Contact</a>
 					</div>
 				</div>
 			</c:forEach>

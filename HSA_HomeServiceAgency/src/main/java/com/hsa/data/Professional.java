@@ -6,6 +6,7 @@ public class Professional {
 	private String email = null;
 	private int rating ;
 	private String gender;
+	private int serviceId;
 	public Professional(int id, String name, String email, int rating, String gender) {
 		super();
 		this.id = id;
@@ -13,6 +14,22 @@ public class Professional {
 		this.email = email;
 		this.rating = rating;
 		this.gender = gender;
+	}
+	public Professional(int id, String name, String email, int rating, String gender, int serviceId) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.rating = rating;
+		this.gender = gender;
+		this.serviceId = serviceId;
+	}
+	
+	public int getServiceId() {
+		return serviceId;
+	}
+	public void setServiceId(int serviceId) {
+		this.serviceId = serviceId;
 	}
 	public int getId() {
 		return id;
@@ -47,6 +64,6 @@ public class Professional {
 	@Override
 	public String toString() {
 		return "Professional [id=" + id + ", name=" + name + ", email=" + email + ", rating=" + rating + ", gender="
-				+ gender + "]";
+				+ gender + ", serviceId=" + serviceId + "]";
 	}
 }
