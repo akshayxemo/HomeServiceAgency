@@ -2,26 +2,26 @@ package com.hsa.data;
 
 public class SubService {
 
-	private int Sid;
-	private String Sname;
+	private int sid;
+	private String sname;
 	private int price;
 	public SubService(int sid, String sname, int price) {
 		super();
-		Sid = sid;
-		Sname = sname;
+		this.sid = sid;
+		this.sname = sname;
 		this.price = price;
 	}
 	public int getSid() {
-		return Sid;
+		return sid;
 	}
 	public void setSid(int sid) {
-		Sid = sid;
+		this.sid = sid;
 	}
 	public String getSname() {
-		return Sname;
+		return sname;
 	}
 	public void setSname(String sname) {
-		Sname = sname;
+		this.sname = sname;
 	}
 	public int getPrice() {
 		return price;
@@ -31,7 +31,6 @@ public class SubService {
 	}
 	@Override
 	public String toString() {
-		return "SubService [Sid=" + Sid + ", Sname=" + Sname + ", price=" + price + "]";
+		return "SubService [sid=" + sid + ", sname=" + sname + ", price=" + price + "]";
 	}
-	
 }
