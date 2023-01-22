@@ -50,7 +50,7 @@
 	      		
 	      		<span class="navbar-text">
 	      			<a href="LogOut" type="button" class="btn btn-dark me-2" id="logOutButton" style="color:white">Log Out</a>
-	      			<a href="Dashboard" type="button"  id="logOutButton" style="color:white"> <img src="./ImagePutter" class=" user-img-top rounded-circle img-fluid" style="height: 50px; width: 50px;"></a>
+	      			<a href="Dashboard" type="button"  id="logOutButton" style="color:white"> <img src="./ImagePutter" class=" user-img-top rounded-circle border border-2 border-dark img-fluid" style="height: 50px; width: 50px;"></a>
 	      		</span>
 	    	</div>
 	  	</div>

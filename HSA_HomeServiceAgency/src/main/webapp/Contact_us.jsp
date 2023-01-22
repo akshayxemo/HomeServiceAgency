@@ -15,62 +15,15 @@
 	<link rel="stylesheet" href="bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="Contact_us.css" type="text/css">
 	<%
-		String feedMsg = null;
-		String action = null;
 		String display = null;
-		feedMsg = (String) request.getAttribute("feedMsg");
-		action = (String) request.getAttribute("action");
 		display = (String) request.getAttribute("Display");
 	%>
 </head>
 <body>
   <!-------------------------------------------------Header---------------------------------> 
-	<jsp:include page="Navbar.jsp"></jsp:include>
-	
-   <!-------------------------------------------------Contact Us Container--------------------------------->                                                         
-  <section class="vh-10 my-5">
-    <div class="container py-5 h-10">
-      <div class="row justify-content-center align-items-center h-100">
-        <div class="col col-lg-9 col-xl-7">
-           <div class="card shadow-10-strong" style="border-radius: 15px; margin-top:40px;">
-              <div class="p-4 p-md-5">
-                <h1 class="offset-4 mb-2 pb-4 pb-md-0 mb-md-5"><b>Contact Us</b></h1>
-                  <form>
-                      <div class="row">
-                          <div class="col-md-6 mb-0">
-                              <div class="form-outline">
-                                  <input type="text" id="firstName" class="form-control form-control-lg" placeholder="Enter Full Name" style="border-radius: 15px;" />
-                                  <label class="form-label" for="firstName"></label>
-                              </div>
-                          </div>
-                          <div class="col-md-6 mb-0">
-                              <div class="form-outline">
-                                  <input type="email" id="emailAddress" class="form-control form-control-lg" placeholder="Enter Address" style="border-radius: 15px;"/>
-                                  <label class="form-label" for="emailAddress"></label>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-8 mb-0">
-                              <div class="form-outline">
-                                  <input type="text" id="text" class="form-control form-control-lg" placeholder="Enter Your Message" style="border-radius: 15px;" />
-                                  <label class="form-label" for="text"></label>
-                              </div>
-                          </div>
-                          <div class="col-md-4 mb-0">
-                              <span class="navbar-text">
-                                  <button type="button" class="btn btn-warning"  id="getintouchButton">Get In Touch</button> 
-                              </span>
-                          </div>
-                      </div>
-                  </form>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
+	<jsp:include page="Navbar.jsp"></jsp:include>                                                        
     <!-------------------------------------------------Feedback(heading)---------------------------------> 
-    <div class="container">
+    <div class="container" style="margin-top:7%;">
         <div class="mb-3">
           <h1><b>Your Feedback Is Valuable To Us!</b></h1>
         </div>
@@ -103,17 +56,19 @@
           <div class="col-md-4">
               <div class="form-outline">
                     <form action="Contact_us" method="POST">
-                    	<input type="hidden" name="action" value="<%=action%>">
+                    	<input type="hidden" name="action" value="${action}">
                     	<c:choose>
 	                    	<c:when test="${feedMsg != null}">
-		                    	<textarea <%=display%> class="form-control form-control-lg" id="text" rows="7" name="fmessage" placeholder="Write Your Feedback"  style="border-radius: 15px; width: 31rem; height: 25rem;" ><%=feedMsg%></textarea>
+		                    	<textarea <%=display%> class="form-control form-control-lg" id="text" rows="7" name="fmessage" placeholder="Write Your Feedback"  style="border-radius: 15px; width: 31rem; height: 25rem;" >${feedMsg}</textarea>
 	                      	</c:when>
 	                      	<c:otherwise>
 	                      		<textarea <%=display%> class="form-control form-control-lg" id="text" rows="7" name="fmessage" placeholder="Write Your Feedback"  style="border-radius: 15px; width: 31rem; height: 25rem;" ></textarea>
 	                      	</c:otherwise>
                       	</c:choose>
                       <label class="form-label" for="text"></label><br>
-                      <input type="submit" class="btn btn-warning btn-lg" style="margin-bottom:1rem" id="submitButton" value="<%=action%>">
+                      <c:if test="${action != 'NoAction'}">
+                      <input type="submit" class="btn btn-warning btn-lg" style="margin-bottom:1rem" id="submitButton" value="${action}">
+                      </c:if>
                     </form>
                                            
               </div>
