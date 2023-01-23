@@ -55,7 +55,7 @@
         <div class="row">
           <div class="col-md-4">
               <div class="form-outline">
-                    <form action="Contact_us" method="POST">
+                    <form method="POST" id="feedbackForm">
                     	<input type="hidden" name="action" value="${action}">
                     	<c:choose>
 	                    	<c:when test="${feedMsg != null}">
@@ -67,7 +67,7 @@
                       	</c:choose>
                       <label class="form-label" for="text"></label><br>
                       <c:if test="${action != 'NoAction'}">
-                      <input type="submit" class="btn btn-warning btn-lg" style="margin-bottom:1rem" id="submitButton" value="${action}">
+                      <input type="submit" class="btn btn-warning btn-lg" style="margin-bottom:1rem" id="submitButton" value="${action}" onclick="validate(event)">
                       </c:if>
                     </form>
                                            
@@ -87,9 +87,9 @@
   <jsp:include page="Footer.jsp"></jsp:include>
 
 <script src="bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="Contact_us.js"></script>
 <script src="loginSignup.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>

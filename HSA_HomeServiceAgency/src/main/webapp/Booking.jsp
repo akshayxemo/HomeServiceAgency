@@ -17,7 +17,7 @@
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<section>
 		<div class="container py-5" style="margin-top: 7%;">
-			<form action="Booking" method="post">
+			<form method="post" name="Booking" id="bookingForm">
 				<div class="row border rounded-2 p-4">
 					<div class="col-md-10">
 						<div class="row">
@@ -46,17 +46,17 @@
 								<label class="form-label mb-1"> Select service Date <span
 									class="text-danger"> * </span>
 								</label> 
-								<input class="form-control" type="date" name="sDate">
+								<input class="form-control" type="date" name="sDate" id="date">
 							</div>
 							<div class="col-md-4">
 								<label class="from-label mb-1"> Select service Time <span
 									class="text-danger"> * </span>
 								</label> 
-								<input class="form-control" type="time" name="sTime">
+								<input class="form-control" type="time" name="sTime" id="time">
 							</div>
 						</div>
 						<div class="row border-top py-3">
-							<h5>
+							<h5 id="serviceHeading">
 								Select atleast one service <span class="text-danger"> * </span>
 							</h5>
 							<div class = "d-flex justify-content-start mt-3">
@@ -74,12 +74,13 @@
 					</div>
 					<div class="col-md-2">
 						<input type="hidden" name="profId" value="${profInfo.id}">
-						<button type="submit" class="btn btn-warning" style = "width:100%;">Book</button>
+						<button type="submit" class="btn btn-warning" style = "width:100%;" onclick="validate(event)">Book</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	</section>
 	<jsp:include page="Footer.jsp"></jsp:include>
+	<script src="Booking.js"></script>
 </body>
 </html>
