@@ -23,10 +23,10 @@
 	<p>${serviceTime}</p>
 	<p>${TotalPrice}</p> --%>
 	<section>
-	    <div class="container ml py-4" style="margin-top: 7%;">
+	    <div class="container ml py-2" style="margin-top: 7%;">
 	        <div class="row justify-content-center align-items-center">
 	            <div class="col-12 mb-0">
-	                <div class="card" style="border-radius: 15px; border: none; color:#226411; margin-top:4rem; background-color:#BBF0AE; padding:8px 12px">
+	                <div class="card" style="border-radius: 15px; border: none; color:#226411; background-color:#BBF0AE; padding:8px 12px">
 	                    <div class="row">
 	                        <div class="p-md-4">
 	                            Booking Successful please wait for the Professionals response.
@@ -38,9 +38,9 @@
 	    </div>
 	</section>
 	<section>
-		<div class="container py-5">
-				<div class="row border rounded-2 p-4">
-					<div class="col-md-10">
+		<div class="container pb-5 pt-1">
+				<div class="row">
+					<div class="col-md-10 border rounded-2 p-4">
 						<div class="row">
 							<div
 								class="col-md-3 d-flex align-items-center justify-content-center">
@@ -64,10 +64,10 @@
 						<div class="row my-4">
 							<div class="col-md-3"></div>
 							<div class="col-md-4">
-								<p>Selected service Date : ${serviceDate}</p>
+								<p>Selected service Date : &#160; <span class="text-primary fw-light">${bDetails.sDate}</span></p>
 							</div>
 							<div class="col-md-4">
-								<p>Selected service Time : ${serviceDate}</p>
+								<p>Selected service Time : &#160; <span class="text-primary fw-light">${bDetails.sTime}</span></p>
 							</div>
 						</div>
 						<div class="row border-top py-3">
@@ -81,16 +81,16 @@
 								</c:forEach>
 							</div>
 						</div>
-						<div class="row border-top py-3">
-							<h4> Total Ammount is : <span class="text-success">${TotalPrice} &#x20b9;</span></h4>
+						<div class="row border-top pt-3">
+							<h4> Total Ammount is : <span class="text-success">${bDetails.ammount} &#x20b9;</span></h4>
 						</div>
 					</div>
-					<div class="col-md-2">
-						<a href="./Dashboard" class="btn btn-warning" style = "width:100%;">Done</a>
+					<div class="col-md-2 border rounded-2 text-bg-dark p-4 text-center">
 						<p class="mt-5">Booking Date</p>
-						<p class="text-secondary fw-light">${bookingDate}</p>
-						<p class="mt-5">Booking Time</p>
-						<p class="text-secondary fw-light">${BookingTime}</p>
+						<p class="fw-light text-warning">${bDetails.bDate}</p>
+						<p class="mt-3">Booking Time</p>
+						<p class="fw-light text-warning">${bDetails.bTime}</p>
+						<a href="./Dashboard" class="btn btn-warning mt-4" style = "width:100%;">Done</a>
 					</div>
 				</div>
 		</div>

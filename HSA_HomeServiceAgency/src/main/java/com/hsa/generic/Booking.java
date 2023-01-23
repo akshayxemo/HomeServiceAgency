@@ -6,10 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hsa.connection.util.DbConnection;
+import com.hsa.data.BDetails;
 import com.hsa.data.Professional;
 import com.hsa.data.SubService;
 
@@ -111,6 +114,11 @@ public class Booking extends HttpServlet {
 			java.util.Date date = new java.util.Date();
 			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 			java.sql.Time sqlTime = new java.sql.Time(date.getTime());
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+			DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss"); 
+			String strDate = dateFormat.format(sqlDate); 
+			String strTime = timeFormat.format(sqlTime); 
+			
 			SubService sDetails = null;
 			String status = "waiting";
 			Professional pro = null;
@@ -134,8 +142,8 @@ public class Booking extends HttpServlet {
 				pstm = conn.prepareStatement(query);
 				pstm.setInt(1, Integer.parseInt(id));
 				pstm.setInt(2, Integer.parseInt(profId));
-				pstm.setDate(3, sqlDate);
-				pstm.setTime(4, sqlTime);
+				pstm.setString(3, strDate);
+				pstm.setString(4, strTime);
 				pstm.setString(5, sDate);
 				pstm.setString(6, sTime);
 				pstm.setInt(7, totalPrice);
@@ -144,20 +152,13 @@ public class Booking extends HttpServlet {
 				pstm.executeUpdate();
 				pw.println("done");
 				conn.close();
-				int bid = fetchBookingId(Integer.parseInt(id),Integer.parseInt(profId),sqlDate.toString(),sqlTime.toString());
-				pw.println(bid);
-				boolean updateDesc = updateBookingDesc(bid,subService);
-				if(updateDesc) {
-					pw.println("COMPLETED");
-				}
-				request.setAttribute("profDetails", pro);
-				request.setAttribute("services", subService);
-				request.setAttribute("bookingDate", sqlDate);
-				request.setAttribute("BookingTime", sqlTime);
-				request.setAttribute("serviceDate", sDate);
-				request.setAttribute("serviceTime", sTime);
-				request.setAttribute("TotalPrice",totalPrice);
-				request.getRequestDispatcher("BookingDetails.jsp").forward(request, response);
+				//BDetails bDetails = new BDetails(sqlDate.toString(),sqlTime.toString(),sDate,sTime,totalPrice);
+				BDetails bDetails = new BDetails(Integer.parseInt(id),Integer.parseInt(profId),strDate,strTime,sDate,sTime,totalPrice,status);
+				ServletContext context=getServletContext();  
+				context.setAttribute("profDetails", pro);
+				context.setAttribute("services", subService);
+				context.setAttribute("bDetails", bDetails);
+				response.sendRedirect("BookingDesc");
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -169,35 +170,6 @@ public class Booking extends HttpServlet {
 			request.setAttribute("errorMsg","Please login first before booking");
 			request.getRequestDispatcher("loginSignup.jsp").forward(request, response);
 		}
-	}
-	private int fetchBookingId(int uid, int pid, String sqlDate, String sqlTime)throws SQLException {
-		String query = "select Bid from bookings where Uid = "+uid+
-				" and Pid = "+pid+" and B_date = '"+sqlDate+"' and B_time = '"+sqlTime+"'";
-		Connection conn = DbConnection.getConnection();
-		PreparedStatement pstm = conn.prepareStatement(query);
-		ResultSet rs = null;
-		int bid = 0;
-		rs = pstm.executeQuery();
-		if(rs.next()) {
-			bid = rs.getInt("Bid");
-		}
-		conn.close();
-		return bid;
-	}
-	private boolean updateBookingDesc(int bid, List<SubService> subService) throws SQLException {
-		String query = "insert into bookings_desc(Bid,Sid,S_name) values(?,?,?)";
-		Connection conn = DbConnection.getConnection();
-		//Statement stmt = conn.createStatement();
-		PreparedStatement pstm = conn.prepareStatement(query);
-		for(SubService temp : subService) {
-			pstm.setInt(1, bid);
-			pstm.setInt(2, temp.getSid());
-			pstm.setString(3, temp.getSname());
-			pstm.executeUpdate();
-		}
-		//stmt.executeBatch();
-		conn.close();
-		return true;
 	}
 	private SubService getDetails(int sid)throws SQLException {
 		String query = "select S_name, Price from sub_services where Sid = " + sid;
