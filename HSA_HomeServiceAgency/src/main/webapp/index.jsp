@@ -13,6 +13,13 @@
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="stylesheet" href="navbarAndFooter.css" type="text/css">
 <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
+<style>
+	.feature{
+		background-image:url("./images/neonBack.jpg");
+   	 	background-repeat: no-repeat;
+    	background-size:cover;
+	}
+</style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -93,7 +100,7 @@
 		</div>
 		</form>
 	</section>
-	<section class="About-us-wrap">
+	<section class="About-us-wrap text-bg-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-5 col-md-5">
@@ -110,7 +117,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="Features-wrap">
+	<section class="Features-wrap feature text-white">
 		<div class="container">
 			<div class="feature-heading text-center">
 				<h1 class="headline mb-3">Features</h1>

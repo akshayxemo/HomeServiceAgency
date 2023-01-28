@@ -15,13 +15,25 @@
     <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="docs.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="rating.css" type="text/css" rel="stylesheet">
+    <style>
+    	#top{
+    		background-image:url("./images/background.svg");
+    		background-repeat: no-repeat;
+    		background-size:cover;
+    	}
+    	.bookings{
+    		background-image:url("./images/neonBack.jpg");
+    		background-repeat: no-repeat;
+    		background-size:cover;
+    	}
+    </style>
 </head>
 <body>
 	<jsp:include page="Navbar.jsp"></jsp:include>
 
 	<section id="top">
 		<div class="mb-4">
-	        <div class="container  text-center " style="margin-top: 6%;">
+	        <div class="container  text-center " style="margin-top: 7%;">
 	        	<c:if test="${usertype != null}">
 	        	<% 	String Type = null;
 	        		Type = (String) request.getAttribute("usertype");
@@ -55,227 +67,266 @@
         </div>
     </section>
     
-    <section>
-    
+    <section class="bg-dark bookings">
         <div class="container-fluid text-center text-bg-primary" id="booking" style="padding:12px 0; ">
             <p class="m-0">Bookings</p>
         </div>
         
         <div class="container" style="overflow-y: auto; height:700px">
         
-        <!-- Main card div -->
-        	<div class="border rounded row my-4 p-0">
-        	
-        		<!-- First Block -->
-        		<div class="col-md-9 p-4">
-        		
-        			<div class="row">
-        				<div class="col-md-2 d-flex align-items-center">
-        					<img src="images/akshay.jpg" class="img-fluid rounded-circle mx-auto d-block" style="width: 105px;">
-        				</div>
-        				<div class="col-md-10">
-        					<h4 class="fw-semibold">Bookers Name</h4>
-        					<p class="text-secondary mb-1">Contact : &#160 &#160 <span class="text-secondary fw-light">contact number</span></p>
-        					<p class="text-secondary">Address: &#160 &#160 <span class="text-secondary fw-light">address of the booker</span></p>
-        				</div>
-        			</div>
-        			
-        			<div class="row border-bottom border-top mt-4 pt-3 bg-light">
-        				<div class="col-md-6"><p>Appointment Date : &#160 &#160 &#160 <span class="text-secondary fw-light">DD/MM/YYYY</span></p></div>
-        				<div class="col-md-6"><p>Appointment Time : &#160 &#160 &#160 <span class="text-secondary fw-light">HH:MM:SS</span></p></div>
-        			</div>
-        			
-        			<div class="row mt-3">
-        				<p>Selected Jobs</p>
-        				<div class="d-flex">
-	        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 job1</span>
-	        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 job1</span>
-        				</div>
-        			</div>
-        			
-        		</div>
-        		<!-- End First Block -->
-        		
-        		<!-- Second Block -->
-        		<div class="col-md-3 bg-secondary bg-opacity-10 p-4">
-        		
-        			<div class="row px-3">
-        				<table>
-        					<tr>
-        						<td><p class="mb-1">Booking Date :</p></td>
-        						<td><span class="text-secondary fw-light">dd/mm/yy</span> </td>
-        					</tr>
-        					<tr>
-        						<td><p class="mb-1">Payable Price :</p></td>
-        						<td><span class="text-secondary fw-light">2000/-</span> </td>
-        					</tr>
-        					<tr>
-        						<td><p class="mb-1">Status :</p></td>
-        						<td><span class="text-success fw-light">report</span> </td>
-        					</tr>
-        				</table>
-        			</div>
-        			<div class="row mt-3 px-3">
-        				<button type="button" class="btn btn-danger">Reject Appointment &#160 &#10006;</button>
-        				<span class="mt-2">Please wait for the Professional to Confirm. <span class="text-danger">You cannot Reject your Booking after getting confirmed by the professional</span></span>
-        			</div>
-        		
-        		</div>
-        		<!-- End Second Block -->
-        		
-        	</div>
-        <!-- End Main card div -->
-        
-        <!-- Main card div -->
-        	<div class="border rounded row my-4 p-0">
-        	
-        		<!-- First Block -->
-        		<div class="col-md-9 p-4">
-        		
-        			<div class="row">
-        				<div class="col-md-2 d-flex align-items-center">
-        					<img src="images/akshay.jpg" class="img-fluid rounded-circle mx-auto d-block" style="width: 105px;">
-        				</div>
-        				<div class="col-md-10">
-        					<h4 class="fw-semibold">Bookers Name</h4>
-        					<p class="text-secondary mb-1">Contact : &#160 &#160 <span class="text-secondary fw-light">contact number</span></p>
-        					<p class="text-secondary">Address: &#160 &#160 <span class="text-secondary fw-light">address of the booker</span></p>
-        				</div>
-        			</div>
-        			
-        			<div class="row border-bottom border-top mt-4 pt-3 bg-light">
-        				<div class="col-md-6"><p>Appointment Date : &#160 &#160 &#160 <span class="text-secondary fw-light">DD/MM/YYYY</span></p></div>
-        				<div class="col-md-6"><p>Appointment Time : &#160 &#160 &#160 <span class="text-secondary fw-light">HH:MM:SS</span></p></div>
-        			</div>
-        			
-        			<div class="row mt-3">
-        				<p>Selected Jobs</p>
-        				<div class="d-flex">
-	        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 job1</span>
-	        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 job1</span>
-        				</div>
-        			</div>
-        			
-        		</div>
-        		<!-- End First Block -->
-        		
-        		<!-- Second Block -->
-        		<div class="col-md-3 bg-secondary bg-opacity-10 p-4">
-        		
-        			<div class="row px-3">
-        				<table>
-        					<tr>
-        						<td><p class="mb-1">Booking Date :</p></td>
-        						<td><span class="text-secondary fw-light">dd/mm/yy</span> </td>
-        					</tr>
-        					<tr>
-        						<td><p class="mb-1">Payable Price :</p></td>
-        						<td><span class="text-secondary fw-light">2000/-</span> </td>
-        					</tr>
-        					<tr>
-        						<td><p class="mb-1">Status :</p></td>
-        						<td><span class="text-success fw-light">report</span> </td>
-        					</tr>
-        				</table>
-        			</div>
-        			<div class="row mt-3 px-3">
-        				<form>
-						    <div class="rating">
-						      <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">5 stars</label>
-						      <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Kinda bad">4 stars</label>
-						      <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Kinda bad">3 stars</label>
-						      <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Sucks big tim">2 stars</label>
-						      <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-						    </div>
-        					<input type="password" id="P-pasword" class="form-control my-3" placeholder="Enter password" re>
-        				</form>
-        					<button type="button" class="btn btn-success">Task Completed &#160 &#10004;</button>
-        			</div>
-        		
-        		</div>
-        		<!-- End Second Block -->
-        		
-        	</div>
-        <!-- End Main card div -->
-        
-        <!-- Main card div -->
-        	<div class="border rounded row my-4 p-0">
-        	
-        		<!-- First Block -->
-        		<div class="col-md-9 p-4">
-        		
-        			<div class="row">
-        				<div class="col-md-2 d-flex align-items-center">
-        					<img src="images/akshay.jpg" class="img-fluid rounded-circle mx-auto d-block" style="width: 105px;">
-        				</div>
-        				<div class="col-md-10">
-        					<h4 class="fw-semibold">Bookers Name</h4>
-        					<p class="text-secondary mb-1">Contact : &#160 &#160 <span class="text-secondary fw-light">contact number</span></p>
-        					<p class="text-secondary">Address: &#160 &#160 <span class="text-secondary fw-light">address of the booker</span></p>
-        				</div>
-        			</div>
-        			
-        			<div class="row border-bottom border-top mt-4 pt-3 bg-light">
-        				<div class="col-md-6"><p>Appointment Date : &#160 &#160 &#160 <span class="text-secondary fw-light">DD/MM/YYYY</span></p></div>
-        				<div class="col-md-6"><p>Appointment Time : &#160 &#160 &#160 <span class="text-secondary fw-light">HH:MM:SS</span></p></div>
-        			</div>
-        			
-        			<div class="row mt-3">
-        				<p>Selected Jobs</p>
-        				<div class="d-flex">
-	        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 job1</span>
-	        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 job1</span>
-        				</div>
-        			</div>
-        			
-        		</div>
-        		<!-- End First Block -->
-        		
-        		<!-- Second Block -->
-        		<div class="col-md-3 bg-secondary bg-opacity-10 p-4">
-        		
-        			<div class="row px-3">
-        				<table>
-        					<tr>
-        						<td><p class="mb-1">Booking Date :</p></td>
-        						<td><span class="text-secondary fw-light">dd/mm/yy</span> </td>
-        					</tr>
-        					<tr>
-        						<td><p class="mb-1">Payable Price :</p></td>
-        						<td><span class="text-secondary fw-light">2000/-</span> </td>
-        					</tr>
-        					<tr>
-        						<td><p class="mb-1">Status :</p></td>
-        						<td><span class="text-success fw-light">report</span> </td>
-        					</tr>
-        				</table>
-        			</div>
-        			<div class="row mt-3 px-3">
-        				<span class="my-3">Thank you <span class="text-danger">Your Appointment is over</span></span>
-        				<table>
-        					<tr>
-        						<td><p class="mb-1">Date :</p></td>
-        						<td><span class="text-secondary fw-light">dd/mm/yy</span> </td>
-        					</tr>
-        					<tr>
-        						<td><p class="mb-1">Time :</p></td>
-        						<td><span class="text-secondary fw-light">HH:MM:SS</span> </td>
-        					</tr>
-        				</table>
-        			</div>
-        		
-        		</div>
-        		<!-- End Second Block -->
-        		
-        	</div>
-        <!-- End Main card div -->
+	        <c:if test="${bookings != null }">
+	        	<c:choose>
+		        	<c:when test="${usertype == 'users' }">
+			        	<c:forEach var="bk" items="${bookings}">
+					        <!-- Main card div -->
+					        	<div class="border rounded row my-4 p-0 bg-white shadow-lg">
+					        	
+					        		<!-- First Block -->
+					        		<div class="col-md-9 p-4">
+					        		
+					        			<div class="row">
+					        				<div class="col-md-2 d-flex align-items-center">
+					        					<img src="./ImageViewer?id=${bk.prof.id}&type=professionals" class="img-fluid rounded-circle mx-auto d-block" style="width: 105px;">
+					        				</div>
+					        				<div class="col-md-10">
+					        					<h4 class="fw-semibold">${bk.prof.name} <span class="fw-light fs-6 text-primary">(${bk.prof.gender})</span></h4>
+					        					<p class="text-secondary mb-1">Email : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.email}</span></p>
+					        					<p class="text-secondary mb-1">Contact no : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.phone} / ${bk.prof.altPhone} </span></p>
+					        					<p class="text-secondary">Rating : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.rating}.0 &#9733;</span></p>
+					        				</div>
+					        			</div>
+					        			
+					        			<div class="row border-bottom border-top mt-4 pt-3 bg-light">
+					        				<div class="col-md-6"><p>Appointment Date : &#160 &#160 &#160 <span class="text-secondary fw-light">${bk.sDate}</span></p></div>
+					        				<div class="col-md-6"><p>Appointment Time : &#160 &#160 &#160 <span class="text-secondary fw-light">${bk.sTime}</span></p></div>
+					        			</div>
+					        			
+					        			<div class="row mt-3">
+					        				<p>Selected Jobs</p>
+					        				
+					        				<div class="d-flex">
+						        				<c:forEach var="service" items="${bk.services}">
+							        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 ${service.sname}</span>
+						        				</c:forEach>
+					        				</div>
+					        			</div>
+					        			
+					        		</div>
+					        		<!-- End First Block -->
+					        		
+					        		<!-- Second Block -->
+					        		<div class="col-md-3 bg-secondary bg-opacity-10 p-4">
+					        		
+					        			<div class="row px-3">
+					        				<table>
+					        					<tr>
+					        						<td><p class="mb-1">Booking Date :</p></td>
+					        						<td><span class="text-secondary fw-light">${bk.bDate}</span> </td>
+					        					</tr>
+					        					<tr>
+					        						<td><p class="mb-1">Payable Price :</p></td>
+					        						<td><span class="text-secondary fw-light">${bk.ammount} &#x20b9;</span></td>
+					        					</tr>
+					        					<tr>
+					        						<td><p class="mb-1">Status :</p></td>
+					        						<c:choose>
+					        							<c:when test="${bk.status == 'waiting'}">
+					        								<td><span class="text-primary fw-light">${bk.status}</span> </td>
+					        							</c:when>
+					        							<c:when test="${bk.status == 'accepted'}">
+					        								<td><span class="text-primary fw-light">${bk.status}</span> </td>
+					        							</c:when>
+					        							<c:when test="${bk.status == 'completed'}">
+					        								<td><span class="text-success fw-light">${bk.status}</span> </td>
+					        							</c:when>
+					        							<c:otherwise>
+					        								<td><span class="text-danger fw-light">${bk.status}</span> </td>
+					        							</c:otherwise>
+					        						</c:choose>
+					        					</tr>
+					        				</table>
+					        			</div>
+					        			<div class="row mt-3 px-3">
+					        				<c:choose>
+						        				<c:when test="${bk.status == 'waiting'}">
+						        					<%-- <form action="ChangeStatus" method="post">
+						        						<input type="hidden" name="bid" value="${bk.bid}">
+						        						<input type="hidden" name="status" value="reject">
+							        					<button type="submit" class="btn btn-danger w-100">Reject Appointment &#160 &#10006;</button>
+						        					</form> --%>
+							        				<span class="mt-2">Please wait for the Professional to Confirm. <span class="text-danger">You cannot Reject your Booking once you booked an appointment</span></span>
+						        				</c:when>
+						        				<c:when test="${bk.status == 'rejected'}">
+						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">Your Appointment is Rejected</span></span>
+						        				</c:when>
+						        				<c:when test="${bk.status == 'accepted'}">
+						        					<form action="ChangeStatus" method="post" name="acceptForm" id="acceptForm">
+						        						<input type="hidden" name="ProfId" value="${bk.prof.id}">
+						        						<input type="hidden" name="email" value="${bk.prof.email}">
+						        						<input type="hidden" name="bid" value="${bk.bid}">
+						        						<input type="hidden" name="status" value="complete">
+													    <div class="rating">
+													      <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="Excelent">5 stars</label>
+													      <input type="radio" id="star4" name="rating" value="4" required><label for="star4" title="Very Good">4 stars</label>
+													      <input type="radio" id="star3" name="rating" value="3" required><label for="star3" title="Good">3 stars</label>
+													      <input type="radio" id="star2" name="rating" value="2" required><label for="star2" title="Bad">2 stars</label>
+													      <input type="radio" id="star1" name="rating" value="1" required><label for="star1" title="Disappointed">1 star</label>
+													    </div>
+							        					<input type="password" id="profPass" name="Pass" class="form-control my-3" placeholder="Enter password">
+							        					<input type="submit" class="btn btn-success w-100" onclick="validate(event)" value="Task Completed &#160 &#10004;">
+							        				</form>
+						        				</c:when>
+						        				<c:otherwise>
+						        					<span class="my-3 text-center">Thank you<br><span class="text-success">Your Appointment is successfully over</span></span>
+						        				</c:otherwise>
+					        				</c:choose>
+					        			</div>
+					        		
+					        		</div>
+					        		<!-- End Second Block -->
+					        		
+					        	</div>
+					        <!-- End Main card div -->
+				        </c:forEach>
+			        </c:when>
+			        
+			        <c:otherwise>
+			        	<c:forEach var="bk" items="${bookings}">
+					        <!-- Main card div -->
+					        	<div class="border rounded row my-4 p-0 bg-white shadow-lg">
+					        	
+					        		<!-- First Block -->
+					        		<div class="col-md-9 p-4">
+					        		
+					        			<div class="row">
+					        				<div class="col-md-2 d-flex align-items-center">
+					        					<img src="./ImageViewer?id=${bk.user.uid}&type=users" class="img-fluid rounded-circle mx-auto d-block" style="width: 105px;">
+					        				</div>
+					        				<div class="col-md-10">
+					        					<h4 class="fw-semibold">${bk.user.name} <span class="fw-light fs-6 text-primary">(${bk.user.gender})</span></h4>
+					        					<p class="text-secondary mb-1">Email : &#160 &#160 <span class="text-secondary fw-light">${bk.user.email}</span></p>
+					        					<p class="text-secondary">Contact no. : &#160 &#160 <span class="text-secondary fw-light">${bk.user.phone} / ${bk.user.altPhone} </span></p>
+					        					<p class="text-secondary mb-1">Address : &#160 &#160 <span class="text-secondary fw-light">${bk.user.address}</span></p>
+					        				</div>
+					        			</div>
+					        			
+					        			<div class="row border-bottom border-top mt-4 pt-3 bg-light">
+					        				<div class="col-md-6"><p>Appointment Date : &#160 &#160 &#160 <span class="text-secondary fw-light">${bk.sDate}</span></p></div>
+					        				<div class="col-md-6"><p>Appointment Time : &#160 &#160 &#160 <span class="text-secondary fw-light">${bk.sTime}</span></p></div>
+					        			</div>
+					        			
+					        			<div class="row mt-3">
+					        				<p>Selected Jobs</p>
+					        				
+					        				<div class="d-flex">
+						        				<c:forEach var="service" items="${bk.services}">
+							        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 ${service.sname}</span>
+						        				</c:forEach>
+					        				</div>
+					        			</div>
+					        			
+					        		</div>
+					        		<!-- End First Block -->
+					        		
+					        		<!-- Second Block -->
+					        		<div class="col-md-3 bg-secondary bg-opacity-10 p-4">
+					        		
+					        			<div class="row px-3">
+					        				<table>
+					        					<tr>
+					        						<td><p class="mb-1">Booking Date :</p></td>
+					        						<td><span class="text-secondary fw-light">${bk.bDate}</span> </td>
+					        					</tr>
+					        					<tr>
+					        						<td><p class="mb-1">Payable Price :</p></td>
+					        						<td><span class="text-secondary fw-light">${bk.ammount} &#x20b9;</span> </td>
+					        					</tr>
+					        					<tr>
+					        						<td><p class="mb-1">Status :</p></td>
+					        						<c:choose>
+					        							<c:when test="${bk.status == 'waiting'}">
+					        								<td><span class="text-primary fw-light">${bk.status}</span> </td>
+					        							</c:when>
+					        							<c:when test="${bk.status == 'accepted'}">
+					        								<td><span class="text-primary fw-light">${bk.status}</span> </td>
+					        							</c:when>
+					        							<c:when test="${bk.status == 'completed'}">
+					        								<td><span class="text-success fw-light">${bk.status}</span> </td>
+					        							</c:when>
+					        							<c:otherwise>
+					        								<td><span class="text-danger fw-light">${bk.status}</span> </td>
+					        							</c:otherwise>
+					        						</c:choose>
+					        					</tr>
+					        				</table>
+					        			</div>
+					        			<div class="row mt-3 px-3">
+					        				<c:choose>
+						        				<c:when test="${bk.status == 'waiting'}">
+							        				<form action="ChangeStatus" method="post">
+						        						<input type="hidden" name="bid" value="${bk.bid}">
+						        						<input type="hidden" name="status" value="no" id="F-action">
+							        					<button type="submit" class="btn btn-danger my-3 w-100" id="rejectBtn" onclick="setValue(this.id)">Reject Appointment &#160 &#10006;</button>
+							        					<button type="submit" class="btn btn-success w-100" id="acceptBtn" onclick="setValue(this.id)">Accept Appointment &#160 &#10004;</button>
+						        					</form>
+						        					<span class="my-3 text-center">
+						        						Once you accept/reject it will be irreversible.
+													</span>
+						        				</c:when>
+						        				<c:when test="${bk.status == 'rejected'}">
+						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">Your Appointment is Rejected</span></span>
+						        				</c:when>
+						        				<c:when test="${bk.status == 'accepted'}">
+													<span class="my-3 text-center">You <span
+														class="text-success fw-semibold">accepted</span> this
+														appointment make sure to attend and after successfully done
+														give your password to the client dashboard password field
+														and let the client choose your rating and submit to
+														complete the task.
+													</span>
+												</c:when>
+						        				<c:otherwise>
+						        					<span class="my-3 text-center">Thank you<br><span class="text-success">Your Appointment is successfully over</span></span>
+						        				</c:otherwise>
+					        				</c:choose>
+					        			</div>
+					        		
+					        		</div>
+					        		<!-- End Second Block -->
+					        		
+					        	</div>
+					        <!-- End Main card div -->
+				        </c:forEach>
+			        </c:otherwise>
+		        </c:choose>
+	        </c:if>
         
         </div>
         
     </section>
     
+    <!-- Modal -->
+		<div class="modal" tabindex="-1" id="alertModal" data-mdb-backdrop="true" style="display:none;">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">ALERT</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p id="modalBody">Modal body text goes here.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="closeModal()">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="modal-backdrop" style="z-index:-1; background-color:black; width:100%; height:100%; opacity: 0.5;"></div>
+		</div>
+    
     <jsp:include page="Footer.jsp"></jsp:include>
     <script src="bootstrap.bundle.min.js"></script>
     <script src="loginSignup.js"></script>
+    <script src="dashboard.js"></script>
 </body>
 </html>

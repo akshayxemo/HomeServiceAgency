@@ -7,6 +7,31 @@ public class Professional {
 	private int rating ;
 	private String gender;
 	private int serviceId;
+	private String phone;
+	private String altPhone;
+	
+	public Professional(int id, String name, String email, int rating, String gender, String phone, String altPhone) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.rating = rating;
+		this.gender = gender;
+		this.phone = phone;
+		this.altPhone = altPhone;
+	}
+	public Professional(int id, String name, String email, int rating, String gender, int serviceId, String phone,
+			String altPhone) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.rating = rating;
+		this.gender = gender;
+		this.serviceId = serviceId;
+		this.phone = phone;
+		this.altPhone = altPhone;
+	}
 	public Professional(int id, String name, String email, int rating, String gender) {
 		super();
 		this.id = id;
@@ -25,6 +50,18 @@ public class Professional {
 		this.serviceId = serviceId;
 	}
 	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAltPhone() {
+		return altPhone;
+	}
+	public void setAltPhone(String altPhone) {
+		this.altPhone = altPhone;
+	}
 	public int getServiceId() {
 		return serviceId;
 	}
@@ -64,6 +101,7 @@ public class Professional {
 	@Override
 	public String toString() {
 		return "Professional [id=" + id + ", name=" + name + ", email=" + email + ", rating=" + rating + ", gender="
-				+ gender + ", serviceId=" + serviceId + "]";
+				+ gender + ", serviceId=" + serviceId + ", phone=" + phone + ", altPhone=" + altPhone + "]";
 	}
+	
 }

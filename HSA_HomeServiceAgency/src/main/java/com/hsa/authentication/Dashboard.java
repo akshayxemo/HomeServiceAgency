@@ -49,8 +49,10 @@ public class Dashboard extends HttpServlet {
 		String rating = null;
 		List<BDetails> bookings = new ArrayList<>();
 		List<SubService> services = new ArrayList<>();
-		List<Professional> professionals = new ArrayList<>();
-		List<User> users = new ArrayList<>();
+		/*
+		 * List<Professional> professionals = new ArrayList<>(); List<User> users = new
+		 * ArrayList<>();
+		 */
 		Cookie ck[] = request.getCookies();
 		if(ck!=null) {
 		    for (Cookie cookie : ck) {
@@ -78,6 +80,24 @@ public class Dashboard extends HttpServlet {
 						Name = result.getString("Name");
 						rating = result.getString("Rating");
 					}
+					sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status from bookings where Pid = "+id +" order by Bid DESC";
+					pstm = conn.prepareStatement(sqlQuery);
+					ResultSet rs = pstm.executeQuery();
+					while(rs.next()) {
+						int bid = rs.getInt("Bid");
+						int uid = rs.getInt("Uid");
+						int pid = rs.getInt("Pid");
+						String bDate = rs.getString("B_date");
+						String bTime = rs.getString("B_time");
+						String date = rs.getString("Date");
+						String time = rs.getString("Time");
+						int ammount = rs.getInt("TotalAmmount");
+						String status = rs.getString("Status");
+						User user = getUser(uid);
+						services = ServiceDetails.getDetail(bid);
+						BDetails temp = new BDetails(bid,uid,pid,bDate,bTime,date,time,ammount,status,user,services);
+						bookings.add(temp);
+					}
 				}
 				else {
 					sqlQuery = "select Name from "+ type +" where Uid = '"+id+"'";
@@ -87,7 +107,7 @@ public class Dashboard extends HttpServlet {
 						Name = result.getString("Name");
 						rating = null;
 					}
-					sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status from bookings where Uid = "+id;
+					sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status from bookings where Uid = "+id +" order by Bid DESC";
 					pstm = conn.prepareStatement(sqlQuery);
 					ResultSet rs = pstm.executeQuery();
 //					List<Integer> bids = new ArrayList<>();
@@ -128,7 +148,7 @@ public class Dashboard extends HttpServlet {
 		}
 	}
 	private Professional getProf(int Pid) throws SQLException {
-		String query = "select Name, Email, Rating, Gender, Service_id from professionals where Pid = " + Pid;
+		String query = "select Name, Email, Rating, Gender, Phone, AltPhone from professionals where Pid = " + Pid;
 		Connection conn = DbConnection.getConnection();
 		PreparedStatement pstm = conn.prepareStatement(query);
 		ResultSet rs = null;
@@ -136,7 +156,8 @@ public class Dashboard extends HttpServlet {
 		String Email = null;
 		int Rating = 0;
 		String Gender = null;
-		int ServiceId = 0;
+		String Phone = null;
+		String AltPhone = null;
 		rs = pstm.executeQuery();
 		
 		if(rs.next()) {
@@ -144,9 +165,10 @@ public class Dashboard extends HttpServlet {
 			Email = rs.getString("Email");
 			Rating = rs.getInt("Rating");
 			Gender = rs.getString("Gender");
-			ServiceId = rs.getInt("Service_id");
+			Phone = rs.getString("Phone");
+			AltPhone = rs.getString("AltPhone");
 		}
-		Professional prof = new Professional(Pid, Name, Email, Rating, Gender, ServiceId);
+		Professional prof = new Professional(Pid, Name, Email, Rating, Gender, Phone, AltPhone);
 		conn.close();
 		return prof;
 		
