@@ -11,6 +11,11 @@ public class SubService {
 		this.sname = sname;
 		this.price = price;
 	}
+	public SubService(int sid, String sname) {
+		super();
+		this.sid = sid;
+		this.sname = sname;
+	}
 	public int getSid() {
 		return sid;
 	}

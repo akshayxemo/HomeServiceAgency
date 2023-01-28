@@ -1,5 +1,7 @@
 package com.hsa.data;
 
+import java.util.List;
+
 public class BDetails {
 	private int bid;
 	private int uid;
@@ -10,6 +12,43 @@ public class BDetails {
 	private String sTime;
 	private int ammount;
 	private String status;
+	private Professional prof;
+	private User user;
+	private List<SubService> services;
+	
+	
+	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
+			String status, User user, List<SubService> services) {
+		super();
+		this.bid = bid;
+		this.uid = uid;
+		this.pid = pid;
+		this.bDate = bDate;
+		this.bTime = bTime;
+		this.sDate = sDate;
+		this.sTime = sTime;
+		this.ammount = ammount;
+		this.status = status;
+		this.user = user;
+		this.services = services;
+	}
+
+	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
+			String status, Professional prof, List<SubService> services) {
+		super();
+		this.bid = bid;
+		this.uid = uid;
+		this.pid = pid;
+		this.bDate = bDate;
+		this.bTime = bTime;
+		this.sDate = sDate;
+		this.sTime = sTime;
+		this.ammount = ammount;
+		this.status = status;
+		this.prof = prof;
+		this.services = services;
+	}
+
 	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
 			String status) {
 		super();
@@ -99,9 +138,36 @@ public class BDetails {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public Professional getProf() {
+		return prof;
+	}
+
+	public void setProf(Professional prof) {
+		this.prof = prof;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<SubService> getServices() {
+		return services;
+	}
+
+	public void setServices(List<SubService> services) {
+		this.services = services;
+	}
+
 	@Override
 	public String toString() {
 		return "BDetails [bid=" + bid + ", uid=" + uid + ", pid=" + pid + ", bDate=" + bDate + ", bTime=" + bTime
-				+ ", sDate=" + sDate + ", sTime=" + sTime + ", ammount=" + ammount + ", status=" + status + "]";
+				+ ", sDate=" + sDate + ", sTime=" + sTime + ", ammount=" + ammount + ", status=" + status + ", prof="
+				+ prof + ", user=" + user + ", services=" + services + "]";
 	}
+
 }
