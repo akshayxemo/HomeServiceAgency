@@ -80,7 +80,7 @@ public class Dashboard extends HttpServlet {
 						Name = result.getString("Name");
 						rating = result.getString("Rating");
 					}
-					sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status from bookings where Pid = "+id +" order by Bid DESC";
+					sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status,U_status,P_status,St_date,St_time,Rating from bookings where Pid = "+id +" order by Bid DESC";
 					pstm = conn.prepareStatement(sqlQuery);
 					ResultSet rs = pstm.executeQuery();
 					while(rs.next()) {
@@ -93,9 +93,14 @@ public class Dashboard extends HttpServlet {
 						String time = rs.getString("Time");
 						int ammount = rs.getInt("TotalAmmount");
 						String status = rs.getString("Status");
+						String uStatus = rs.getString("U_status");
+						String pStatus = rs.getString("P_status");
+						String stDate = rs.getString("St_date");
+						String stTime = rs.getString("St_time");
+						int rate = rs.getInt("Rating");
 						User user = getUser(uid);
 						services = ServiceDetails.getDetail(bid);
-						BDetails temp = new BDetails(bid,uid,pid,bDate,bTime,date,time,ammount,status,user,services);
+						BDetails temp = new BDetails(bid,uid,pid,bDate,bTime,date,time,ammount,status,uStatus,pStatus,stDate,stTime,user,services,rate);
 						bookings.add(temp);
 					}
 				}
@@ -107,10 +112,9 @@ public class Dashboard extends HttpServlet {
 						Name = result.getString("Name");
 						rating = null;
 					}
-					sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status from bookings where Uid = "+id +" order by Bid DESC";
+					sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status,U_status,P_status,St_date,St_time,Rating from bookings where Uid = "+id +" order by Bid DESC";
 					pstm = conn.prepareStatement(sqlQuery);
 					ResultSet rs = pstm.executeQuery();
-//					List<Integer> bids = new ArrayList<>();
 					while(rs.next()) {
 						int bid = rs.getInt("Bid");
 						int uid = rs.getInt("Uid");
@@ -121,13 +125,16 @@ public class Dashboard extends HttpServlet {
 						String time = rs.getString("Time");
 						int ammount = rs.getInt("TotalAmmount");
 						String status = rs.getString("Status");
+						String uStatus = rs.getString("U_status");
+						String pStatus = rs.getString("P_status");
+						String stDate = rs.getString("St_date");
+						String stTime = rs.getString("St_time");
+						int rate = rs.getInt("Rating");
 						Professional prof = getProf(pid);
 						services = ServiceDetails.getDetail(bid);
-						BDetails temp = new BDetails(bid,uid,pid,bDate,bTime,date,time,ammount,status,prof,services);
+						BDetails temp = new BDetails(bid,uid,pid,bDate,bTime,date,time,ammount,status,uStatus,pStatus,stDate,stTime,prof,services,rate);
 						bookings.add(temp);
-//						bids.add(bid);
 					}
-				//	services = ServiceDetails.getDetails(bids);
 				}
 				conn.close();
 				result.close();

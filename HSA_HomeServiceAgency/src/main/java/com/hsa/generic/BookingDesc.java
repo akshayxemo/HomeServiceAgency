@@ -31,18 +31,20 @@ public class BookingDesc extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	private boolean updateBookingDesc(int bid, List<SubService> subService) throws SQLException {
-		String query = "insert into bookings_desc(Bid,Sid,S_name) values(?,?,?)";
+		String query = "insert into bookings_desc(Bid,Sid,S_name,Price) values(?,?,?,?)";
 		Connection conn = DbConnection.getConnection();
 		PreparedStatement pstm = conn.prepareStatement(query);
 		for(SubService temp : subService) {
 			pstm.setInt(1, bid);
 			pstm.setInt(2, temp.getSid());
 			pstm.setString(3, temp.getSname());
+			pstm.setInt(4, temp.getPrice());
 			pstm.executeUpdate();
 		}
 		conn.close();
 		return true;
 	}
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter pw = response.getWriter();

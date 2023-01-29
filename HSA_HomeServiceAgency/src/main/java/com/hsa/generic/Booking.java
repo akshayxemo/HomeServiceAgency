@@ -136,7 +136,7 @@ public class Booking extends HttpServlet {
 				pw.println(subService);
 				pw.println(totalPrice);
 				
-				String query = "insert into bookings(Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status) values(?,?,?,?,?,?,?,?)";
+				String query = "insert into bookings(Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status,U_status,P_status,Rating) values(?,?,?,?,?,?,?,?,?,?,?)";
 				Connection conn = DbConnection.getConnection();
 				PreparedStatement pstm = null;
 				pstm = conn.prepareStatement(query);
@@ -148,6 +148,9 @@ public class Booking extends HttpServlet {
 				pstm.setString(6, sTime);
 				pstm.setInt(7, totalPrice);
 				pstm.setString(8, status);
+				pstm.setString(9, "accepted");
+				pstm.setString(10, status);
+				pstm.setInt(11, 0);
 				pw.println("pstm done");
 				pstm.executeUpdate();
 				pw.println("done");

@@ -12,11 +12,60 @@ public class BDetails {
 	private String sTime;
 	private int ammount;
 	private String status;
+	private String uStatus;
+	private String pStatus;
+	private String stDate;
+	private String stTime;
 	private Professional prof;
 	private User user;
 	private List<SubService> services;
+	private int rating;
 	
 	
+	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
+			String status, String uStatus, String pStatus, String stDate, String stTime, User user,
+			List<SubService> services,int rating) {
+		super();
+		this.bid = bid;
+		this.uid = uid;
+		this.pid = pid;
+		this.bDate = bDate;
+		this.bTime = bTime;
+		this.sDate = sDate;
+		this.sTime = sTime;
+		this.ammount = ammount;
+		this.status = status;
+		this.uStatus = uStatus;
+		this.pStatus = pStatus;
+		this.stDate = stDate;
+		this.stTime = stTime;
+		this.user = user;
+		this.services = services;
+		this.rating = rating;
+	}
+
+	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
+			String status, String uStatus, String pStatus, String stDate, String stTime, Professional prof,
+			List<SubService> services,int rating) {
+		super();
+		this.bid = bid;
+		this.uid = uid;
+		this.pid = pid;
+		this.bDate = bDate;
+		this.bTime = bTime;
+		this.sDate = sDate;
+		this.sTime = sTime;
+		this.ammount = ammount;
+		this.status = status;
+		this.uStatus = uStatus;
+		this.pStatus = pStatus;
+		this.stDate = stDate;
+		this.stTime = stTime;
+		this.prof = prof;
+		this.services = services;
+		this.rating = rating;
+	}
+
 	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
 			String status, User user, List<SubService> services) {
 		super();
@@ -84,6 +133,39 @@ public class BDetails {
 		this.sTime = sTime;
 		this.ammount = ammount;
 	}
+	
+	public String getuStatus() {
+		return uStatus;
+	}
+
+	public void setuStatus(String uStatus) {
+		this.uStatus = uStatus;
+	}
+
+	public String getpStatus() {
+		return pStatus;
+	}
+
+	public void setpStatus(String pStatus) {
+		this.pStatus = pStatus;
+	}
+
+	public String getStDate() {
+		return stDate;
+	}
+
+	public void setStDate(String stDate) {
+		this.stDate = stDate;
+	}
+
+	public String getStTime() {
+		return stTime;
+	}
+
+	public void setStTime(String stTime) {
+		this.stTime = stTime;
+	}
+
 	public int getBid() {
 		return bid;
 	}
@@ -162,12 +244,20 @@ public class BDetails {
 	public void setServices(List<SubService> services) {
 		this.services = services;
 	}
+	
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 
 	@Override
 	public String toString() {
 		return "BDetails [bid=" + bid + ", uid=" + uid + ", pid=" + pid + ", bDate=" + bDate + ", bTime=" + bTime
-				+ ", sDate=" + sDate + ", sTime=" + sTime + ", ammount=" + ammount + ", status=" + status + ", prof="
-				+ prof + ", user=" + user + ", services=" + services + "]";
+				+ ", sDate=" + sDate + ", sTime=" + sTime + ", ammount=" + ammount + ", status=" + status + ", uStatus="
+				+ uStatus + ", pStatus=" + pStatus + ", stDate=" + stDate + ", stTime=" + stTime + ", prof=" + prof
+				+ ", user=" + user + ", services=" + services + ", rating=" + rating + "]";
 	}
-
 }

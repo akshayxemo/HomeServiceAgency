@@ -11,7 +11,7 @@ public class PasswordMatch {
 	static Connection con=null;
 	static ResultSet rs = null;
 	static String e = null;
-	public static boolean checkPassword(String table, int pid, String pass, String email) throws SQLException{
+	public static boolean checkPassword(String table, int pid, String pass) throws SQLException{
 		boolean status = false;
 		try {
 			con = DbConnection.getConnection();
@@ -20,9 +20,7 @@ public class PasswordMatch {
 			PreparedStatement pstm = con.prepareStatement(sqlQuery2);
 			rs = pstm.executeQuery();
 			if(rs.next()) {
-				if(rs.getString("Email").equals(email)) {
 					status = true;
-				}
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

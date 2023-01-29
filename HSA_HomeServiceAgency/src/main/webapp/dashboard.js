@@ -20,19 +20,12 @@
 	}
 }
 function validate(event){
-	let rating = document.forms["acceptForm"]["rating"].value
-	let ratingcheck = document.querySelector('input[type=radio][name=rating]:checked');
 	let pass = document.getElementById("profPass");
 	
-	if(rating == ""){
-		openModal("User must give a rating to the professional");
-		pass.classList.remove("is-invalid");
-	}
 	if(pass.value == ""){
 		event.preventDefault();
-		openModal("Professional must give password and user must give a rating");
+		openModal("You must give your password");
 		pass.classList.add("is-invalid");
-		ratingcheck.checked = false;
 	}
 	else{
 		return true;

@@ -50,7 +50,7 @@
 	        
 	        <div class="text-center">
 		         <c:if test="${rate != null}">
-		         	<p class="my-2">Rating is : ${rate}</p>
+		         	<p class="my-2">My Rating &#160; : &#160; ${rate}.0</p>
 		         	<% 
 		         	int Rating = Integer.parseInt((String)request.getAttribute("rate"));
 		         	for(int i = 1; i<=5 ; i++){ 
@@ -73,8 +73,9 @@
         </div>
         
         <div class="container" style="overflow-y: auto; height:700px">
-        
-	        <c:if test="${bookings != null }">
+        	<c:choose>
+	        <c:when test="${bookings != null && bookings.size()>0}">
+	        	<p class="text-center text-warning mb-0 mt-2"> You have <em>${bookings.size()}</em> bookings</p>
 	        	<c:choose>
 		        	<c:when test="${usertype == 'users' }">
 			        	<c:forEach var="bk" items="${bookings}">
@@ -89,9 +90,9 @@
 					        					<img src="./ImageViewer?id=${bk.prof.id}&type=professionals" class="img-fluid rounded-circle mx-auto d-block" style="width: 105px;">
 					        				</div>
 					        				<div class="col-md-10">
-					        					<h4 class="fw-semibold">${bk.prof.name} <span class="fw-light fs-6 text-primary">(${bk.prof.gender})</span></h4>
-					        					<p class="text-secondary mb-1">Email : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.email}</span></p>
-					        					<p class="text-secondary mb-1">Contact no : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.phone} / ${bk.prof.altPhone} </span></p>
+					        					<h3 class="fw-semibold">${bk.prof.name} <span class="fw-light fs-6 text-primary">(${bk.prof.gender})</span></h3>
+					        					<p class="text-secondary mb-1"><i class="bi bi-envelope text-success"></i> &#160 Email : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.email}</span></p>
+					        					<p class="text-secondary mb-1"><i class="bi bi-phone text-success"></i> &#160 Contact no : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.phone} / ${bk.prof.altPhone} </span></p>
 					        					<p class="text-secondary">Rating : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.rating}.0 &#9733;</span></p>
 					        				</div>
 					        			</div>
@@ -106,7 +107,7 @@
 					        				
 					        				<div class="d-flex">
 						        				<c:forEach var="service" items="${bk.services}">
-							        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 ${service.sname}</span>
+							        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 ${service.sname} (${service.price} /-)</span>
 						        				</c:forEach>
 					        				</div>
 					        			</div>
@@ -146,39 +147,71 @@
 					        					</tr>
 					        				</table>
 					        			</div>
-					        			<div class="row mt-3 px-3">
+					        			<div class="row mt-3 px-3 border-top border-2">
 					        				<c:choose>
-						        				<c:when test="${bk.status == 'waiting'}">
-						        					<%-- <form action="ChangeStatus" method="post">
+						        				<c:when test="${bk.status == 'waiting' && bk.pStatus == 'waiting' && bk.uStatus == 'accepted'}">
+						        					<form action="ChangeStatus" method="post">
 						        						<input type="hidden" name="bid" value="${bk.bid}">
+						        						<input type="hidden" name="type" value="${usertype}">
 						        						<input type="hidden" name="status" value="reject">
 							        					<button type="submit" class="btn btn-danger w-100">Reject Appointment &#160 &#10006;</button>
-						        					</form> --%>
+						        					</form>
 							        				<span class="mt-2">Please wait for the Professional to Confirm. <span class="text-danger">You cannot Reject your Booking once you booked an appointment</span></span>
 						        				</c:when>
-						        				<c:when test="${bk.status == 'rejected'}">
+						        				<c:when test="${bk.status == 'rejected' && bk.pStatus == 'rejected'}">
 						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">Your Appointment is Rejected</span></span>
+						        					<span class="mt-1 text-center">Date : ${bk.stDate}</span>
+						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
 						        				</c:when>
-						        				<c:when test="${bk.status == 'accepted'}">
-						        					<form action="ChangeStatus" method="post" name="acceptForm" id="acceptForm">
-						        						<input type="hidden" name="ProfId" value="${bk.prof.id}">
-						        						<input type="hidden" name="email" value="${bk.prof.email}">
-						        						<input type="hidden" name="bid" value="${bk.bid}">
-						        						<input type="hidden" name="status" value="complete">
+						        				<c:when test="${bk.status == 'rejected' && bk.uStatus == 'rejected'}">
+						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">Your Reject this Appointment</span></span>
+						        					<span class="mt-1 text-center">Date : ${bk.stDate}</span>
+						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
+						        				</c:when>
+						        				<c:when test="${bk.status == 'accepted' && bk.pStatus == 'accepted' && bk.uStatus == 'accepted'}">
+						        					<form action="ChangeStatus" method="post">
 													    <div class="rating">
-													      <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="Excelent">5 stars</label>
-													      <input type="radio" id="star4" name="rating" value="4" required><label for="star4" title="Very Good">4 stars</label>
-													      <input type="radio" id="star3" name="rating" value="3" required><label for="star3" title="Good">3 stars</label>
-													      <input type="radio" id="star2" name="rating" value="2" required><label for="star2" title="Bad">2 stars</label>
-													      <input type="radio" id="star1" name="rating" value="1" required><label for="star1" title="Disappointed">1 star</label>
+													      <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="Excelent">5 stars</label>
+													      <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="Very Good">4 stars</label>
+													      <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="Good">3 stars</label>
+													      <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="Bad">2 stars</label>
+													      <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="Disappointed">1 star</label>
 													    </div>
-							        					<input type="password" id="profPass" name="Pass" class="form-control my-3" placeholder="Enter password">
-							        					<input type="submit" class="btn btn-success w-100" onclick="validate(event)" value="Task Completed &#160 &#10004;">
+							        					<input type="submit" class="btn btn-success w-100" value="Task Completed &#160 &#10004;" disabled>
 							        				</form>
 						        				</c:when>
-						        				<c:otherwise>
+						        				<c:when test="${bk.status == 'accepted' && bk.pStatus == 'completed' && bk.uStatus == 'accepted'}">
+						        					<form action="ChangeStatus" method="post">
+						        						<input type="hidden" name="bid" value="${bk.bid}">
+						        						<input type="hidden" name="type" value="${usertype}">
+						        						<input type="hidden" name="profId" value="${bk.prof.id}">
+						        						<input type="hidden" name="status" value="complete">
+													    <div class="rating">
+													      <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="Excelent">5 stars</label>
+													      <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="Very Good">4 stars</label>
+													      <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="Good">3 stars</label>
+													      <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="Bad">2 stars</label>
+													      <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="Disappointed">1 star</label>
+													    </div>
+							        					<input type="submit" class="btn btn-success w-100" value="Task Completed &#160 &#10004;">
+							        				</form>
+						        				</c:when>
+						        				<c:when test="${bk.status == 'completed' && bk.pStatus == 'completed' && bk.uStatus == 'completed'}">
 						        					<span class="my-3 text-center">Thank you<br><span class="text-success">Your Appointment is successfully over</span></span>
-						        				</c:otherwise>
+						        					<span class="mt-1 text-center">Date : ${bk.stDate}</span>
+						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
+						        					<c:choose>
+						        						<c:when test="${bk.rating >= 4}">
+						        							<span class="mt-3 badge bg-success text-white py-2 fw-semibold">Rated: &#160; <span class="">${bk.rating}.0 &#9733;</span></span>
+						        						</c:when>
+						        						<c:when test="${bk.rating == 3}">
+						        							<span class="mt-3 badge bg-warning text-dark py-2 fw-semibold">Rated: &#160; <span class="">${bk.rating}.0 &#9733;</span></span>
+						        						</c:when>
+						        						<c:otherwise>
+						        							<span class="mt-3 badge bg-danger text-white py-2 fw-semibold">Rated: &#160; <span class="">${bk.rating}.0 &#9733;</span></span>
+						        						</c:otherwise>
+						        					</c:choose>
+						        				</c:when>
 					        				</c:choose>
 					        			</div>
 					        		
@@ -203,10 +236,10 @@
 					        					<img src="./ImageViewer?id=${bk.user.uid}&type=users" class="img-fluid rounded-circle mx-auto d-block" style="width: 105px;">
 					        				</div>
 					        				<div class="col-md-10">
-					        					<h4 class="fw-semibold">${bk.user.name} <span class="fw-light fs-6 text-primary">(${bk.user.gender})</span></h4>
-					        					<p class="text-secondary mb-1">Email : &#160 &#160 <span class="text-secondary fw-light">${bk.user.email}</span></p>
-					        					<p class="text-secondary">Contact no. : &#160 &#160 <span class="text-secondary fw-light">${bk.user.phone} / ${bk.user.altPhone} </span></p>
-					        					<p class="text-secondary mb-1">Address : &#160 &#160 <span class="text-secondary fw-light">${bk.user.address}</span></p>
+					        					<h3 class="fw-semibold">${bk.user.name} <span class="fw-light fs-6 text-primary">(${bk.user.gender})</span></h3>
+					        					<p class="text-secondary mb-1"><i class="bi bi-envelope text-success"></i> &#160 Email : &#160 &#160 <span class="text-secondary fw-light">${bk.user.email}</span></p>
+					        					<p class="text-secondary mb-1"><i class="bi bi-phone text-success"></i> &#160 Contact no. : &#160 &#160 <span class="text-secondary fw-light">${bk.user.phone} / ${bk.user.altPhone} </span></p>
+					        					<p class="text-secondary mb-1"><i class="bi bi-geo-alt text-success"></i> &#160 Address : &#160 &#160 <span class="text-secondary fw-light">${bk.user.address}</span></p>
 					        				</div>
 					        			</div>
 					        			
@@ -220,7 +253,7 @@
 					        				
 					        				<div class="d-flex">
 						        				<c:forEach var="service" items="${bk.services}">
-							        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 ${service.sname}</span>
+							        				<span class="me-4 text-secondary fw-light"><i class="bi bi-check text-success"></i> &#160 ${service.sname} (${service.price} /-)</span>
 						        				</c:forEach>
 					        				</div>
 					        			</div>
@@ -260,11 +293,12 @@
 					        					</tr>
 					        				</table>
 					        			</div>
-					        			<div class="row mt-3 px-3">
+					        			<div class="row mt-3 px-3 border-top border-2">
 					        				<c:choose>
-						        				<c:when test="${bk.status == 'waiting'}">
+						        				<c:when test="${bk.status == 'waiting' && bk.uStatus == 'accepted' && bk.pStatus == 'waiting'}">
 							        				<form action="ChangeStatus" method="post">
 						        						<input type="hidden" name="bid" value="${bk.bid}">
+						        						<input type="hidden" name="type" value="${usertype}">
 						        						<input type="hidden" name="status" value="no" id="F-action">
 							        					<button type="submit" class="btn btn-danger my-3 w-100" id="rejectBtn" onclick="setValue(this.id)">Reject Appointment &#160 &#10006;</button>
 							        					<button type="submit" class="btn btn-success w-100" id="acceptBtn" onclick="setValue(this.id)">Accept Appointment &#160 &#10004;</button>
@@ -273,21 +307,46 @@
 						        						Once you accept/reject it will be irreversible.
 													</span>
 						        				</c:when>
-						        				<c:when test="${bk.status == 'rejected'}">
+						        				<c:when test="${bk.status == 'rejected' && bk.uStatus == 'rejected'}">
 						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">Your Appointment is Rejected</span></span>
+						        					<span class="mt-1 text-center">Date : ${bk.stDate}</span>
+						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
 						        				</c:when>
-						        				<c:when test="${bk.status == 'accepted'}">
+						        				<c:when test="${bk.status == 'rejected' && bk.pStatus == 'rejected'}">
+						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">Your Reject this Appointment</span></span>
+						        					<span class="mt-1 text-center">Date : ${bk.stDate}</span>
+						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
+						        				</c:when>
+						        				<c:when test="${bk.status == 'accepted' && bk.pStatus == 'accepted' && bk.uStatus == 'accepted'}">
 													<span class="my-3 text-center">You <span
 														class="text-success fw-semibold">accepted</span> this
 														appointment make sure to attend and after successfully done
-														give your password to the client dashboard password field
-														and let the client choose your rating and submit to
-														complete the task.
+														give your password here.
 													</span>
+													<form action="ChangeStatus" method="post" name="acceptForm" id="acceptForm">
+						        						<input type="hidden" name="bid" value="${bk.bid}">
+						        						<input type="hidden" name="type" value="${usertype}">
+						        						<input type="hidden" name="status" value="complete">
+							        					<input type="password" id="profPass" name="Pass" class="form-control my-3" placeholder="Enter password">
+							        					<input type="submit" class="btn btn-success w-100" onclick="validate(event)" value="Task Completed &#160 &#10004;">
+							        				</form>
 												</c:when>
-						        				<c:otherwise>
+						        				<c:when test="${bk.status == 'completed' && bk.pStatus == 'completed' && bk.uStatus == 'completed'}">
 						        					<span class="my-3 text-center">Thank you<br><span class="text-success">Your Appointment is successfully over</span></span>
-						        				</c:otherwise>
+						        					<span class="mt-1 text-center">Date : ${bk.stDate}</span>
+						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
+						        					<c:choose>
+						        						<c:when test="${bk.rating >= 4}">
+						        							<span class="mt-3 badge bg-success text-white py-2 fw-semibold">User Rating: &#160; <span class="">${bk.rating}.0 &#9733;</span></span>
+						        						</c:when>
+						        						<c:when test="${bk.rating == 3}">
+						        							<span class="mt-3 badge bg-warning text-dark py-2 fw-semibold">User Rating: &#160; <span class="">${bk.rating}.0 &#9733;</span></span>
+						        						</c:when>
+						        						<c:otherwise>
+						        							<span class="mt-3 badge bg-danger text-white py-2 fw-semibold">User Rating: &#160; <span class="">${bk.rating}.0 &#9733;</span></span>
+						        						</c:otherwise>
+						        					</c:choose>
+						        				</c:when>
 					        				</c:choose>
 					        			</div>
 					        		
@@ -299,7 +358,11 @@
 				        </c:forEach>
 			        </c:otherwise>
 		        </c:choose>
-	        </c:if>
+	        </c:when>
+	        <c:otherwise>
+	        	<p class="text-center text-danger"> You have 0 bookings</p>
+	        </c:otherwise>
+	        </c:choose>
         
         </div>
         
