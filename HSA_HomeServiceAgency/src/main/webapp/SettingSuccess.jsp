@@ -5,8 +5,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration Success</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-<link href="SuccessPage.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
 <style>
 	.modal-body{
@@ -18,6 +19,7 @@
 	}
 	.modal-body h3{
 		margin-top:10px;
+		margin-bottom:0;
 	}
 	.logo{
 		height:25px;
@@ -28,10 +30,6 @@
 		
 	}
 </style>
-<% 
-	String Name = null;
-	Name = (String) request.getAttribute("Name");
-%>
 </head>
 <body>
 	<div class="modal" tabindex="-1" style="display:block; z-index:-1">
@@ -41,19 +39,13 @@
 	      		<a href="./Home"><img src="images/Logo.svg" class="logo"></a>
 	      	</div>
 	      <div class="modal-body">
-	       	<h3>Successfully Registered !</h3>
+	       	<h3>General setting Successful </h3>
 	      </div>
 	      <div class="modal-body">
-	      	<div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
-			  <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
-			  <span class="swal2-success-line-tip"></span>
-			  <span class="swal2-success-line-long"></span>
-			  <div class="swal2-success-ring"></div> 
-			  <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
-			  <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
-			</div>
-	        <p>Thank you <b><span><%= Name %></span> !</b>Now you can Login to your Dashboard</p>
-	        <a href="loginSignup.jsp">Go back to Login</a>
+			<i class="bi bi-check-circle-fill"
+				style="font-size: 4rem; color: #14d617;"></i>
+			<p>${msg}</p>
+	        <a href="./Dashboard">Go to dashboard</a>
 	      </div>
 	    </div>
 	  </div>

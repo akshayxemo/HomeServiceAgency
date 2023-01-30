@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="docs.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="rating.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="scrollbar.css" type="text/css" rel="stylesheet">
     <style>
     	#top{
     		background-image:url("./images/background.svg");
@@ -45,7 +46,7 @@
 	            </c:if>
 	            <img src="./ImagePutter" class=" border user-img-top rounded-circle img-fluid" style="height: 8.1rem; width: 8.25rem;">
 	            <h1 class="my-3 fw-bold">${fn:toUpperCase(userName)}</h1>
-	            <button type="button" class="btn btn-warning rounded-3">Edit Profile</button>
+	            <a type="button" href="./EditProfile"class="btn btn-warning rounded-3">Edit Profile</a>
 	        </div>
 	        
 	        <div class="text-center">
