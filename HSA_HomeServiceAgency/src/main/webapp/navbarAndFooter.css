@@ -1,5 +1,6 @@
 @charset "ISO-8859-1";
 /*Navbar section*/
+@import "scrollbar.css";
 body{
   	display:grid;
   	grid-template-rows: auto 1fr auto;
