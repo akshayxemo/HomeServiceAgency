@@ -15,11 +15,11 @@
 <body>
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<section id="bg" class="text-white">
-		<div class="container mb-4" style="margin-top:7%;">
+		<div class="container my-5">
 			<form action="SearchProfessionals" method="GET">
 				<div class="row text-center">
-					<h3 class="fw-semibold">Service Page</h3>
-					<p><em>Your can Search Professionals by Service name here</em></p>
+					<h2 class="fw-semibold">Service Page</h2>
+					<h5 class="mb-3"><em>Welcome to our professionals according service finder page.</em></h5>
 					<div class="col-md-10">
 						<select class="form-select form-select-lg rounded-pill searchBox float-end border-secondary" name="Service_id" aria-label="Default select example">
 							<option selected value="0">Select Service</option>
@@ -79,6 +79,7 @@
 		</div>
 	</section>
 	<jsp:include page="Footer.jsp"></jsp:include>
+	<script src="bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="loginSignup.js"></script>
 </body>
 </html>

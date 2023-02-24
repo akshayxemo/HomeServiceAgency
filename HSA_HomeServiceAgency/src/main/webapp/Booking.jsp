@@ -13,12 +13,12 @@
 <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="navbarAndFooter.css" type="text/css">
 </head>
-<body>
+<body class="bg-light">
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<section>
-		<div class="container py-5" style="margin-top: 7%;">
+		<div class="container py-5" style="margin-top: 5%;">
 			<form method="post" name="Booking" id="bookingForm">
-				<div class="row border rounded-2 p-4">
+				<div class="row border rounded-2 p-4 bg-white">
 					<div class="col-md-10">
 						<div class="row">
 							<div

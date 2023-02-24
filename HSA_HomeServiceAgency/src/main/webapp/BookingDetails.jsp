@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="navbarAndFooter.css" type="text/css">
 <link rel="stylesheet" href="docs.css" type="text/css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
 	<jsp:include page="Navbar.jsp"></jsp:include>
 	<%-- <p>${profDetails}</p>
 	<p>${services}</p>
@@ -23,10 +23,10 @@
 	<p>${serviceTime}</p>
 	<p>${TotalPrice}</p> --%>
 	<section>
-	    <div class="container ml py-2" style="margin-top: 7%;">
-	        <div class="row justify-content-center align-items-center">
+	    <div class="container p-0" style="margin-top: 3%;">
+	        <div class="row justify-content-center align-items-center rounded-2">
 	            <div class="col-12 mb-0">
-	                <div class="card" style="border-radius: 15px; border: none; color:#226411; background-color:#BBF0AE; padding:8px 12px">
+	                <div class="card" style=" color:#226411; background-color:#BBF0AE; padding:8px 12px">
 	                    <div class="row">
 	                        <div class="p-md-4">
 	                            Booking Successful please wait for the Professionals response.
@@ -40,7 +40,7 @@
 	<section>
 		<div class="container pb-5 pt-1">
 				<div class="row">
-					<div class="col-md-10 border rounded-2 p-4">
+					<div class="col-md-10 border border-success rounded-2 p-4 bg-white">
 						<div class="row">
 							<div
 								class="col-md-3 d-flex align-items-center justify-content-center">

@@ -34,7 +34,7 @@
 
 	<section id="top">
 		<div class="mb-4">
-	        <div class="container  text-center " style="margin-top: 7%;">
+	        <div class="container  text-center " style="margin-top: 6%;">
 	        	<c:if test="${usertype != null}">
 	        	<% 	String Type = null;
 	        		Type = (String) request.getAttribute("usertype");

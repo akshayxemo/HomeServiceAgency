@@ -23,7 +23,7 @@
   <!-------------------------------------------------Header---------------------------------> 
 	<jsp:include page="Navbar.jsp"></jsp:include>                                                        
     <!-------------------------------------------------Feedback(heading)---------------------------------> 
-    <div class="container" style="margin-top:7%;">
+    <div class="container mt-5">
         <div class="mb-3">
           <h1><b>Your Feedback Is Valuable To Us!</b></h1>
         </div>

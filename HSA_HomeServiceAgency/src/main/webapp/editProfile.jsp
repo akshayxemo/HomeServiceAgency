@@ -50,7 +50,7 @@
 		</div>
 	</section>
 	<section class="bg-warning py-5 changefields">
-		<div class="container shadow p-4 mb-5 border bg-light rounded rounded-4">
+		<div class="container shadow p-4 mb-5 border bg-light rounded rounded-2">
 			<h5 class="text-center mb-4 border-bottom pb-3"><i class="bi bi-gear-fill text-success"></i> &#160 General settings</h5>
 			<form name="picForm" id="picForm" method="post" action="EditProfile" enctype="multipart/form-data">
 				<input type="hidden" name="action" value="imageChange">
@@ -131,7 +131,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="container shadow p-4 mb-5 border bg-light rounded rounded-4">
+		<div class="container shadow p-4 mb-5 border bg-light rounded rounded-2">
 			<h5 class="text-center mb-4 border-bottom pb-3"><i class="bi bi-shield-lock-fill text-danger"></i> &#160 Change Password</h5>
 			<form name="passChange" id="passChange" method="post" action="EditProfile">
 				<input type="hidden" name="action" value="passwordChange">
