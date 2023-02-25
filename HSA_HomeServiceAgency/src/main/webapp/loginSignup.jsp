@@ -26,7 +26,7 @@
 	.logo{
 		height:50px;
 	}
-	</style>
+</style>
 </head>
 <body>
     <section class="top">
@@ -73,7 +73,7 @@
 				<br><br>
 				<button type="submit" class="btn btn-warning mb-4 px-5" onClick="checkFields(event)">Login</button>
 				<p>Don't have an Account ?<a href="userType.html"> Sign Up</a></p>
-				<a id="forget-password" href="#"><em>Forgot Password ?</em></a>
+				<a id="forget-password" href="forgetPassword.jsp"><em>Forgot Password ?</em></a>
 			</div>
 		</form>
 	</section>

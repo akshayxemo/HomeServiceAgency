@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Services</title>
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="navbarAndFooter.css" type="text/css">
 <link rel="stylesheet" href="service.css" type="text/css">
@@ -20,24 +21,37 @@
 				<div class="row text-center">
 					<h2 class="fw-semibold">Service Page</h2>
 					<h5 class="mb-3"><em>Welcome to our professionals according service finder page.</em></h5>
-					<div class="col-md-10">
-						<select class="form-select form-select-lg rounded-pill searchBox float-end border-secondary" name="Service_id" aria-label="Default select example">
-							<option selected value="0">Select Service</option>
-							<option value="1">Saloon for woman</option>
-				     		<option value="2">Saloon for Man</option>
-							<option value="3">Therapy for Man</option>
-							<option value="4">Therapy for woman</option>
-							<option value="5">Carpenter</option>
-							<option value="6">Plumbers</option>
-							<option value="7">Electrician</option>
-							<option value="8">Ac/Appliance Repair</option>
-							<option value="9">House cleanning</option>
-							<option value="10">Home Painting</option>
-						</select>
-					</div>
-					<div class="col-md-2">
-						<button type="submit" class="btn btn-warning submitBtn">Search</button>
-					</div>
+						<div class="col-md-8">
+							<select class="form-select form-select-lg rounded-pill searchBox float-end border-secondary" name="Service_id" id="Service_id" aria-label="Default select example">
+								<option selected value="0">Select Service</option>
+								<option value="1">Saloon for woman</option>
+					     		<option value="2">Saloon for Man</option>
+								<option value="3">Therapy for Man</option>
+								<option value="4">Therapy for woman</option>
+								<option value="5">Carpenter</option>
+								<option value="6">Plumbers</option>
+								<option value="7">Electrician</option>
+								<option value="8">Ac/Appliance Repair</option>
+								<option value="9">House cleanning</option>
+								<option value="10">Home Painting</option>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<select class="form-select form-select-lg rounded-pill searchBox float-end border-secondary" name="filter" aria-label="Default select example">
+								<option selected value="">Filter</option>
+								<optgroup label="By Rating">
+									<option value="Rating-High-Low"> High - Low</option>
+								</optgroup>
+								<optgroup label="By Gender">
+									<option value="Female">Female</option>
+									<option value="Male">Male</option>
+									<option value="Others">others</option>
+								</optgroup>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-warning submitBtn border border-dark" onclick="validation(event)"><i class="bi bi-search"></i> &#160 Search</button>
+						</div>
 				</div>
 			</form>
 		</div>
@@ -46,7 +60,11 @@
 		<c:choose>
 			<c:when test="${listProfs.size() != 0}">
 				<div class="container-fluid text-center m-0" id="booking" style="padding:12px 0; ">
-					<p class="fw-regular">Search Result for : &#160<span class="badge text-bg-warning p-2 fs-6 fw-normal">${ServiceName}</span></p>
+					<p class="fw-regular">Search Result for : &#160<span class="badge text-bg-warning p-2 fs-6 fw-normal">${ServiceName}</span>
+					<c:if test="${Filter != null}">
+						&#160<span class="badge text-dark border border-dark p-2 fs-6 fw-normal">${Filter}</span>
+					</c:if>
+					</p>
 		            <p class="m-0 text-success fw-regular"><em>${listProfs.size()} results found</em></p>
 		        </div>
 	        </c:when>
@@ -81,5 +99,18 @@
 	<jsp:include page="Footer.jsp"></jsp:include>
 	<script src="bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="loginSignup.js"></script>
+	<script>
+		function validation(event){
+			let option = document.getElementById("Service_id");
+			if(option.selectedIndex == 0){
+				event.preventDefault();
+				option.classList.add("is-invalid");
+				alert("Please select an service option");
+			}
+			else{
+				return true;
+			}
+		}
+	</script>
 </body>
 </html>
