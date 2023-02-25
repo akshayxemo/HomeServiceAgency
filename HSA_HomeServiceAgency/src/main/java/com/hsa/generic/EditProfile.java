@@ -142,6 +142,18 @@ public class EditProfile extends HttpServlet {
 					request.getRequestDispatcher("SettingSuccess.jsp").forward(request, response);
 				}
 				break;
+			case "recoverPassword":
+				String newPass2 = request.getParameter("Npassword");
+				update = recoverPassword(Integer.parseInt(id), Encryption.toHexString(Encryption.getSHA(newPass2)),type);
+				if(update == 0) {
+					request.setAttribute("msg", "Password is wrong");
+					request.getRequestDispatcher("SettingError.jsp").forward(request, response);
+				}
+				else {
+					request.setAttribute("msg", "Passsword successfully changed");
+					request.getRequestDispatcher("SettingSuccess.jsp").forward(request, response);
+				}
+				break;
 			case "generalChange":
 				String name = request.getParameter("Name");
 				String email = request.getParameter("Email");
@@ -168,6 +180,23 @@ public class EditProfile extends HttpServlet {
 			e.printStackTrace();
 		}
 		doGet(request, response);
+	}
+	private int recoverPassword(int id, String newPass, String type) throws SQLException {
+		Connection con = DbConnection.getConnection();
+		PreparedStatement pstm = null;
+		String query = null;
+		int i = 0;
+		if(type.equals("users")) {
+			query = "update users set Password = ? where Uid = ?";
+		}
+		else {
+			query = "update professionals set Password = ? where Pid = ?";
+		}
+		pstm = con.prepareStatement(query);
+		pstm.setString(1, newPass);
+		pstm.setInt(2, id);
+		i = pstm.executeUpdate();
+		return i;
 	}
 	private int changePassword(int id, String oldPass, String newPass, String type) throws SQLException {
 		Connection con = DbConnection.getConnection();

@@ -45,7 +45,7 @@
 			<i class="bi bi-check-circle-fill"
 				style="font-size: 4rem; color: #14d617;"></i>
 			<p>${msg}</p>
-	        <a href="./Dashboard">Go to dashboard</a>
+	        <a href="./Dashboard">Go back</a>
 	      </div>
 	    </div>
 	  </div>
