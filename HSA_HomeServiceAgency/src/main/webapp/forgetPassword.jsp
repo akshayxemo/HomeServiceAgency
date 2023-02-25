@@ -27,7 +27,7 @@
 </style>
 </head>
 <body>
-	<section class="top">
+	<section class="top" style="z-index:10;">
 		<a class="navbar-brand" href="./Home"><img src="images/Logo.svg" class="logo"></a>
 		<p>Welcome to Home Service Agency</p>
 	</section>
@@ -44,7 +44,7 @@
 			</div>
 	</c:if>
 	<section>
-		<div class="modal" tabindex="-1" style="display:block">
+		<div class="modal" tabindex="-1" style="display:block; z-index:1;">
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content text-center">
 		      <div class="modal-body">

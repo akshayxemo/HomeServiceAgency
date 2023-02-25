@@ -28,7 +28,7 @@ public class IsExisting {
 	}
 	public static String checkPhone(String table, String Phone) throws SQLException{
 		Connection con=null;
-		String email = "@";
+		String email = null;
 		try {
 			con = DbConnection.getConnection();
 			String sqlQuery2 = "select Email from "+table+" where Phone = '"+Phone+"'" ;

@@ -61,7 +61,7 @@ public class ProfessionalSignup extends HttpServlet {
 			
 			Name = request.getParameter("PName");
 			Address = request.getParameter("PAddress");
-			Email = request.getParameter("PEmail");
+			Email = request.getParameter("PEmail").toLowerCase();
 			Phone = request.getParameter("Phone");
 			AltPhone = request.getParameter("AltPhone");
 			Gender = request.getParameter("inlineRadioOptions");
@@ -69,8 +69,13 @@ public class ProfessionalSignup extends HttpServlet {
 			ServiceId = Integer.parseInt(request.getParameter("SelectService"));
 			
 			boolean existingUser = IsExisting.checkRedundentUser("professionals", Email);
+			String getEmailForPhone = IsExisting.checkPhone("professionals", Phone);
 			if(existingUser) {
-				pw.println("<div style='background-color:red; color:white; text-align:center; padding:10px 0px'>Email id Already Existed</div>");
+				pw.println("<div style='background-color:red; color:white; text-align:center; padding:10px 0px'>Email id Already Registerd</div>");
+				request.getRequestDispatcher("Signup(professional).html").include(request, response);
+			}
+			else if(getEmailForPhone != null) {
+				pw.println("<div style='background-color:red; color:white; text-align:center; padding:10px 0px'>This Phone number is Already Registerd</div>");
 				request.getRequestDispatcher("Signup(professional).html").include(request, response);
 			}
 			else {

@@ -52,15 +52,20 @@ public class UserSignup extends HttpServlet {
 			
 			Name = request.getParameter("UName");
 			Address = request.getParameter("UAddress");
-			Email = request.getParameter("UEmail");
+			Email = request.getParameter("UEmail").toLowerCase();
 			Phone = request.getParameter("Phone");
 			AltPhone = request.getParameter("AltPhone");
 			Gender = request.getParameter("inlineRadioOptions");
 			Password = request.getParameter("Password");
 			
 			boolean existingUser = IsExisting.checkRedundentUser("users", Email);
+			String getEmailForPhone = IsExisting.checkPhone("users", Phone);
 			if(existingUser) {
-				pw.println("<div style='background-color:red; color:white; text-align:center; padding:10px 0px'>Email id Already Existed</div>");
+				pw.println("<div style='background-color:red; color:white; text-align:center; padding:10px 0px'>Email id Already Registerd</div>");
+				request.getRequestDispatcher("SignUpProcurer.html").include(request, response);
+			}
+			else if(getEmailForPhone != null) {
+				pw.println("<div style='background-color:red; color:white; text-align:center; padding:10px 0px'>This Phone number is Already Registerd</div>");
 				request.getRequestDispatcher("SignUpProcurer.html").include(request, response);
 			}
 			else {
