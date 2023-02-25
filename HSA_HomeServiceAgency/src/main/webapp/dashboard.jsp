@@ -91,7 +91,10 @@
 					        					<img src="./ImageViewer?id=${bk.prof.id}&type=professionals" class="img-fluid rounded-circle mx-auto d-block" style="width: 105px;">
 					        				</div>
 					        				<div class="col-md-10">
-					        					<h3 class="fw-semibold">${bk.prof.name} <span class="fw-light fs-6 text-primary">(${bk.prof.gender})</span></h3>
+					        					<h3 class="fw-semibold">${bk.prof.name} 
+					        						<span class="fw-light fs-6 text-primary">(${bk.prof.gender})</span>
+					        						&#160 &#160<span class="badge text-bg-success p-2 fs-6 fw-normal">${bk.prof.serviceName}</span>
+					        					</h3>
 					        					<p class="text-secondary mb-1"><i class="bi bi-envelope text-success"></i> &#160 Email : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.email}</span></p>
 					        					<p class="text-secondary mb-1"><i class="bi bi-phone text-success"></i> &#160 Contact no : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.phone} / ${bk.prof.altPhone} </span></p>
 					        					<p class="text-secondary">Rating : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.rating}.0 &#9733;</span></p>

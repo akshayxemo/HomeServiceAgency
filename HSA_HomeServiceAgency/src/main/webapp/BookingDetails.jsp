@@ -51,6 +51,7 @@
 							<div class="col-md-9">
 								<h4 class="fw-semiblod">${profDetails.name}
 									&#160<span class="fw-light fs-6 text-primary">(${profDetails.gender})</span>
+									&#160 &#160<span class="badge text-bg-success p-2 fs-6 fw-normal">${ServiceName}</span>
 								</h4>
 								<p class="text-secondary mb-1">
 									Email: &#160 <em class="fw-light">${profDetails.email}</em>

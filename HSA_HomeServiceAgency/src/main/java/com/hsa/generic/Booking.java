@@ -69,6 +69,17 @@ public class Booking extends HttpServlet {
 					SubService tempService = new SubService(sId, sName, price);
 					subService.add(tempService);
 				}
+				
+				query = "select C_name from service_catagory where Cid = " + pro.getServiceId();
+				PreparedStatement pstm2 = conn.prepareStatement(query);
+				ResultSet rs2 = null;
+				rs2 = pstm2.executeQuery();
+				String service_name = null;
+				if(rs2.next()) {
+					service_name = rs2.getString("C_name");
+				}
+				
+				request.setAttribute("ServiceName", service_name);
 				request.setAttribute("services",subService);
 				request.setAttribute("profInfo", pro);
 				request.getRequestDispatcher("Booking.jsp").forward(request, response);
@@ -107,6 +118,7 @@ public class Booking extends HttpServlet {
 		    }
 		  }
 		if(cookie1 && cookie2) {
+			String service_name = request.getParameter("ServiceName");
 			String[] services = request.getParameterValues("subService");
 			String profId = request.getParameter("profId");
 			String sTime = request.getParameter("sTime");
@@ -157,7 +169,8 @@ public class Booking extends HttpServlet {
 				conn.close();
 				//BDetails bDetails = new BDetails(sqlDate.toString(),sqlTime.toString(),sDate,sTime,totalPrice);
 				BDetails bDetails = new BDetails(Integer.parseInt(id),Integer.parseInt(profId),strDate,strTime,sDate,sTime,totalPrice,status);
-				ServletContext context=getServletContext();  
+				ServletContext context=getServletContext();
+				context.setAttribute("ServiceName", service_name);
 				context.setAttribute("profDetails", pro);
 				context.setAttribute("services", subService);
 				context.setAttribute("bDetails", bDetails);

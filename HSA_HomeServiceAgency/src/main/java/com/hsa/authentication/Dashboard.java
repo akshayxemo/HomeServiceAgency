@@ -155,7 +155,7 @@ public class Dashboard extends HttpServlet {
 		}
 	}
 	private Professional getProf(int Pid) throws SQLException {
-		String query = "select Name, Email, Rating, Gender, Phone, AltPhone from professionals where Pid = " + Pid;
+		String query = "select Name, Email, Service_id, Rating, Gender, Phone, AltPhone from professionals where Pid = " + Pid;
 		Connection conn = DbConnection.getConnection();
 		PreparedStatement pstm = conn.prepareStatement(query);
 		ResultSet rs = null;
@@ -165,6 +165,7 @@ public class Dashboard extends HttpServlet {
 		String Gender = null;
 		String Phone = null;
 		String AltPhone = null;
+		String serviceId = null;
 		rs = pstm.executeQuery();
 		
 		if(rs.next()) {
@@ -174,8 +175,19 @@ public class Dashboard extends HttpServlet {
 			Gender = rs.getString("Gender");
 			Phone = rs.getString("Phone");
 			AltPhone = rs.getString("AltPhone");
+			serviceId = rs.getString("Service_id");
 		}
-		Professional prof = new Professional(Pid, Name, Email, Rating, Gender, Phone, AltPhone);
+		
+		query = "select C_name from service_catagory where Cid = " + serviceId  ;
+		PreparedStatement pstm2 = conn.prepareStatement(query);
+		ResultSet rs2 = null;
+		rs2 = pstm2.executeQuery();
+		String service_name = null;
+		if(rs2.next()) {
+			service_name = rs2.getString("C_name");
+		}
+		
+		Professional prof = new Professional(Pid, Name, Email, Rating, Gender, Phone, AltPhone,service_name);
 		conn.close();
 		return prof;
 		

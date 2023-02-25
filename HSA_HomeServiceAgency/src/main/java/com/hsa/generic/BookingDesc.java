@@ -52,6 +52,7 @@ public class BookingDesc extends HttpServlet {
 		Professional pro = (Professional)context.getAttribute("profDetails");
 		List<SubService> subService = (List<SubService>)context.getAttribute("services");
 		BDetails bDetails = (BDetails) context.getAttribute("bDetails");
+		String service_name = (String) context.getAttribute("ServiceName");
 		pw.println(pro+"........."+subService+"........."+bDetails);
 		pw.println(bDetails.getUid()+"......."+pro.getId()+"......."+bDetails.getbDate()+"......."+bDetails.getbTime()+">>>>>");
 		int bid = 0;
@@ -74,6 +75,7 @@ public class BookingDesc extends HttpServlet {
 			if(updateDesc) {
 				pw.println("COMPLETED");
 			}
+			request.setAttribute("ServiceName", service_name);
 			request.setAttribute("profDetails", pro);
 			request.setAttribute("services", subService);
 			request.setAttribute("bDetails", bDetails);

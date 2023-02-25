@@ -30,7 +30,9 @@
 							<div class="col-md-9">
 								<h4 class="fw-semiblod">${profInfo.name}
 									&#160<span class="fw-light fs-6 text-primary">(${profInfo.gender})</span>
+									&#160 &#160<span class="badge text-bg-success p-2 fs-6 fw-normal">${ServiceName}</span>
 								</h4>
+								<input type="hidden" name="ServiceName" value="${ServiceName}">
 								<p class="text-secondary mb-1">
 									Email: &#160 <em class="fw-light">${profInfo.email}</em>
 								</p>
