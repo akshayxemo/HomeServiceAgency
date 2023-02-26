@@ -20,11 +20,38 @@ public class BDetails {
 	private User user;
 	private List<SubService> services;
 	private int rating;
+	private boolean reported;
+	private String against;
 	
 	
 	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
+			String status, String uStatus, String pStatus, String stDate, String stTime, Professional prof, User user,
+			List<SubService> services, int rating, boolean reported, String against) {
+		super();
+		this.bid = bid;
+		this.uid = uid;
+		this.pid = pid;
+		this.bDate = bDate;
+		this.bTime = bTime;
+		this.sDate = sDate;
+		this.sTime = sTime;
+		this.ammount = ammount;
+		this.status = status;
+		this.uStatus = uStatus;
+		this.pStatus = pStatus;
+		this.stDate = stDate;
+		this.stTime = stTime;
+		this.prof = prof;
+		this.user = user;
+		this.services = services;
+		this.rating = rating;
+		this.reported = reported;
+		this.against = against;
+	}
+
+	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
 			String status, String uStatus, String pStatus, String stDate, String stTime, User user,
-			List<SubService> services,int rating) {
+			List<SubService> services,int rating,boolean reported, String against) {
 		super();
 		this.bid = bid;
 		this.uid = uid;
@@ -42,11 +69,13 @@ public class BDetails {
 		this.user = user;
 		this.services = services;
 		this.rating = rating;
+		this.reported = reported;
+		this.against = against;
 	}
 
 	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
 			String status, String uStatus, String pStatus, String stDate, String stTime, Professional prof,
-			List<SubService> services,int rating) {
+			List<SubService> services,int rating,boolean reported, String against) {
 		super();
 		this.bid = bid;
 		this.uid = uid;
@@ -64,6 +93,8 @@ public class BDetails {
 		this.prof = prof;
 		this.services = services;
 		this.rating = rating;
+		this.reported = reported;
+		this.against = against;
 	}
 
 	public BDetails(int bid, int uid, int pid, String bDate, String bTime, String sDate, String sTime, int ammount,
@@ -253,11 +284,32 @@ public class BDetails {
 		this.rating = rating;
 	}
 
+	public boolean isReported() {
+		return reported;
+	}
+
+	public void setReported(boolean reported) {
+		this.reported = reported;
+	}
+	
+
+	public String getAgainst() {
+		return against;
+	}
+
+	public void setAgainst(String against) {
+		this.against = against;
+	}
+
 	@Override
 	public String toString() {
 		return "BDetails [bid=" + bid + ", uid=" + uid + ", pid=" + pid + ", bDate=" + bDate + ", bTime=" + bTime
 				+ ", sDate=" + sDate + ", sTime=" + sTime + ", ammount=" + ammount + ", status=" + status + ", uStatus="
 				+ uStatus + ", pStatus=" + pStatus + ", stDate=" + stDate + ", stTime=" + stTime + ", prof=" + prof
-				+ ", user=" + user + ", services=" + services + ", rating=" + rating + "]";
+				+ ", user=" + user + ", services=" + services + ", rating=" + rating + ", reported=" + reported
+				+ ", against=" + against + "]";
 	}
+
+	
+	
 }

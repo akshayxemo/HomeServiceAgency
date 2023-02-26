@@ -94,6 +94,16 @@
 					        					<h3 class="fw-semibold">${bk.prof.name} 
 					        						<span class="fw-light fs-6 text-primary">(${bk.prof.gender})</span>
 					        						&#160 &#160<span class="badge text-bg-success p-2 fs-6 fw-normal">${bk.prof.serviceName}</span>
+					        						<c:if test="${bk.reported == true}">
+					        							<c:choose>
+					        								<c:when test="${bk.against == 'professionals'}">
+					        									&#160<span class="badge text-danger border border-danger p-2 fs-6 fw-normal">Reported</span>
+					        								</c:when>
+					        								<c:otherwise>
+					        									&#160<span class="badge text-bg-danger border border-danger p-2 fs-6 fw-normal">Got Reported</span>
+					        								</c:otherwise>
+					        							</c:choose>
+					        						</c:if>
 					        					</h3>
 					        					<p class="text-secondary mb-1"><i class="bi bi-envelope text-success"></i> &#160 Email : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.email}</span></p>
 					        					<p class="text-secondary mb-1"><i class="bi bi-phone text-success"></i> &#160 Contact no : &#160 &#160 <span class="text-secondary fw-light">${bk.prof.phone} / ${bk.prof.altPhone} </span></p>
@@ -183,6 +193,17 @@
 													    </div>
 							        					<input type="submit" class="btn btn-success w-100" value="Task Completed &#160 &#10004;" disabled>
 							        				</form>
+							        				
+							        				<!-- Report form -->
+							        				<c:if test="${bk.reported == false}">
+								        				<form action="ReportFire.jsp" method="post" class="mt-3">
+							        						<input type="hidden" name="bid" value="${bk.bid}">
+							        						<input type="hidden" name="id" value="${bk.prof.id}">
+							        						<input type="hidden" name="type" value="professionals">
+							        						<input type="hidden" name="name" value="${bk.prof.name}">
+								        					<button type="submit" class="btn btn-dark w-100">Report &#160</button>
+							        					</form>
+						        					</c:if>
 						        				</c:when>
 						        				<c:when test="${bk.status == 'accepted' && bk.pStatus == 'completed' && bk.uStatus == 'accepted'}">
 						        					<form action="ChangeStatus" method="post">
@@ -199,6 +220,16 @@
 													    </div>
 							        					<input type="submit" class="btn btn-success w-100" value="Task Completed &#160 &#10004;">
 							        				</form>
+							        				<!-- Report form -->
+							        				<c:if test="${bk.reported == false}">
+								        				<form action="ReportFire.jsp" method="post" class="mt-3">
+							        						<input type="hidden" name="bid" value="${bk.bid}">
+							        						<input type="hidden" name="id" value="${bk.prof.id}">
+							        						<input type="hidden" name="type" value="professionals">
+							        						<input type="hidden" name="name" value="${bk.prof.name}">
+								        					<button type="submit" class="btn btn-dark w-100">Report &#160</button>
+							        					</form>
+						        					</c:if>
 						        				</c:when>
 						        				<c:when test="${bk.status == 'completed' && bk.pStatus == 'completed' && bk.uStatus == 'completed'}">
 						        					<span class="my-3 text-center">Thank you<br><span class="text-success">Your Appointment is successfully over</span></span>
@@ -240,7 +271,18 @@
 					        					<img src="./ImageViewer?id=${bk.user.uid}&type=users" class="img-fluid rounded-circle mx-auto d-block" style="width: 105px;">
 					        				</div>
 					        				<div class="col-md-10">
-					        					<h3 class="fw-semibold">${bk.user.name} <span class="fw-light fs-6 text-primary">(${bk.user.gender})</span></h3>
+					        					<h3 class="fw-semibold">${bk.user.name} <span class="fw-light fs-6 text-primary">(${bk.user.gender})</span>
+					        						<c:if test="${bk.reported == true}">
+					        							<c:choose>
+					        								<c:when test="${bk.against == 'users'}">
+					        									&#160<span class="badge text-danger border border-danger p-2 fs-6 fw-normal">Reported</span>
+					        								</c:when>
+					        								<c:otherwise>
+					        									&#160<span class="badge text-bg-danger border border-danger p-2 fs-6 fw-normal">Got Reported</span>
+					        								</c:otherwise>
+					        							</c:choose>
+					        						</c:if>
+					        					</h3>
 					        					<p class="text-secondary mb-1"><i class="bi bi-envelope text-success"></i> &#160 Email : &#160 &#160 <span class="text-secondary fw-light">${bk.user.email}</span></p>
 					        					<p class="text-secondary mb-1"><i class="bi bi-phone text-success"></i> &#160 Contact no. : &#160 &#160 <span class="text-secondary fw-light">${bk.user.phone} / ${bk.user.altPhone} </span></p>
 					        					<p class="text-secondary mb-1"><i class="bi bi-geo-alt text-success"></i> &#160 Address : &#160 &#160 <span class="text-secondary fw-light">${bk.user.address}</span></p>
@@ -307,6 +349,7 @@
 							        					<button type="submit" class="btn btn-danger my-3 w-100" id="rejectBtn" onclick="setValue(this.id)">Reject Appointment &#160 &#10006;</button>
 							        					<button type="submit" class="btn btn-success w-100" id="acceptBtn" onclick="setValue(this.id)">Accept Appointment &#160 &#10004;</button>
 						        					</form>
+						        					
 						        					<span class="my-3 text-center">
 						        						Once you accept/reject it will be irreversible.
 													</span>
@@ -334,6 +377,32 @@
 							        					<input type="password" id="profPass" name="Pass" class="form-control my-3" placeholder="Enter password">
 							        					<input type="submit" class="btn btn-success w-100" onclick="validate(event)" value="Task Completed &#160 &#10004;">
 							        				</form>
+							        				
+							        				<!-- Report form -->
+							        				<c:if test="${bk.reported == false}">
+								        				<form action="ReportFire.jsp" method="post" class="mt-3">
+							        						<input type="hidden" name="bid" value="${bk.bid}">
+							        						<input type="hidden" name="id" value="${bk.user.uid}">
+							        						<input type="hidden" name="type" value="users">
+							        						<input type="hidden" name="name" value="${bk.user.name}">
+								        					<button type="submit" class="btn btn-dark w-100">Report &#160</button>
+							        					</form>
+						        					</c:if>
+												</c:when>
+												<c:when test="${bk.status == 'accepted' && bk.pStatus == 'completed' && bk.uStatus == 'accepted'}">
+													<span class="my-3 text-center">Have any issue ? you can fire a report below
+													</span>
+							        				
+							        				<!-- Report form -->
+							        				<c:if test="${bk.reported == false}">
+								        				<form action="ReportFire.jsp" method="post" class="mt-3">
+							        						<input type="hidden" name="bid" value="${bk.bid}">
+							        						<input type="hidden" name="id" value="${bk.user.uid}">
+							        						<input type="hidden" name="type" value="users">
+							        						<input type="hidden" name="name" value="${bk.user.name}">
+								        					<button type="submit" class="btn btn-dark w-100">Report &#160</button>
+							        					</form>
+						        					</c:if>
 												</c:when>
 						        				<c:when test="${bk.status == 'completed' && bk.pStatus == 'completed' && bk.uStatus == 'completed'}">
 						        					<span class="my-3 text-center">Thank you<br><span class="text-success">Your Appointment is successfully over</span></span>

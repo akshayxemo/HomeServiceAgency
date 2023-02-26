@@ -71,84 +71,95 @@ public class Dashboard extends HttpServlet {
 			if(type.equals("Admin") && id.equals("0X")) {
 				request.getRequestDispatcher("./Admin").forward(request, response);
 			}
-			try {
-				Connection conn = DbConnection.getConnection();
-				ResultSet result = null;
-				PreparedStatement pstm = null;
-				if(type.equals("professionals")) {
-					sqlQuery = "select Name, Rating from "+ type +" where Pid = '"+id+"'";
-					pstm = conn.prepareStatement(sqlQuery);
-					result = pstm.executeQuery();
-					if(result.next()) {
-						Name = result.getString("Name");
-						rating = result.getString("Rating");
+			else {
+				try {
+					Connection conn = DbConnection.getConnection();
+					ResultSet result = null;
+					PreparedStatement pstm = null;
+					if(type.equals("professionals")) {
+						sqlQuery = "select Name, Rating from "+ type +" where Pid = '"+id+"'";
+						pstm = conn.prepareStatement(sqlQuery);
+						result = pstm.executeQuery();
+						if(result.next()) {
+							Name = result.getString("Name");
+							rating = result.getString("Rating");
+						}
+						sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status,U_status,P_status,St_date,St_time,Rating from bookings where Pid = "+id +" order by Bid DESC";
+						pstm = conn.prepareStatement(sqlQuery);
+						ResultSet rs = pstm.executeQuery();
+						while(rs.next()) {
+							int bid = rs.getInt("Bid");
+							int uid = rs.getInt("Uid");
+							int pid = rs.getInt("Pid");
+							String bDate = rs.getString("B_date");
+							String bTime = rs.getString("B_time");
+							String date = rs.getString("Date");
+							String time = rs.getString("Time");
+							int ammount = rs.getInt("TotalAmmount");
+							String status = rs.getString("Status");
+							String uStatus = rs.getString("U_status");
+							String pStatus = rs.getString("P_status");
+							String stDate = rs.getString("St_date");
+							String stTime = rs.getString("St_time");
+							int rate = rs.getInt("Rating");
+							User user = getUser(uid);
+							String reportAgainst = isReported(bid,type);
+							boolean isReported = false;
+							if(reportAgainst!= null) {
+								isReported = true;
+							}
+							services = ServiceDetails.getDetail(bid);
+							BDetails temp = new BDetails(bid,uid,pid,bDate,bTime,date,time,ammount,status,uStatus,pStatus,stDate,stTime,user,services,rate,isReported,reportAgainst);
+							bookings.add(temp);
+						}
 					}
-					sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status,U_status,P_status,St_date,St_time,Rating from bookings where Pid = "+id +" order by Bid DESC";
-					pstm = conn.prepareStatement(sqlQuery);
-					ResultSet rs = pstm.executeQuery();
-					while(rs.next()) {
-						int bid = rs.getInt("Bid");
-						int uid = rs.getInt("Uid");
-						int pid = rs.getInt("Pid");
-						String bDate = rs.getString("B_date");
-						String bTime = rs.getString("B_time");
-						String date = rs.getString("Date");
-						String time = rs.getString("Time");
-						int ammount = rs.getInt("TotalAmmount");
-						String status = rs.getString("Status");
-						String uStatus = rs.getString("U_status");
-						String pStatus = rs.getString("P_status");
-						String stDate = rs.getString("St_date");
-						String stTime = rs.getString("St_time");
-						int rate = rs.getInt("Rating");
-						User user = getUser(uid);
-						services = ServiceDetails.getDetail(bid);
-						BDetails temp = new BDetails(bid,uid,pid,bDate,bTime,date,time,ammount,status,uStatus,pStatus,stDate,stTime,user,services,rate);
-						bookings.add(temp);
+					else if(type.equals("users")) {
+						sqlQuery = "select Name from "+ type +" where Uid = '"+id+"'";
+						pstm = conn.prepareStatement(sqlQuery);
+						result = pstm.executeQuery();
+						if(result.next()) {
+							Name = result.getString("Name");
+							rating = null;
+						}
+						sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status,U_status,P_status,St_date,St_time,Rating from bookings where Uid = "+id +" order by Bid DESC";
+						pstm = conn.prepareStatement(sqlQuery);
+						ResultSet rs = pstm.executeQuery();
+						while(rs.next()) {
+							int bid = rs.getInt("Bid");
+							int uid = rs.getInt("Uid");
+							int pid = rs.getInt("Pid");
+							String bDate = rs.getString("B_date");
+							String bTime = rs.getString("B_time");
+							String date = rs.getString("Date");
+							String time = rs.getString("Time");
+							int ammount = rs.getInt("TotalAmmount");
+							String status = rs.getString("Status");
+							String uStatus = rs.getString("U_status");
+							String pStatus = rs.getString("P_status");
+							String stDate = rs.getString("St_date");
+							String stTime = rs.getString("St_time");
+							int rate = rs.getInt("Rating");
+							Professional prof = getProf(pid);
+							String reportAgainst = isReported(bid,type);
+							boolean isReported = false;
+							if(reportAgainst!= null) {
+								isReported = true;
+							}
+							services = ServiceDetails.getDetail(bid);
+							BDetails temp = new BDetails(bid,uid,pid,bDate,bTime,date,time,ammount,status,uStatus,pStatus,stDate,stTime,prof,services,rate,isReported,reportAgainst);
+							bookings.add(temp);
+						}
 					}
+					conn.close();
+					
+					request.setAttribute("usertype", type);
+					request.setAttribute("userName", Name);
+					request.setAttribute("rate", rating);
+					request.setAttribute("bookings",bookings);
+					request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
+				}catch(Exception e) {
+					e.printStackTrace();
 				}
-				else {
-					sqlQuery = "select Name from "+ type +" where Uid = '"+id+"'";
-					pstm = conn.prepareStatement(sqlQuery);
-					result = pstm.executeQuery();
-					if(result.next()) {
-						Name = result.getString("Name");
-						rating = null;
-					}
-					sqlQuery = "select Bid,Uid,Pid,B_date,B_time,Date,Time,TotalAmmount,Status,U_status,P_status,St_date,St_time,Rating from bookings where Uid = "+id +" order by Bid DESC";
-					pstm = conn.prepareStatement(sqlQuery);
-					ResultSet rs = pstm.executeQuery();
-					while(rs.next()) {
-						int bid = rs.getInt("Bid");
-						int uid = rs.getInt("Uid");
-						int pid = rs.getInt("Pid");
-						String bDate = rs.getString("B_date");
-						String bTime = rs.getString("B_time");
-						String date = rs.getString("Date");
-						String time = rs.getString("Time");
-						int ammount = rs.getInt("TotalAmmount");
-						String status = rs.getString("Status");
-						String uStatus = rs.getString("U_status");
-						String pStatus = rs.getString("P_status");
-						String stDate = rs.getString("St_date");
-						String stTime = rs.getString("St_time");
-						int rate = rs.getInt("Rating");
-						Professional prof = getProf(pid);
-						services = ServiceDetails.getDetail(bid);
-						BDetails temp = new BDetails(bid,uid,pid,bDate,bTime,date,time,ammount,status,uStatus,pStatus,stDate,stTime,prof,services,rate);
-						bookings.add(temp);
-					}
-				}
-				conn.close();
-				result.close();
-				
-				request.setAttribute("usertype", type);
-				request.setAttribute("userName", Name);
-				request.setAttribute("rate", rating);
-				request.setAttribute("bookings",bookings);
-				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
 			}
 		}
 		else {
@@ -156,6 +167,21 @@ public class Dashboard extends HttpServlet {
 			request.setAttribute("errorMsg","You Logged Out!! Please Login again");
 			request.getRequestDispatcher("loginSignup.jsp").forward(request, response);
 		}
+	}
+	private String isReported(int id, String type) throws SQLException {
+		String query = "select Rid, AgainstType from report where Bid = " + id;
+		
+		Connection conn = DbConnection.getConnection();
+		PreparedStatement pstm = conn.prepareStatement(query);
+		ResultSet rs = null;
+		rs = pstm.executeQuery();
+		if(rs.next()) {
+			String AgainstType = rs.getString("AgainstType");
+			conn.close();
+			return AgainstType;
+		}
+		conn.close();
+		return null;
 	}
 	private Professional getProf(int Pid) throws SQLException {
 		String query = "select Name, Email, Service_id, Rating, Gender, Phone, AltPhone from professionals where Pid = " + Pid;

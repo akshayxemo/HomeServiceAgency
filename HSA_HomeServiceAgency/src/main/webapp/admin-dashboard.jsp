@@ -207,10 +207,160 @@
 				</div>
 	  		</div>
 	  	</div>
+	  	
+	  												<!--  Report section -->
+	  	
 	  	<div class="col-md-4">
-	  		<div class="bg-dark shadow-lg mb-5 p-4 rounded" style="overflow-y: auto; height:75vh">
-	  			<div>
-	  				
+	  		<div class="bg-dark shadow-lg mb-5 p-4 rounded">
+	  				<p>
+					  <button class="btn btn-primary position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					    Reports
+					    <c:if test="${ReportUnseen.size() gt 0}">
+						    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger rounded-circle">
+						    	<span class="visually-hidden">New alerts</span>
+						  	</span>
+						 </c:if>
+					  </button>
+					</p>
+	  			<div style="overflow-y: auto; height:75vh">
+					<div class="collapse" id="collapseExample">
+					  <div class="card card-body">
+					  
+					  	<c:forEach var="repS" items="${ReportUnseen}">
+						  <div class="border-bottom">
+						    <div class="d-flex justify-content-between align-items-center my-3">
+						    	<span class="text-danger fw-bold">Report No. : ${repS.id}</span>
+						    	<span class="text-dark fw-normal"> ${repS.date} -- ${repS.time}</span>
+						    	
+							    <form method="post" action="Admin">
+							    	<input type="hidden" name="rid" value="${repS.id}">
+							    	<input type="hidden" name="action" value="changeSeen">
+								  	<button onclick="Submit(event)" class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#Rid-${repS.id}-s" aria-expanded="false" aria-controls="collapseExample">
+								    	<i class="bi bi-chevron-down"></i>
+								  	</button>
+								</form>
+								
+							</div>
+							<div class="collapse" id="Rid-${repS.id}-s">
+							  <div class="card card-body">
+							  
+							    <div class="row">
+							  		<div class="col-md-10">
+								  		<table class="mb-3">
+								  			<tr>
+								  				<td class="text-center">
+								  					<c:choose>
+								  						<c:when test="${repS.againstType == 'professionals'}">
+								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>User</span>
+								  						</c:when>
+								  						<c:otherwise>
+								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>Professional</span>
+								  						</c:otherwise>
+								  					</c:choose>
+								  				</td>
+								  				<td class="text-center">
+								  					<p> &#160; <i class="bi bi-arrow-right"></i> &#160;</p>
+								  				</td>
+								  				<td class="text-center">
+								  					<c:choose>
+								  						<c:when test="${repS.againstType == 'professionals'}">
+								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>Professional</span>
+								  						</c:when>
+								  						<c:otherwise>
+								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>User</span>
+								  						</c:otherwise>
+								  					</c:choose>
+								  				</td>
+								  			</tr>
+								  		</table>
+								  		<table>
+								  			<tr>
+								  				<td colspan="1"><p class="fw-semibold"><i class="bi bi-chat-dots text-dark"></i> Report: </p></td>
+								  				<td class="px-3" colspan="1"><p class="fw-normal text-secondary">${repS.msg}</p></td>
+								  			</tr>
+								  		</table>				  	
+								  	</div>
+								  	<div class="col-md-10">
+								  		
+								  	</div>
+								  </div>
+							   
+								  </div>
+								</div>
+							</div>
+						</c:forEach>
+						
+						<span class="my-3 badge text-bg-warning py-2 fw-semibold"> Visited </span>
+						<c:forEach var="repS" items="${ReportSeen}">
+						  <div class="border-bottom">
+						    <div class="d-flex justify-content-between align-items-center my-3">
+						    	<span class="text-dark fw-bold">Report No. : ${repS.id}</span>
+						    	<span class="text-dark fw-normal"> ${repS.date} -- ${repS.time}</span>
+								  	<button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#Rid-${repS.id}-s" aria-expanded="false" aria-controls="collapseExample">
+								    	<i class="bi bi-chevron-down"></i>
+								  	</button>
+							</div>
+							<div class="collapse" id="Rid-${repS.id}-s">
+							  <div class="card card-body">
+							  
+							    <div class="row">
+							  		<div class="col-md-10">
+								  		<table class="mb-3">
+								  			<tr>
+								  				<td class="text-center">
+								  					<c:choose>
+								  						<c:when test="${repS.againstType == 'professionals'}">
+								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>User</span>
+								  						</c:when>
+								  						<c:otherwise>
+								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>Professional</span>
+								  						</c:otherwise>
+								  					</c:choose>
+								  				</td>
+								  				<td class="text-center">
+								  					<p> &#160; <i class="bi bi-arrow-right"></i> &#160;</p>
+								  				</td>
+								  				<td class="text-center">
+								  					<c:choose>
+								  						<c:when test="${repS.againstType == 'professionals'}">
+								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>Professional</span>
+								  						</c:when>
+								  						<c:otherwise>
+								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>User</span>
+								  						</c:otherwise>
+								  					</c:choose>
+								  				</td>
+								  			</tr>
+								  		</table>
+								  		<table>
+								  			<tr>
+								  				<td colspan="1"><p class="fw-semibold"><i class="bi bi-chat-dots text-dark"></i> Report: </p></td>
+								  				<td class="px-3" colspan="1"><p class="fw-normal text-secondary">${repS.msg}</p></td>
+								  			</tr>
+								  		</table>				  	
+								  	</div>
+								  	<div class="col-md-10">
+								  		
+								  	</div>
+								  </div>
+							   
+								  </div>
+								</div>
+							</div>
+						</c:forEach>
+						
+						<span class="my-3 badge text-bg-success py-2 fw-semibold"> Resolved </span>
+						
+					  </div>
+					</div>
 	  			</div>
 	  		</div>
 	  	</div>

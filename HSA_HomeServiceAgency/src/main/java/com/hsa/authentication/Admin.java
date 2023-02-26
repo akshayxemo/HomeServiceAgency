@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.hsa.connection.util.DbConnection;
 import com.hsa.data.AdminData;
 import com.hsa.data.Professional;
+import com.hsa.data.Report;
 import com.hsa.data.User;
 
 /**
@@ -33,6 +34,8 @@ public class Admin extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<Professional> professionals = new ArrayList<>();
 		List<User> users = new ArrayList<>();
+		List<Report> reportsSeen = new ArrayList<>();
+		List<Report> reportsUnseen = new ArrayList<>();
 		try {
 			Connection con = DbConnection.getConnection();
 			PreparedStatement pstm1 = null;
@@ -72,10 +75,17 @@ public class Admin extends HttpServlet {
 				User user = new User(Id, Name, Email , Address, Phone, AltPhone, Gender, Status);
 				users.add(user);
 			}
+			reportsSeen = getReport("true");
+			reportsUnseen = getReport("false");
 			con.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
+		//System.out.println(reportsSeen);
+		//System.out.println(reportsUnseen);
+		request.setAttribute("ReportSeen", reportsSeen);
+		request.setAttribute("ReportUnseen", reportsUnseen);
 		request.setAttribute("ProfInfo", professionals);
 		request.setAttribute("UserInfo", users);
 		request.getRequestDispatcher("/admin-dashboard.jsp").forward(request, response);
@@ -86,8 +96,10 @@ public class Admin extends HttpServlet {
 		String Action = "noAction";
 		String Password = request.getParameter("password");
 		Action = request.getParameter("action");
-		if(AdminData.checkAdminPassword(Password) == false) {
-			Action = "noAction";
+		if(Password != null) {
+			if(AdminData.checkAdminPassword(Password) == false) {
+				Action = "noAction";
+			}
 		}
 		boolean done =  false;
 		try {
@@ -106,6 +118,10 @@ public class Admin extends HttpServlet {
 				request.setAttribute("Msg","Successfully Unbanned "+Type+" id "+Id);
 				done = true;
 				break;
+			case "changeSeen":
+				String rid = request.getParameter("rid");
+				reportSeen(rid);
+				doGet(request,response);
 			default:
 				done = false;
 				break;
@@ -122,6 +138,44 @@ public class Admin extends HttpServlet {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	private void reportSeen(String rid)throws SQLException {
+		String query = "UPDATE report SET Seen = 'true' WHERE Rid = "+rid;
+		Connection conn = DbConnection.getConnection();
+		PreparedStatement pstm = conn.prepareStatement(query);
+		pstm.executeUpdate();
+		conn.close();
+		pstm.close();
+	}
+	private List<Report> getReport(String seen) throws SQLException {
+		//System.out.println(seen);
+		String query = "select Rid,Bid,Uid,Pid,Message,AgainstType,Date,Time,Seen,Action from report where Seen = '"+seen+"'";
+		
+		Connection conn = DbConnection.getConnection();
+		PreparedStatement pstm = conn.prepareStatement(query);
+		ResultSet rs = null;
+		
+		List<Report> reps = new ArrayList<>();
+		
+		rs = pstm.executeQuery();
+		while(rs.next()) {
+			int rid = rs.getInt("Rid");
+			int bid = rs.getInt("Bid"); 
+			int uid = rs.getInt("Uid"); 
+			int pid = rs.getInt("Pid");
+			String msg = rs.getString("Message");
+			String againstType = rs.getString("AgainstType");
+			String date = rs.getString("Date");
+			String time = rs.getString("Time");
+			String Seen = rs.getString("Seen");
+			String action = rs.getString("Action");
+			Report rep = new Report(rid,bid,uid,pid,msg,againstType,date,time,Seen,action);
+			//System.out.println(rep);
+			reps.add(rep);
+		}
+		conn.close();
+		//System.out.println(reps);
+		return reps;
 	}
 	private static void changeStatus(String type, String id, String status)throws SQLException {
 		Connection conn = DbConnection.getConnection();
