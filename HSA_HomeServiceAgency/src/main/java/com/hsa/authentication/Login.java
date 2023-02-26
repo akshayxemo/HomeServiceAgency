@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hsa.connection.util.DbConnection;
+import com.hsa.data.AdminData;
 import com.hsa.security.Encryption;
 import com.hsa.security.IsExisting;
 
@@ -26,7 +27,6 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
@@ -40,34 +40,18 @@ public class Login extends HttpServlet {
 		boolean existingUser = true;
 		
 		try {
-			Email = request.getParameter("Email");
+			Email = request.getParameter("Email").toLowerCase();
 			Table = request.getParameter("AccountType");
 			Password = request.getParameter("Password");
 			hashPass = Encryption.toHexString(Encryption.getSHA(Password));
-			existingUser = IsExisting.checkRedundentUser(Table, Email);
-			if(!existingUser) {
-				request.setAttribute("userVarify", existingUser);
-				request.setAttribute("errorMsg","This Email id is not registered");
-				request.getRequestDispatcher("loginSignup.jsp").include(request, response);
-			}
-			else {
-				Connection conn = DbConnection.getConnection();
-				ResultSet result = null;
-				if(Table.equals("professionals")) {
-					sqlQuery = "select Pid from "+Table+" where Email = '"+Email+"' And Password = '"+hashPass+"'" ;
-				}
-				else {
-					sqlQuery = "select Uid from "+Table+" where Email = '"+Email+"' And Password = '"+hashPass+"'" ;
-				}
-				
-				PreparedStatement pstm = conn.prepareStatement(sqlQuery);
-				result = pstm.executeQuery();
-				if(result.next()) {
-					id = result.getString(1);
+			if(Table.equals("Admin")) {
+				boolean checkAdmin = AdminData.checkAdminPassword(Password, Email);
+				if(checkAdmin) {
+					id = "0X";
 					Cookie cookie1 = new Cookie("id",id);
 					//cookie1.setMaxAge(60);
 					response.addCookie(cookie1);
-					Cookie cookie2 = new Cookie("userType",Table);
+					Cookie cookie2 = new Cookie("userType","Admin");
 					//cookie2.setMaxAge(60);
 					response.addCookie(cookie2);
 					response.sendRedirect("./Dashboard");
@@ -77,6 +61,48 @@ public class Login extends HttpServlet {
 					request.setAttribute("errorMsg","Invalid Password, Please login again !");
 					request.getRequestDispatcher("loginSignup.jsp").include(request, response);
 				}
+			}
+			existingUser = IsExisting.checkRedundentUser(Table, Email);
+			if(!existingUser) {
+				request.setAttribute("userVarify", existingUser);
+				request.setAttribute("errorMsg","This Email id is not registered");
+				request.getRequestDispatcher("loginSignup.jsp").include(request, response);
+			}
+			else {
+					Connection conn = DbConnection.getConnection();
+					ResultSet result = null;
+					if(Table.equals("professionals")) {
+						sqlQuery = "select Pid, Status from "+Table+" where Email = '"+Email+"' And Password = '"+hashPass+"'" ;
+					}
+					else {
+						sqlQuery = "select Uid, Status from "+Table+" where Email = '"+Email+"' And Password = '"+hashPass+"'" ;
+					}
+					
+					PreparedStatement pstm = conn.prepareStatement(sqlQuery);
+					result = pstm.executeQuery();
+					if(result.next()) {
+						String Status = result.getString("Status");
+						if(Status.equals("safe")) {
+							id = result.getString(1);
+							Cookie cookie1 = new Cookie("id",id);
+							//cookie1.setMaxAge(60);
+							response.addCookie(cookie1);
+							Cookie cookie2 = new Cookie("userType",Table);
+							//cookie2.setMaxAge(60);
+							response.addCookie(cookie2);
+							response.sendRedirect("./Dashboard");
+						}
+						else {
+							request.setAttribute("userVarify", false);
+							request.setAttribute("errorMsg","Sorry Your Account id is been BANNED");
+							request.getRequestDispatcher("loginSignup.jsp").include(request, response);
+						}
+					}
+					else {
+						request.setAttribute("userVarify", false);
+						request.setAttribute("errorMsg","Invalid Password, Please login again !");
+						request.getRequestDispatcher("loginSignup.jsp").include(request, response);
+					}
 			}
 			
 		}catch(Exception e) {

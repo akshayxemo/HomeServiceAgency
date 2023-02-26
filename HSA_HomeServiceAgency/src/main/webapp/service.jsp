@@ -7,11 +7,17 @@
 <meta charset="ISO-8859-1">
 <title>Services</title>
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="navbarAndFooter.css" type="text/css">
 <link rel="stylesheet" href="service.css" type="text/css">
+<style>
+	select, option{
+		font-family: 'FontAwesome', 'Poppins';
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="Navbar.jsp"></jsp:include>
@@ -38,14 +44,14 @@
 						</div>
 						<div class="col-md-2">
 							<select class="form-select form-select-lg rounded-pill searchBox float-end border-secondary" name="filter" aria-label="Default select example">
-								<option selected value="">Filter</option>
+								<option selected value="">&#xf0b0; &#160 Filter</option>
 								<optgroup label="By Rating">
-									<option value="Rating-High-Low"> High - Low</option>
+									<option value="Rating-High-Low" class="fw-normal">&#xf161; &#160 High-Low</option>
 								</optgroup>
 								<optgroup label="By Gender">
-									<option value="Female">Female</option>
-									<option value="Male">Male</option>
-									<option value="Others">others</option>
+									<option value="Female">&#xf221; &#160 Female</option>
+									<option value="Male">&#xf222; &#160 Male</option>
+									<option value="Others">&#xf224; &#160 others</option>
 								</optgroup>
 							</select>
 						</div>

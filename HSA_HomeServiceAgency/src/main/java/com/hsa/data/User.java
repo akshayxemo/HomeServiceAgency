@@ -8,6 +8,19 @@ public class User {
 	private String phone;
 	private String altPhone;
 	private String gender;
+	private String status;
+	public User(int uid, String name, String email, String address, String phone, String altPhone, String gender,
+			String status) {
+		super();
+		this.uid = uid;
+		this.name = name;
+		this.email = email;
+		this.address = address;
+		this.phone = phone;
+		this.altPhone = altPhone;
+		this.gender = gender;
+		this.status = status;
+	}
 	public User(int uid, String name, String email, String address, String phone, String altPhone, String gender) {
 		super();
 		this.uid = uid;
@@ -60,9 +73,15 @@ public class User {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", name=" + name + ", email=" + email + ", address=" + address + ", phone=" + phone
-				+ ", altPhone=" + altPhone + ", gender=" + gender + "]";
+				+ ", altPhone=" + altPhone + ", gender=" + gender + ", status=" + status + "]";
 	}
 }

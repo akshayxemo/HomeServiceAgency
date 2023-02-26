@@ -36,7 +36,7 @@ public class Dashboard extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		// Set refresh, autoload time as 1 seconds
-        response.setIntHeader("Refresh", 60);
+        //response.setIntHeader("Refresh", 60);
         
 		response.setContentType("text/html");
 		//PrintWriter pw = response.getWriter();
@@ -68,6 +68,9 @@ public class Dashboard extends HttpServlet {
 		  }
 		
 		if(cookie1 && cookie2 ) {
+			if(type.equals("Admin") && id.equals("0X")) {
+				request.getRequestDispatcher("./Admin").forward(request, response);
+			}
 			try {
 				Connection conn = DbConnection.getConnection();
 				ResultSet result = null;

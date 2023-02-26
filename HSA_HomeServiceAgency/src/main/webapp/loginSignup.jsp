@@ -69,6 +69,10 @@
 				  <input class="form-check-input" type="radio" name="AccountType" id="ProfAccount" value="professionals">
 				  <label class="form-check-label" for="ProfAccount">Professional</label>
 				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="AccountType" id="AdminAccount" value="Admin">
+				  <label class="form-check-label" for="AdminAccount">Admin</label>
+				</div>
 				
 				<br><br>
 				<button type="submit" class="btn btn-warning mb-4 px-5" onClick="checkFields(event)">Login</button>

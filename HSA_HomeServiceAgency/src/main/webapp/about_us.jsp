@@ -23,11 +23,7 @@
 			<div class="row">
 				<div class="col-5">
 					<h1 class="headline mb-3">About us</h1>
-					<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-					Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-					when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-					Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-					when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					<p class="mb-4" id="about"></p>
 				</div>
 				<div class="col-2"></div>
 				<div class="col-5">
@@ -68,7 +64,6 @@
     </section>
     <!-- footer -->
     <jsp:include page="Footer.jsp"></jsp:include>
-    
   	<script src="loginSignup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
