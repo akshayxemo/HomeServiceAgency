@@ -2,6 +2,7 @@
  * 
  */
  //MODAL ALERT
+    
 	function openModal(msg) {
 	    document.getElementById("alertModal").style.display = "block";
 	    document.getElementById("modalBody").style.color = "#dc3545";
@@ -11,16 +12,8 @@
 	    document.getElementById("alertModal").style.display = "none";
 	}
  
- function setValue(id){
-	if(id == "rejectBtn"){
-		document.getElementById("F-action").value = "reject"
-	}
-	else{
-		document.getElementById("F-action").value = "accept"
-	}
-}
-function validate(event){
-	let pass = document.getElementById("profPass");
+	function validate(event, fieldId){
+	let pass = document.getElementById(fieldId);
 	
 	if(pass.value == ""){
 		event.preventDefault();
@@ -31,4 +24,4 @@ function validate(event){
 		return true;
 	}
 	
-}
+	}

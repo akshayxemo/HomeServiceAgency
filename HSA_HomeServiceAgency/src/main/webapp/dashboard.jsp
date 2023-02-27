@@ -212,11 +212,11 @@
 						        						<input type="hidden" name="profId" value="${bk.prof.id}">
 						        						<input type="hidden" name="status" value="complete">
 													    <div class="rating">
-													      <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="Excelent">5 stars</label>
-													      <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="Very Good">4 stars</label>
-													      <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="Good">3 stars</label>
-													      <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="Bad">2 stars</label>
-													      <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="Disappointed">1 star</label>
+													      <input type="radio" id="star5${bk.bid}" name="rating" value="5"><label for="star5${bk.bid}" title="Excelent">5 stars</label>
+													      <input type="radio" id="star4${bk.bid}" name="rating" value="4"><label for="star4${bk.bid}" title="Very Good">4 stars</label>
+													      <input type="radio" id="star3${bk.bid}" name="rating" value="3"><label for="star3${bk.bid}" title="Good">3 stars</label>
+													      <input type="radio" id="star2${bk.bid}" name="rating" value="2"><label for="star2${bk.bid}" title="Bad">2 stars</label>
+													      <input type="radio" id="star1${bk.bid}" name="rating" value="1"><label for="star1${bk.bid}" title="Disappointed">1 star</label>
 													    </div>
 							        					<input type="submit" class="btn btn-success w-100" value="Task Completed &#160 &#10004;">
 							        				</form>
@@ -342,13 +342,13 @@
 					        			<div class="row mt-3 px-3 border-top border-2">
 					        				<c:choose>
 						        				<c:when test="${bk.status == 'waiting' && bk.uStatus == 'accepted' && bk.pStatus == 'waiting'}">
-							        				<form action="ChangeStatus" method="post">
+							        				<form action="ChangeStatus" method="post" id="${bk.bid}">
 						        						<input type="hidden" name="bid" value="${bk.bid}">
 						        						<input type="hidden" name="type" value="${usertype}">
-						        						<input type="hidden" name="status" value="no" id="F-action">
-							        					<button type="submit" class="btn btn-danger my-3 w-100" id="rejectBtn" onclick="setValue(this.id)">Reject Appointment &#160 &#10006;</button>
-							        					<button type="submit" class="btn btn-success w-100" id="acceptBtn" onclick="setValue(this.id)">Accept Appointment &#160 &#10004;</button>
+						        						<input type="hidden" name="status" value="no" id="action${bk.bid}">
 						        					</form>
+							        					<button class="btn btn-danger my-3 w-100" id="rejectBtn" onClick="setValueform('rejectBtn', 'action${bk.bid}'), submit(${bk.bid})">${bk.bid} Reject Appointment &#160 &#10006;</button>
+							        					<button class="btn btn-success w-100" id="acceptBtn" onClick="setValueform('acceptBtn', 'action${bk.bid}'), submit(${bk.bid})"> ${bk.bid} Accept Appointment &#160 &#10004;</button>
 						        					
 						        					<span class="my-3 text-center">
 						        						Once you accept/reject it will be irreversible.
@@ -374,8 +374,8 @@
 						        						<input type="hidden" name="bid" value="${bk.bid}">
 						        						<input type="hidden" name="type" value="${usertype}">
 						        						<input type="hidden" name="status" value="complete">
-							        					<input type="password" id="profPass" name="Pass" class="form-control my-3" placeholder="Enter password">
-							        					<input type="submit" class="btn btn-success w-100" onclick="validate(event)" value="Task Completed &#160 &#10004;">
+							        					<input type="password" id="${bk.bid}-profPass" name="Pass" class="form-control my-3" placeholder="Enter password">
+							        					<input type="submit" class="btn btn-success w-100" onclick="validate(event, ${bk.bid}-profPass)" value="Task Completed &#160 &#10004;">
 							        				</form>
 							        				
 							        				<!-- Report form -->
@@ -461,8 +461,8 @@
 		</div>
     
     <jsp:include page="Footer.jsp"></jsp:include>
-    <script src="bootstrap.bundle.min.js"></script>
-    <script src="loginSignup.js"></script>
     <script src="dashboard.js"></script>
+    <script src="form.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
 </body>
 </html>

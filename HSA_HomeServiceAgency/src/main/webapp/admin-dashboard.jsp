@@ -7,7 +7,8 @@
 <meta charset="ISO-8859-1">
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
 <title>Admin Dashboard</title>
@@ -250,43 +251,44 @@
 							  
 							    <div class="row">
 							  		<div class="col-md-9">
-								  		<table class="mb-3">
-								  			<tr>
-								  				<td class="text-center">
+								  		<div class="mb-3 w-100 row">
+								  			<div class="text-center col-md-4">
 								  					<c:choose>
 								  						<c:when test="${repS.againstType == 'professionals'}">
-								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>User</span>
+															<img src="./ImageViewer?id=${repS.uid}&type=users"
+																class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block"
+																style="width: 3rem; height: 3rem;">
+															<p>User</p>
 								  						</c:when>
 								  						<c:otherwise>
-								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>Professional</span>
+															<img src="./ImageViewer?id=${repS.pid}&type=professionals"
+																class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block"
+																style="width: 3rem; height: 3rem;">
+															<p>Professional</p>
 								  						</c:otherwise>
 								  					</c:choose>
-								  				</td>
-								  				<td class="text-center">
-								  					<p> &#160; <i class="bi bi-arrow-right"></i> &#160;</p>
-								  				</td>
-								  				<td class="text-center">
+								  			</div>
+								  			<div class="text-center col-md-4 text-danger">
+								  				<i class="bi bi-exclamation-triangle-fill fs-2"></i>
+								  				<p>Reports</p>
+								  			</div>
+								  			<div class="text-center col-md-4">
 								  					<c:choose>
 								  						<c:when test="${repS.againstType == 'professionals'}">
 								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>Professional</span>
+								  							<p>Professional</p>
 								  						</c:when>
 								  						<c:otherwise>
 								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>User</span>
+								  							<p>User</p>
 								  						</c:otherwise>
 								  					</c:choose>
-								  				</td>
-								  			</tr>
-								  		</table>
-								  		<table>
-								  			<tr>
-								  				<td colspan="1"><p class="fw-semibold"><i class="bi bi-chat-dots text-dark"></i> Report: </p></td>
-								  				<td class="px-3" colspan="1"><p class="fw-normal text-secondary">${repS.msg}</p></td>
-								  			</tr>
-								  		</table>				  	
+								  			</div>
+								  		</div>
+								  		<div class="mt-3 pt-3 border-top">
+								  			<p class="fw-semibold m-0"> Report: </p>
+								  			<p class="fw-normal mt-1 text-secondary">${repS.msg}</p>
+								  		</div>				  	
 								  	</div>
 								  	<div class="col-md-3">
 								  		<form id="UnseenResolve" method="post">
@@ -451,43 +453,44 @@
 							  
 							    <div class="row">
 							  		<div class="col-md-9">
-								  		<table class="mb-3">
-								  			<tr>
-								  				<td class="text-center">
+								  		<div class="mb-3 w-100 row">
+								  			<div class="text-center col-md-4">
 								  					<c:choose>
 								  						<c:when test="${repS.againstType == 'professionals'}">
-								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>User</span>
+															<img src="./ImageViewer?id=${repS.uid}&type=users"
+																class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block"
+																style="width: 3rem; height: 3rem;">
+															<p>User</p>
 								  						</c:when>
 								  						<c:otherwise>
-								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>Professional</span>
+															<img src="./ImageViewer?id=${repS.pid}&type=professionals"
+																class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block"
+																style="width: 3rem; height: 3rem;">
+															<p>Professional</p>
 								  						</c:otherwise>
 								  					</c:choose>
-								  				</td>
-								  				<td class="text-center">
-								  					<p> &#160; <i class="bi bi-arrow-right"></i> &#160;</p>
-								  				</td>
-								  				<td class="text-center">
+								  			</div>
+								  			<div class="text-center col-md-4 text-danger">
+								  				<i class="bi bi-exclamation-triangle-fill fs-2"></i>
+								  				<p>Reports</p>
+								  			</div>
+								  			<div class="text-center col-md-4">
 								  					<c:choose>
 								  						<c:when test="${repS.againstType == 'professionals'}">
 								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>Professional</span>
+								  							<p>Professional</p>
 								  						</c:when>
 								  						<c:otherwise>
 								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>User</span>
+								  							<p>User</p>
 								  						</c:otherwise>
 								  					</c:choose>
-								  				</td>
-								  			</tr>
-								  		</table>
-								  		<table>
-								  			<tr>
-								  				<td colspan="1"><p class="fw-semibold"><i class="bi bi-chat-dots text-dark"></i> Report: </p></td>
-								  				<td class="px-3" colspan="1"><p class="fw-normal text-secondary">${repS.msg}</p></td>
-								  			</tr>
-								  		</table>				  	
+								  			</div>
+								  		</div>
+								  		<div class="mt-3 pt-3 border-top">
+								  			<p class="fw-semibold m-0"> Report: </p>
+								  			<p class="fw-normal mt-1 text-secondary">${repS.msg}</p>
+								  		</div>				  	
 								  	</div>
 								  	<div class="col-md-3">
 								  		<form id="SeenResolved" method="post">
@@ -653,43 +656,44 @@
 							  
 							    <div class="row">
 							  		<div class="col-md-9">
-								  		<table class="mb-3">
-								  			<tr>
-								  				<td class="text-center">
+								  		<div class="mb-3 w-100 row">
+								  			<div class="text-center col-md-4">
 								  					<c:choose>
 								  						<c:when test="${repS.againstType == 'professionals'}">
-								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>User</span>
+															<img src="./ImageViewer?id=${repS.uid}&type=users"
+																class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block"
+																style="width: 3rem; height: 3rem;">
+															<p>User</p>
 								  						</c:when>
 								  						<c:otherwise>
-								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>Professional</span>
+															<img src="./ImageViewer?id=${repS.pid}&type=professionals"
+																class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block"
+																style="width: 3rem; height: 3rem;">
+															<p>Professional</p>
 								  						</c:otherwise>
 								  					</c:choose>
-								  				</td>
-								  				<td class="text-center">
-								  					<p> &#160; <i class="bi bi-arrow-right"></i> &#160;</p>
-								  				</td>
-								  				<td class="text-center">
+								  			</div>
+								  			<div class="text-center col-md-4 text-danger">
+								  				<i class="bi bi-exclamation-triangle-fill fs-2"></i>
+								  				<p>Reports</p>
+								  			</div>
+								  			<div class="text-center col-md-4">
 								  					<c:choose>
 								  						<c:when test="${repS.againstType == 'professionals'}">
 								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>Professional</span>
+								  							<p>Professional</p>
 								  						</c:when>
 								  						<c:otherwise>
 								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
-								  							<span>User</span>
+								  							<p>User</p>
 								  						</c:otherwise>
 								  					</c:choose>
-								  				</td>
-								  			</tr>
-								  		</table>
-								  		<table>
-								  			<tr>
-								  				<td colspan="1"><p class="fw-semibold"><i class="bi bi-chat-dots text-dark"></i> Report: </p></td>
-								  				<td class="px-3" colspan="1"><p class="fw-normal text-secondary">${repS.msg}</p></td>
-								  			</tr>
-								  		</table>				  	
+								  			</div>
+								  		</div>
+								  		<div class="mt-3 pt-3 border-top">
+								  			<p class="fw-semibold m-0"> Report: </p>
+								  			<p class="fw-normal mt-1 text-secondary">${repS.msg}</p>
+								  		</div>				  	
 								  	</div>
 								  	<div class="col-md-3">
 								  			<p class="p-2 text-center rounded border border-success border-2 fw-semibold text-success w-100">${repS.action}</p>

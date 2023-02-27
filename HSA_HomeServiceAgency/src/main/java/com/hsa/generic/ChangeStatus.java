@@ -39,6 +39,7 @@ public class ChangeStatus extends HttpServlet {
 		String type = null;
 		String ckStat = null;
 		type = request.getParameter("type");
+		System.out.println("Heyyyyyyy "+status+","+type+","+bid);
 		try {
 			switch(status) {
 				case "reject":
@@ -88,7 +89,7 @@ public class ChangeStatus extends HttpServlet {
 					completeStatus(bid);
 					break;
 				default:
-					response.sendRedirect("./Dashboard");
+					//response.sendRedirect("./Dashboard");
 					break;
 			}
 			response.sendRedirect("./Dashboard");
