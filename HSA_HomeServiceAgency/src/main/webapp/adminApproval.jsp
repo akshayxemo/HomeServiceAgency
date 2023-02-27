@@ -30,6 +30,8 @@
 		String Type = request.getParameter("Type"); 
 		String Msg = request.getParameter("Message"); 
 		String Action = request.getParameter("Action"); 
+		String repBan = request.getParameter("RepBan");
+		String rid =  request.getParameter("rid");
 	%>
 	<section class="top">
 		<a class="navbar-brand" href="./Home"><img src="images/Logo.svg" class="logo"></a>
@@ -56,6 +58,8 @@
 			      <div class="modal-body text-bg-light">
 			      <c:if test="${Varify != true}">
 			      		<form name="AdminConfirm" id="AdminConfirm" method="post" action="Admin">
+			      			<input type="hidden" name="RepBan" value="<%= repBan%>">
+			      			<input type="hidden" name="rid" value="<%= rid%>">
 				        	<input type="hidden" name="action" value="<%= Action %>">
 				        	<input type="hidden" name="type" value="<%= Type %>">
 				        	<input type="hidden" name="id" value="<%= BanId %>">

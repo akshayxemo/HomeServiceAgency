@@ -67,7 +67,7 @@
 		  		
 			  		<c:forEach var="p" items="${ProfInfo}">
 				  		<div class="border-bottom">
-					  		<p class="d-flex justify-content-between my-3 align-items-center">
+					  		<p class="d-flex justify-content-between my-3 align-items-center" id="hsa-${p.id}">
 					  			<span># ${p.id} &#160 &#160 
 					  				<span class="fs-5"> ${p.name}</span>
 					  			</span>
@@ -143,7 +143,7 @@
 		  		
 			  		<c:forEach var="u" items="${UserInfo}">
 				  		<div class="border-bottom">
-					  		<p class="d-flex justify-content-between my-3 align-items-center">
+					  		<p class="d-flex justify-content-between my-3 align-items-center" id="hsa-${u.uid}">
 					  			<span># ${u.uid} &#160 &#160 
 					  				<span class="fs-5"> ${u.name}</span>
 					  			</span>
@@ -212,20 +212,24 @@
 	  	
 	  	<div class="col-md-4">
 	  		<div class="bg-dark shadow-lg mb-5 p-4 rounded">
-	  				<p>
-					  <button class="btn btn-primary position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+	  				<p class="text-light">
+					  <button class="btn btn-primary position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRepor" aria-expanded="false" aria-controls="collapseExample">
 					    Reports
 					    <c:if test="${ReportUnseen.size() gt 0}">
-						    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger rounded-circle">
+						    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+						    ${ReportUnseen.size()}
 						    	<span class="visually-hidden">New alerts</span>
 						  	</span>
 						 </c:if>
 					  </button>
+					 	&#160  here is all the reports are fired by
 					</p>
 	  			<div style="overflow-y: auto; height:75vh">
-					<div class="collapse" id="collapseExample">
+					<div class="collaps" id="collapseReport">
 					  <div class="card card-body">
-					  
+					  <c:if test="${ReportUnseen.size() == 0}">
+					  	<em class="text-danger fw-semibold">There is no new reports</em>
+					  </c:if>
 					  	<c:forEach var="repS" items="${ReportUnseen}">
 						  <div class="border-bottom">
 						    <div class="d-flex justify-content-between align-items-center my-3">
@@ -235,7 +239,7 @@
 							    <form method="post" action="Admin">
 							    	<input type="hidden" name="rid" value="${repS.id}">
 							    	<input type="hidden" name="action" value="changeSeen">
-								  	<button onclick="Submit(event)" class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#Rid-${repS.id}-s" aria-expanded="false" aria-controls="collapseExample">
+								  	<button onclick="Submit(event)" class="btn btn-dark" type="submit" data-bs-toggle="collapse" data-bs-target="#Rid-${repS.id}-s" aria-expanded="false" aria-controls="collapseExample">
 								    	<i class="bi bi-chevron-down"></i>
 								  	</button>
 								</form>
@@ -245,7 +249,7 @@
 							  <div class="card card-body">
 							  
 							    <div class="row">
-							  		<div class="col-md-10">
+							  		<div class="col-md-9">
 								  		<table class="mb-3">
 								  			<tr>
 								  				<td class="text-center">
@@ -284,31 +288,169 @@
 								  			</tr>
 								  		</table>				  	
 								  	</div>
-								  	<div class="col-md-10">
-								  		
+								  	<div class="col-md-3">
+								  		<form id="UnseenResolve" method="post">
+								  			<input type="hidden" name="rid" value="${repS.id}">
+								  			<input type="hidden" name="action" value="resolve">
+								  			<button type="submit" onclick="setFormAction1()" class="btn btn-success w-100">Resolve</button>
+								  		</form>
+								  		<form action="adminApproval.jsp" method="post">
+								  			<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<c:forEach var="u" items="${UserInfo}">
+								  						<c:if test="${repS.uid == u.uid}">
+								  							<c:choose>
+								  								<c:when test="${u.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${u.uid} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.uid}">
+												  					<input type="hidden" name="RepBan" value="userBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="users">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning users Id">
+												  					<button class="btn btn-warning w-100 mt-3">Ban Reporter</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<c:forEach var="p" items="${ProfInfo}">
+								  						<c:if test="${repS.pid == p.id}">
+								  							<c:choose>
+								  								<c:when test="${p.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${p.id} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.pid}">
+												  					<input type="hidden" name="RepBan" value="profBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="professionals">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning professionals Id">
+												  					<button class="btn btn-warning w-100 mt-3">Ban Reporter</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:otherwise>
+								  			</c:choose>
+								  		</form>
+								  		<form action="adminApproval.jsp" method="post">
+								  			<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<c:forEach var="p" items="${ProfInfo}">
+								  						<c:if test="${repS.pid == p.id}">
+								  							<c:choose>
+								  								<c:when test="${p.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${p.id} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.pid}">
+												  					<input type="hidden" name="RepBan" value="profBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="professionals">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning professionals Id">
+												  					<button class="btn btn-danger w-100 mt-3">Ban Reported</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<c:forEach var="u" items="${UserInfo}">
+								  						<c:if test="${repS.uid == u.uid}">
+								  							<c:choose>
+								  								<c:when test="${u.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${u.uid} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.uid}">
+												  					<input type="hidden" name="RepBan" value="userBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="users">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning users Id">
+												  					<button class="btn btn-danger w-100 mt-3">Ban Reported</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:otherwise>
+								  			</c:choose>
+								  		</form>
 								  	</div>
 								  </div>
-							   
+							   		<div class="row pt-2 border-top mt-3">
+							   			<div class=" col-md-6 text-center">
+								  			<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<span class="fw-semibold">Reporter</span>
+								  					<a href="#hsa-${repS.uid}">
+									  					<button class="btn btn-light border w-100 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.uid}-u" aria-expanded="false" aria-controls="collapseExample">
+															 Users details
+														</button>
+													</a>
+													<br>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<span class="fw-semibold">Reporter</span>
+								  					<a href="#hsa-${repS.pid}">
+									  					<button class="btn btn-light border w-100 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.pid}-p" aria-expanded="false" aria-controls="collapseExample">
+															Professionals details
+														</button>
+													</a>
+													<br>
+								  				</c:otherwise>
+								  			</c:choose>
+								  		</div>
+								  		<div class="col-md-6 text-center">
+							   				<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<span class="fw-semibold">Reported</span>
+								  					<a href="#hsa-${repS.pid}">
+									  					<button class="btn btn-dark w-100 border mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.pid}-p" aria-expanded="false" aria-controls="collapseExample">
+															Professionals details
+														</button>
+													</a>
+													<br>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<span class="fw-semibold">Reported</span>
+								  					<a href="#hsa-${repS.uid}">
+									  					<button class="btn btn-dark w-100 border mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.uid}-u" aria-expanded="false" aria-controls="collapseExample">
+															 Users details
+														</button>
+													</a>
+													<br>
+								  				</c:otherwise>
+								  			</c:choose>
+							   			</div>
+							   		</div>
 								  </div>
 								</div>
 							</div>
 						</c:forEach>
 						
-						<span class="my-3 badge text-bg-warning py-2 fw-semibold"> Visited </span>
+						<span class="my-3 badge text-bg-warning py-3 fs-6 fw-semibold"> Seen Unresolved reports </span>
 						<c:forEach var="repS" items="${ReportSeen}">
+						<c:if test="${repS.action == 'none'}">
 						  <div class="border-bottom">
 						    <div class="d-flex justify-content-between align-items-center my-3">
 						    	<span class="text-dark fw-bold">Report No. : ${repS.id}</span>
 						    	<span class="text-dark fw-normal"> ${repS.date} -- ${repS.time}</span>
-								  	<button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#Rid-${repS.id}-s" aria-expanded="false" aria-controls="collapseExample">
-								    	<i class="bi bi-chevron-down"></i>
-								  	</button>
+								<button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#Rid-${repS.id}-s" aria-expanded="false" aria-controls="collapseExample">
+								    <i class="bi bi-chevron-down"></i>
+								</button>
 							</div>
 							<div class="collapse" id="Rid-${repS.id}-s">
 							  <div class="card card-body">
 							  
 							    <div class="row">
-							  		<div class="col-md-10">
+							  		<div class="col-md-9">
 								  		<table class="mb-3">
 								  			<tr>
 								  				<td class="text-center">
@@ -347,17 +489,351 @@
 								  			</tr>
 								  		</table>				  	
 								  	</div>
-								  	<div class="col-md-10">
-								  		
+								  	<div class="col-md-3">
+								  		<form id="SeenResolved" method="post">
+								  			<input type="hidden" name="rid" value="${repS.id}">
+								  			<input type="hidden" name="action" value="resolve">
+								  			<button type="submit" onclick="setFormAction2()" class="btn btn-success w-100">Resolve</button>
+								  		</form>
+								  		<form action="adminApproval.jsp" method="post">
+								  			<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<c:forEach var="u" items="${UserInfo}">
+								  						<c:if test="${repS.uid == u.uid}">
+								  							<c:choose>
+								  								<c:when test="${u.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${u.uid} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.uid}">
+												  					<input type="hidden" name="RepBan" value="userBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="users">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning users Id">
+												  					<button class="btn btn-warning w-100 mt-3">Ban Reporter</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<c:forEach var="p" items="${ProfInfo}">
+								  						<c:if test="${repS.pid == p.id}">
+								  							<c:choose>
+								  								<c:when test="${p.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${p.id} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.pid}">
+												  					<input type="hidden" name="RepBan" value="profBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="professionals">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning professionals Id">
+												  					<button class="btn btn-warning w-100 mt-3">Ban Reporter</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:otherwise>
+								  			</c:choose>
+								  		</form>
+								  		<form action="adminApproval.jsp" method="post">
+								  			<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<c:forEach var="p" items="${ProfInfo}">
+								  						<c:if test="${repS.pid == p.id}">
+								  							<c:choose>
+								  								<c:when test="${p.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${p.id} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.pid}">
+												  					<input type="hidden" name="RepBan" value="profBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="professionals">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning professionals Id">
+												  					<button class="btn btn-danger w-100 mt-3">Ban Reported</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<c:forEach var="u" items="${UserInfo}">
+								  						<c:if test="${repS.uid == u.uid}">
+								  							<c:choose>
+								  								<c:when test="${u.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${u.uid} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.uid}">
+												  					<input type="hidden" name="RepBan" value="userBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="users">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning users Id">
+												  					<button class="btn btn-danger w-100 mt-3">Ban Reported</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:otherwise>
+								  			</c:choose>
+								  		</form>
 								  	</div>
 								  </div>
-							   
+							   		<div class="row pt-2 border-top mt-3">
+							   			<div class=" col-md-6 text-center">
+								  			<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<span class="fw-semibold">Reporter</span>
+								  					<a href="#hsa-${repS.uid}">
+									  					<button class="btn btn-light border w-100 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.uid}-u" aria-expanded="false" aria-controls="collapseExample">
+															 Users details
+														</button>
+													</a>
+													<br>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<span class="fw-semibold">Reporter</span>
+								  					<a href="#hsa-${repS.pid}">
+									  					<button class="btn btn-light border w-100 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.pid}-p" aria-expanded="false" aria-controls="collapseExample">
+															Professionals details
+														</button>
+													</a>
+													<br>
+								  				</c:otherwise>
+								  			</c:choose>
+								  		</div>
+								  		<div class="col-md-6 text-center">
+							   				<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<span class="fw-semibold">Reported</span>
+								  					<a href="#hsa-${repS.pid}">
+									  					<button class="btn btn-dark w-100 border mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.pid}-p" aria-expanded="false" aria-controls="collapseExample">
+															Professionals details
+														</button>
+													</a>
+													<br>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<span class="fw-semibold">Reported</span>
+								  					<a href="#hsa-${repS.uid}">
+									  					<button class="btn btn-dark w-100 border mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.uid}-u" aria-expanded="false" aria-controls="collapseExample">
+															 Users details
+														</button>
+													</a>
+													<br>
+								  				</c:otherwise>
+								  			</c:choose>
+							   			</div>
+							   		</div>
 								  </div>
 								</div>
 							</div>
+							</c:if>
 						</c:forEach>
 						
-						<span class="my-3 badge text-bg-success py-2 fw-semibold"> Resolved </span>
+						<span class="my-3 badge text-bg-success py-3 fs-6 fw-semibold"> Resolved reports </span>
+						<c:forEach var="repS" items="${ReportSeen}">
+						<c:if test="${repS.action != 'none'}">
+						  <div class="border-bottom">
+						    <div class="d-flex justify-content-between align-items-center my-3">
+						    	<span class="text-dark fw-bold">Report No. : ${repS.id}</span>
+						    	<span class="text-dark fw-normal"> ${repS.date} -- ${repS.time}</span>
+								<button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#Rid-${repS.id}-s" aria-expanded="false" aria-controls="collapseExample">
+									<i class="bi bi-chevron-down"></i>
+								</button>
+							</div>
+							<div class="collapse" id="Rid-${repS.id}-s">
+							  <div class="card card-body">
+							  
+							    <div class="row">
+							  		<div class="col-md-9">
+								  		<table class="mb-3">
+								  			<tr>
+								  				<td class="text-center">
+								  					<c:choose>
+								  						<c:when test="${repS.againstType == 'professionals'}">
+								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>User</span>
+								  						</c:when>
+								  						<c:otherwise>
+								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>Professional</span>
+								  						</c:otherwise>
+								  					</c:choose>
+								  				</td>
+								  				<td class="text-center">
+								  					<p> &#160; <i class="bi bi-arrow-right"></i> &#160;</p>
+								  				</td>
+								  				<td class="text-center">
+								  					<c:choose>
+								  						<c:when test="${repS.againstType == 'professionals'}">
+								  							<img src="./ImageViewer?id=${repS.pid}&type=professionals" class="img-fluid border border-dark mx-auto border-2 rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>Professional</span>
+								  						</c:when>
+								  						<c:otherwise>
+								  							<img src="./ImageViewer?id=${repS.uid}&type=users" class="img-fluid border border-dark border-2 mx-auto rounded-circle d-block" style="width: 3rem; height: 3rem;">
+								  							<span>User</span>
+								  						</c:otherwise>
+								  					</c:choose>
+								  				</td>
+								  			</tr>
+								  		</table>
+								  		<table>
+								  			<tr>
+								  				<td colspan="1"><p class="fw-semibold"><i class="bi bi-chat-dots text-dark"></i> Report: </p></td>
+								  				<td class="px-3" colspan="1"><p class="fw-normal text-secondary">${repS.msg}</p></td>
+								  			</tr>
+								  		</table>				  	
+								  	</div>
+								  	<div class="col-md-3">
+								  			<p class="p-2 text-center rounded border border-success border-2 fw-semibold text-success w-100">${repS.action}</p>
+								  		<form action="adminApproval.jsp" method="post">
+								  			<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<c:forEach var="u" items="${UserInfo}">
+								  						<c:if test="${repS.uid == u.uid}">
+								  							<c:choose>
+								  								<c:when test="${u.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${u.uid} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.uid}">
+												  					<input type="hidden" name="RepBan" value="userBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="users">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning users Id">
+												  					<button class="btn btn-warning w-100 mt-3">Ban Reporter</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<c:forEach var="p" items="${ProfInfo}">
+								  						<c:if test="${repS.pid == p.id}">
+								  							<c:choose>
+								  								<c:when test="${p.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${p.id} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.pid}">
+												  					<input type="hidden" name="RepBan" value="profBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="professionals">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning professionals Id">
+												  					<button class="btn btn-warning w-100 mt-3">Ban Reporter</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:otherwise>
+								  			</c:choose>
+								  		</form>
+								  		<form action="adminApproval.jsp" method="post">
+								  			<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<c:forEach var="p" items="${ProfInfo}">
+								  						<c:if test="${repS.pid == p.id}">
+								  							<c:choose>
+								  								<c:when test="${p.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${p.id} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.pid}">
+												  					<input type="hidden" name="RepBan" value="profBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="professionals">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning professionals Id">
+												  					<button class="btn btn-danger w-100 mt-3">Ban Reported</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<c:forEach var="u" items="${UserInfo}">
+								  						<c:if test="${repS.uid == u.uid}">
+								  							<c:choose>
+								  								<c:when test="${u.status == 'baned'}">
+								  									<p>Reporter Banned ID: ${u.uid} </p>
+								  								</c:when>
+								  								<c:otherwise>
+												  					<input type="hidden" name="BanID" value="${repS.uid}">
+												  					<input type="hidden" name="RepBan" value="userBan">
+												  					<input type="hidden" name="rid" value="${repS.id}">
+												  					<input type="hidden" name="Type" value="users">
+												  					<input type="hidden" name="Action" value="ban">
+												  					<input type="hidden" name="Message" value="Banning users Id">
+												  					<button class="btn btn-danger w-100 mt-3">Ban Reported</button>
+								  								</c:otherwise>
+								  							</c:choose>
+								  						</c:if>
+								  					</c:forEach>
+								  				</c:otherwise>
+								  			</c:choose>
+								  		</form>
+								  	</div>
+								  </div>
+							   		<div class="row pt-2 border-top mt-3">
+							   			<div class=" col-md-6 text-center">
+								  			<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<span class="fw-semibold">Reporter</span>
+								  					<a href="#hsa-${repS.uid}">
+									  					<button class="btn btn-light border w-100 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.uid}-u" aria-expanded="false" aria-controls="collapseExample">
+															 Users details
+														</button>
+													</a>
+													<br>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<span class="fw-semibold">Reporter</span>
+								  					<a href="#hsa-${repS.pid}">
+									  					<button class="btn btn-light border w-100 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.pid}-p" aria-expanded="false" aria-controls="collapseExample">
+															Professionals details
+														</button>
+													</a>
+													<br>
+								  				</c:otherwise>
+								  			</c:choose>
+								  		</div>
+								  		<div class="col-md-6 text-center">
+							   				<c:choose>
+								  				<c:when test="${repS.againstType == 'professionals'}">
+								  					<span class="fw-semibold">Reported</span>
+								  					<a href="#hsa-${repS.pid}">
+									  					<button class="btn btn-dark w-100 border mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.pid}-p" aria-expanded="false" aria-controls="collapseExample">
+															Professionals details
+														</button>
+													</a>
+													<br>
+								  				</c:when>
+								  				<c:otherwise>
+								  					<span class="fw-semibold">Reported</span>
+								  					<a href="#hsa-${repS.uid}">
+									  					<button class="btn btn-dark w-100 border mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#hsa-${repS.uid}-u" aria-expanded="false" aria-controls="collapseExample">
+															 Users details
+														</button>
+													</a>
+													<br>
+								  				</c:otherwise>
+								  			</c:choose>
+							   			</div>
+							   		</div>
+								  </div>
+								</div>
+							</div>
+							</c:if>
+						</c:forEach>
 						
 					  </div>
 					</div>
@@ -366,5 +842,6 @@
 	  	</div>
 	  </div>
 	</div>
+	<script src="adminDashboard.js"></script>
 </body>
 </html>

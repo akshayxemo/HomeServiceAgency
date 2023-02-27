@@ -96,6 +96,8 @@ public class Admin extends HttpServlet {
 		String Action = "noAction";
 		String Password = request.getParameter("password");
 		Action = request.getParameter("action");
+		String rid = request.getParameter("rid");
+		String RepBan = request.getParameter("RepBan");
 		if(Password != null) {
 			if(AdminData.checkAdminPassword(Password) == false) {
 				Action = "noAction";
@@ -106,6 +108,11 @@ public class Admin extends HttpServlet {
 			switch(Action) {
 			case "ban":
 				changeStatus(Type, Id, "baned");
+				System.out.print(RepBan+" and "+rid);
+				if(RepBan != null) {
+					reportAction(rid, RepBan);
+					reportSeen(rid);
+				}
 				request.setAttribute("Varify", true);
 				request.setAttribute("color", "success");
 				request.setAttribute("Msg","Successfully Banned "+Type+" id "+Id);
@@ -119,9 +126,15 @@ public class Admin extends HttpServlet {
 				done = true;
 				break;
 			case "changeSeen":
-				String rid = request.getParameter("rid");
+				System.out.println(" Seen Enter "+Action);
 				reportSeen(rid);
-				doGet(request,response);
+				response.sendRedirect("./Dashboard");
+				break;
+			case "resolve":
+				System.out.println(" resolve Enter "+Action);
+				reportResolve(rid);
+				response.sendRedirect("./Dashboard");
+				break;
 			default:
 				done = false;
 				break;
@@ -138,6 +151,22 @@ public class Admin extends HttpServlet {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	private void reportAction(String rid, String Action)throws SQLException {
+		String query = "UPDATE report SET Action = '"+Action+"' WHERE Rid = "+rid;
+		Connection conn = DbConnection.getConnection();
+		PreparedStatement pstm = conn.prepareStatement(query);
+		pstm.executeUpdate();
+		conn.close();
+		pstm.close();
+	}
+	private void reportResolve(String rid)throws SQLException {
+		String query = "UPDATE report SET Action = 'resolved' WHERE Rid = "+rid;
+		Connection conn = DbConnection.getConnection();
+		PreparedStatement pstm = conn.prepareStatement(query);
+		pstm.executeUpdate();
+		conn.close();
+		pstm.close();
 	}
 	private void reportSeen(String rid)throws SQLException {
 		String query = "UPDATE report SET Seen = 'true' WHERE Rid = "+rid;
