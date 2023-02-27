@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registration Success</title>
+<title>Registration</title>
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 <link href="SuccessPage.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="bootstrap.min.css" type="text/css">

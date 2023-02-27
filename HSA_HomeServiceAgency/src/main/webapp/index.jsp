@@ -108,9 +108,9 @@
 			<div class="row">
 				<div class="col-sm-5 col-md-5">
 					<h1 class="headline mb-3">About us</h1>
-					<p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-					Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-					when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					<p class="mb-4">HSA online home services
+						platform. Launched in 2023. The
+						platform helps customers book reliable & </p>
 					<a type="button" href="about_us.jsp" class="btn btn-dark" id="AboutButton">Read more...</a>
 				</div>
 				<div class="col-sm-2 col-md-1"></div>
@@ -124,8 +124,7 @@
 		<div class="container">
 			<div class="feature-heading text-center">
 				<h1 class="headline mb-3">Features</h1>
-				<p class="mb-4 p-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+				<p class="mb-4 p-text"></p>
 			</div>
 			<div class="row my-5">
 				<div class="col-4 text-center">
@@ -147,8 +146,7 @@
 		<div class="container">
 			<div class="testimonial-heading text-center">
 				<h1 class="headline mb-3">Testimonial</h1>
-				<p class="mb-4 p-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-				Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+				<p class="mb-4 p-text"></p>
 			</div>
 			<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
   				<div class="carousel-inner">

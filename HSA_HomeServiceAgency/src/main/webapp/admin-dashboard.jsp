@@ -11,7 +11,7 @@
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 <link rel="stylesheet" href="bootstrap.min.css" type="text/css">
-<title>Admin Dashboard</title>
+<title>Admin</title>
 <style type="text/css">
 	body{
 		background-image:url("./images/AdminBg.png");
