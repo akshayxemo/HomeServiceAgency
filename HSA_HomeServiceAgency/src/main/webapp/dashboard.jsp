@@ -178,7 +178,7 @@
 						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
 						        				</c:when>
 						        				<c:when test="${bk.status == 'rejected' && bk.uStatus == 'rejected'}">
-						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">Your Reject this Appointment</span></span>
+						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">You canceled this Appointment</span></span>
 						        					<span class="mt-1 text-center">Date : ${bk.stDate}</span>
 						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
 						        				</c:when>
@@ -347,8 +347,8 @@
 						        						<input type="hidden" name="type" value="${usertype}">
 						        						<input type="hidden" name="status" value="no" id="action${bk.bid}">
 						        					</form>
-							        					<button class="btn btn-danger my-3 w-100" id="rejectBtn" onClick="setValueform('rejectBtn', 'action${bk.bid}'), submit(${bk.bid})">${bk.bid} Reject Appointment &#160 &#10006;</button>
-							        					<button class="btn btn-success w-100" id="acceptBtn" onClick="setValueform('acceptBtn', 'action${bk.bid}'), submit(${bk.bid})"> ${bk.bid} Accept Appointment &#160 &#10004;</button>
+							        					<button class="btn btn-danger my-3 w-100" id="rejectBtn" onClick="setValueform('rejectBtn', 'action${bk.bid}'), submit(${bk.bid})"> Reject Appointment &#160 &#10006;</button>
+							        					<button class="btn btn-success w-100" id="acceptBtn" onClick="setValueform('acceptBtn', 'action${bk.bid}'), submit(${bk.bid})"> Accept Appointment &#160 &#10004;</button>
 						        					
 						        					<span class="my-3 text-center">
 						        						Once you accept/reject it will be irreversible.
@@ -360,7 +360,7 @@
 						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
 						        				</c:when>
 						        				<c:when test="${bk.status == 'rejected' && bk.pStatus == 'rejected'}">
-						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">Your Reject this Appointment</span></span>
+						        					<span class="my-3 text-center">Sorry <br><span class="text-danger">You cancled this Appointment</span></span>
 						        					<span class="mt-1 text-center">Date : ${bk.stDate}</span>
 						        					<span class="mt-1 text-center">Time : ${bk.stTime}</span>
 						        				</c:when>

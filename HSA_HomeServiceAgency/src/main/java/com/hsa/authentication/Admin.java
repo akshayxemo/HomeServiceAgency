@@ -133,6 +133,7 @@ public class Admin extends HttpServlet {
 			case "resolve":
 				System.out.println(" resolve Enter "+Action);
 				reportResolve(rid);
+				reportSeen(rid);
 				response.sendRedirect("./Dashboard");
 				break;
 			default:

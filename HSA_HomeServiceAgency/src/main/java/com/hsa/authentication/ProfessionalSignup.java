@@ -52,7 +52,7 @@ public class ProfessionalSignup extends HttpServlet {
 		int ServiceId;
 		int Rating = 0;
 		
-		String sqlQuery = "insert into professionals(Name,Email,Address,Phone,AltPhone,Gender,Service_id,Image,Password,Rating) values (?,?,?,?,?,?,?,?,?,?)";
+		String sqlQuery = "insert into professionals(Name,Email,Address,Phone,AltPhone,Gender,Service_id,Image,Password,Rating,Status) values (?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			
 			filePart = request.getPart("PImage"); 
@@ -91,6 +91,7 @@ public class ProfessionalSignup extends HttpServlet {
 				pstm.setBlob(8, Image);
 				pstm.setString(9, Encryption.toHexString(Encryption.getSHA(Password)));
 				pstm.setInt(10, Rating);
+				pstm.setString(11, "safe");
 				pstm.executeUpdate();
 				request.setAttribute("Name", Name);
 				request.getRequestDispatcher("SuccessPage.jsp").include(request, response);

@@ -1,6 +1,5 @@
 	function setValueform(id,fieldId){
-    	alert(id)
-    	alert(fieldId)
+    	
 		if(id == "rejectBtn"){
 			document.getElementById(fieldId).value = "reject";
 		}
@@ -9,6 +8,6 @@
 		}
 	}
     function submit(fid){
-    	alert(fid)
+    	
     	document.getElementById(fid).submit();
     }

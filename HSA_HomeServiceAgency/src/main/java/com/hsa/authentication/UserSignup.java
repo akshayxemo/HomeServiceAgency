@@ -43,7 +43,7 @@ public class UserSignup extends HttpServlet {
 		String Gender = null;
 		String Password = null;
 		
-		String sqlQuery = "insert into users(Name,Email,Address,Phone,AltPhone,Gender,Image,Password) values (?,?,?,?,?,?,?,?)";
+		String sqlQuery = "insert into users(Name,Email,Address,Phone,AltPhone,Gender,Image,Password,Status) values (?,?,?,?,?,?,?,?,?)";
 		try {
 			
 			filePart = request.getPart("UImage"); 
@@ -79,6 +79,7 @@ public class UserSignup extends HttpServlet {
 				pstm.setString(6, Gender);
 				pstm.setBlob(7, Image);
 				pstm.setString(8, Encryption.toHexString(Encryption.getSHA(Password)));
+				pstm.setString(9, "safe");
 				pstm.executeUpdate();
 				request.setAttribute("Name", Name);
 				request.getRequestDispatcher("SuccessPage.jsp").include(request, response);
