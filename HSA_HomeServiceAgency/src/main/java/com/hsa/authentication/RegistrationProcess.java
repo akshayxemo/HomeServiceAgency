@@ -32,7 +32,7 @@ public class RegistrationProcess extends HttpServlet {
 			  }
 		    }
 		  }
-		System.out.println("cookie1: "+cookie1+" Cookie2: "+cookie2);
+		//System.out.println("cookie1: "+cookie1+" Cookie2: "+cookie2);
 		if(cookie1 && cookie2) {
 			response.sendRedirect("./Dashboard");
 		}

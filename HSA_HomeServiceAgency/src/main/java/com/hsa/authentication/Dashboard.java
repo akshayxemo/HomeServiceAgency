@@ -49,10 +49,7 @@ public class Dashboard extends HttpServlet {
 		String rating = null;
 		List<BDetails> bookings = new ArrayList<>();
 		List<SubService> services = new ArrayList<>();
-		/*
-		 * List<Professional> professionals = new ArrayList<>(); List<User> users = new
-		 * ArrayList<>();
-		 */
+		
 		Cookie ck[] = request.getCookies();
 		if(ck!=null) {
 		    for (Cookie cookie : ck) {

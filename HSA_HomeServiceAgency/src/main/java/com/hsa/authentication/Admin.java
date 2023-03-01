@@ -108,7 +108,7 @@ public class Admin extends HttpServlet {
 			switch(Action) {
 			case "ban":
 				changeStatus(Type, Id, "baned");
-				System.out.print(RepBan+" and "+rid);
+				//System.out.print(RepBan+" and "+rid);
 				if(RepBan != null) {
 					reportAction(rid, RepBan);
 					reportSeen(rid);
@@ -126,12 +126,12 @@ public class Admin extends HttpServlet {
 				done = true;
 				break;
 			case "changeSeen":
-				System.out.println(" Seen Enter "+Action);
+				//System.out.println(" Seen Enter "+Action);
 				reportSeen(rid);
 				response.sendRedirect("./Dashboard");
 				break;
 			case "resolve":
-				System.out.println(" resolve Enter "+Action);
+				//System.out.println(" resolve Enter "+Action);
 				reportResolve(rid);
 				reportSeen(rid);
 				response.sendRedirect("./Dashboard");
