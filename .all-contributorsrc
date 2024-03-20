@@ -20,5 +20,18 @@
   },
   "linkToUsage": true,
   "skipCi": true,
-  "contributors": []
+  "contributors": [
+    {
+      "login": "akshayxemo",
+      "name": "Akshay Kumar Das",
+      "avatar_url": "https://avatars.githubusercontent.com/akshayxemo",
+      "profile": "https://akshayxemo.com",
+      "contributions": [
+        "question",
+        "doc",
+        "review",
+        "talk"
+      ]
+    },
+  ]
 }
