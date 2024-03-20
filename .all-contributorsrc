@@ -3,7 +3,7 @@
   "projectOwner": "akshayxemo",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "files": ["CONTRIBUTORS.md"],
+  "files": ["README.md"],
   "imageSize": 100,
   "commit": false,
   "contributorsPerLine": 7,
